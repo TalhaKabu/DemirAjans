@@ -1,0 +1,6 @@
+@Kab.DemirAjans.WebAPI_HostAddress = http://localhost:5174
+
+GET {{Kab.DemirAjans.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
