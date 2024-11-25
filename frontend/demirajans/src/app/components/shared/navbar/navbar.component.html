@@ -1,6 +1,6 @@
 <mat-toolbar>
   <div class="row-container">
-    <mat-toolbar-row class="first-row">
+    <mat-toolbar-row [hidden]="firstToolbarRowMobile" class="first-row">
       <div class="search-container">
         <i class="bi bi-search search-icon"></i>
         <input id="search" type="text" placeholder="Ürünlerde ara" />
@@ -8,7 +8,7 @@
     </mat-toolbar-row>
   </div>
   <hr />
-  <div class="row-container">
+  <div class="row-container" [hidden]="firstToolbarRowMobile">
     <mat-toolbar-row>
       <div class="menu-container">
         <a href="" class="menu-a">
@@ -18,7 +18,20 @@
           </span>
         </a>
       </div>
-      <div class="header-container" ><span>ANASAYFA</span></div>
+      <div class="header-container"><span>ANASAYFA</span></div>
+    </mat-toolbar-row>
+  </div>
+  <div class="row-container" [hidden]="!firstToolbarRowMobile">
+    <mat-toolbar-row>
+      <div class="mobile-container">
+        <span class="mobile-menu-icon">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+        <span class="mobile-title"><b>Demir Ajans</b></span>
+        <span class="mobile-search-icon">
+          <i class="bi bi-search"></i>
+        </span>
+      </div>
     </mat-toolbar-row>
   </div>
   <hr />
