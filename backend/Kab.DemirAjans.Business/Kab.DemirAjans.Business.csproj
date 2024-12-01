@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kab.DemirAjans.DataAccess\Kab.DemirAjans.DataAccess.csproj" />
     <ProjectReference Include="..\Kab.DemirAjans.EntityFrameworkCore\Kab.DemirAjans.EntityFrameworkCore.csproj" />
   </ItemGroup>
 

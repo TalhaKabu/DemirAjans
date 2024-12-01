@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Kab.DemirAjans.Domain.ExtraProperties;
 using Kab.DemirAjans.Domain.Products;
-using Kab.DemirAjans.Domain.Images;
 using System;
 
 namespace Kab.DemirAjans.Domain.Categories;
