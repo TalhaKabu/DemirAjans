@@ -1,4 +1,6 @@
-﻿using Kab.DemirAjans.EntityFrameworkCore.Context;
+﻿using Kab.DemirAjans.DataAccess.Categories;
+using Kab.DemirAjans.DataAccess.DbAccess;
+using Kab.DemirAjans.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,5 +16,10 @@ public static class DependencyInjection
         {
             options.UseSqlServer(configuration.GetConnectionString("Default"));
         });
+
+        services
+            .AddSingleton<ICategoryDal, CategoryDal>()
+
+            .AddSingleton<ISqlDataAccess, SqlDataAccess>();
     }
 }
