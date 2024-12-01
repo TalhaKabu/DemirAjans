@@ -2,7 +2,7 @@
 AS
 BEGIN
 	SELECT
-		Id
+		 Id
 		,Name
 		,ImageName
 		,CreationDate
