@@ -9,5 +9,6 @@ public class Image
 
     [MaxLength(ImageConst.MaxPathLength)]
     public string? Path { get; set; }
+    public bool IsFrontImage { get; set; }
     public required int ProductId { get; set; }
 }

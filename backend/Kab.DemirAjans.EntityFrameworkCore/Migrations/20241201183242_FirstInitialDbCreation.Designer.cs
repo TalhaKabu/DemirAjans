@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(KabDbContext))]
-    [Migration("20241201135120_first")]
-    partial class first
+    [Migration("20241201183242_FirstInitialDbCreation")]
+    partial class FirstInitialDbCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,6 +58,9 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsFrontImage")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Path")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -69,7 +72,7 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Image");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Kab.DemirAjans.Domain.Products.Product", b =>
@@ -104,7 +107,7 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
             modelBuilder.Entity("Kab.DemirAjans.Domain.Images.Image", b =>
                 {
                     b.HasOne("Kab.DemirAjans.Domain.Products.Product", null)
-                        .WithMany("Images")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -113,20 +116,10 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
             modelBuilder.Entity("Kab.DemirAjans.Domain.Products.Product", b =>
                 {
                     b.HasOne("Kab.DemirAjans.Domain.Categories.Category", null)
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Kab.DemirAjans.Domain.Categories.Category", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Kab.DemirAjans.Domain.Products.Product", b =>
-                {
-                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

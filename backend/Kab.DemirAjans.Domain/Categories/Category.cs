@@ -7,10 +7,19 @@ namespace Kab.DemirAjans.Domain.Categories;
 
 public class Category : AuditedAggregateRoot
 {
-    public int Id { get; set; }
+    public int Id { get; protected set; }
 
     [MaxLength(CategoryConst.MaxNameLength)]
-    public required string Name { get; set; }
-    public List<Product> Products { get; set; }
-    public Guid ImageName { get; set; }
+    [Required]
+    public string Name { get; protected set; }
+
+    [Required]
+    public Guid ImageName { get; protected set; }
+
+    public Category(int id, string name, Guid imageName)
+    {
+        Id = id;
+        Name = name;
+        ImageName = imageName;
+    }
 }

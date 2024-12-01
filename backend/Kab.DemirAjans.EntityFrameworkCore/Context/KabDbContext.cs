@@ -1,5 +1,7 @@
 ﻿using Kab.DemirAjans.Domain.Categories;
+using Kab.DemirAjans.Domain.Images;
 using Kab.DemirAjans.Domain.Products;
+using Kab.DemirAjans.EntityFrameworkCore.ModelCreatingExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -9,4 +11,12 @@ public class KabDbContext(DbContextOptions<KabDbContext> options) : DbContext(op
 {
     public DbSet<Category> Categories {  get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<Image> Images { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.ConfigureKab();
+    }
 }
