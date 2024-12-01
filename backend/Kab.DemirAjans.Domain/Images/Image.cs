@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace Kab.DemirAjans.Domain.Images;
 
@@ -13,4 +9,5 @@ public class Image
 
     [MaxLength(ImageConst.MaxPathLength)]
     public string? Path { get; set; }
+    public required int ProductId { get; set; }
 }

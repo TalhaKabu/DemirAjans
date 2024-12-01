@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System;
 using Kab.DemirAjans.Domain.ExtraProperties;
-using Kab.DemirAjans.Domain.Categories;
+using Kab.DemirAjans.Domain.Images;
+using System;
 
 namespace Kab.DemirAjans.Domain.Products;
 
@@ -13,4 +13,5 @@ public class Product : AuditedAggregateRoot
     public required string Name { get; set; }
 
     public required int CategoryId { get; set; } 
+    public List<Image> Images { get; set; }
 }
