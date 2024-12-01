@@ -1,4 +1,5 @@
-﻿using Kab.DemirAjans.DataAccess.Categories;
+﻿using Kab.DemirAjans.Business.Categories;
+using Kab.DemirAjans.DataAccess.Categories;
 using Kab.DemirAjans.DataAccess.DbAccess;
 using Kab.DemirAjans.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ public static class DependencyInjection
         });
 
         services
+            .AddSingleton<ICategoryService, CategoryManager>()
             .AddSingleton<ICategoryDal, CategoryDal>()
 
             .AddSingleton<ISqlDataAccess, SqlDataAccess>();
