@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
+using Kab.DemirAjans.Domain.ExtraProperties;
 
 namespace Kab.DemirAjans.Domain.Images;
 
-public class Image
+public class Image : AuditedAggregateRoot
 {
     public Guid Id { get; set; }
 

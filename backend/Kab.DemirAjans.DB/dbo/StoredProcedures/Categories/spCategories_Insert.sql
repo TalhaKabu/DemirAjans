@@ -7,4 +7,5 @@ AS
 BEGIN
 	INSERT INTO dbo.[Categories] (Name, ImageName, CreationDate, LastModificationDate)
 	VALUES (@Name, @ImageName, @CreationDate, @LastModificationDate);
+	SELECT IDENT_CURRENT('dbo.[Categories]')
 END

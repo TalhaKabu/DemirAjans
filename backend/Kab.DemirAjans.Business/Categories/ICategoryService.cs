@@ -6,6 +6,6 @@ namespace Kab.DemirAjans.Business.Categories
     {
         Task<CategoryDto?> GetAsync(int id);
         Task<IEnumerable<CategoryDto>> GetListAsync();
-        Task InsertAsync(CategoryDto categoryDto);
+        Task<int> InsertAsync(CategoryCreateDto categoryDto);
     }
 }

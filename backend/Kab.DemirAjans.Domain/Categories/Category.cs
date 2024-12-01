@@ -7,19 +7,39 @@ namespace Kab.DemirAjans.Domain.Categories;
 
 public class Category : AuditedAggregateRoot
 {
-    public int Id { get; protected set; }
+    public int Id { get;  set; }
 
     [MaxLength(CategoryConst.MaxNameLength)]
     [Required]
-    public string Name { get; protected set; }
+    public string Name { get;  set; }
 
     [Required]
-    public Guid ImageName { get; protected set; }
+    public Guid ImageName { get;  set; }
+
+    public Category(string name, Guid imageName)
+    {
+        SetDefaultExtraProperties(true);
+        SetName(name);
+        SetImageName(imageName);
+    }
 
     public Category(int id, string name, Guid imageName)
     {
-        Id = id;
-        Name = name;
+        SetDefaultExtraProperties(false);
+        SetName(name);
+        SetImageName(imageName);
+    }
+
+    private void SetImageName(Guid imageName)
+    {
         ImageName = imageName;
+    }
+
+    private void SetName(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            throw new ArgumentNullException("Kategori adi boş olamaz!");
+
+        Name = name;
     }
 }

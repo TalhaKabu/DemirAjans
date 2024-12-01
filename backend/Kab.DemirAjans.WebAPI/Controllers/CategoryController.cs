@@ -25,9 +25,8 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     }
 
     [HttpPost("insert")]
-    public async Task<IActionResult> InsertAsync(CategoryDto categoryDto)
+    public async Task<IActionResult> InsertAsync(CategoryCreateDto create)
     {
-        await _categoryService.InsertAsync(categoryDto);
-        return NoContent();
+        return Ok(await _categoryService.InsertAsync(create));
     }
 }

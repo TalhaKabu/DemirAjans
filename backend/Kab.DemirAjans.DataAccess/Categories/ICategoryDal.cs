@@ -6,5 +6,5 @@ public interface ICategoryDal
 {
     Task<CategoryDto?> GetAsync(int id);
     Task<IEnumerable<CategoryDto>> GetListAsync();
-    Task InsertAsync(CategoryDto categoryDto);
+    Task<int> InsertAsync(CategoryDto categoryDto);
 }

@@ -33,7 +33,7 @@ public static class ImageHelper
                 image.Save(Path.Combine(path, guid.ToString() + ".jpg"));
                 return guid;
             }
-            else throw new Exception("asd");
+            else throw new Exception("Enumaration Not Found!");
         }
         catch (FormatException ex)
         {
@@ -42,6 +42,32 @@ public static class ImageHelper
         catch (UnknownImageFormatException ex)
         {
             throw new UnknownImageFormatException("Unsupported image format: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Bilinmeyen bir hata oluştu." + ex.Message);
+        }
+    }
+
+    public static void DeleteImage(Guid guid, ImageEnum imageEnum)
+    {
+        try
+        {
+            string projectPath = AppDomain.CurrentDomain.BaseDirectory;
+
+            if (imageEnum.Equals(ImageEnum.Category))
+            {
+                var path = Path.Combine(projectPath, "Categories", guid.ToString() + ".jpg");
+
+                File.Delete(path);
+            }
+            else if (imageEnum.Equals(ImageEnum.Product))
+            {
+                var path = Path.Combine(projectPath, "Products", guid.ToString() + ".jpg");
+
+                File.Delete(path);
+            }
+            else throw new Exception("Enumaration Not Found!");
         }
         catch (Exception ex)
         {
