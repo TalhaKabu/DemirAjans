@@ -8,6 +8,6 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile() 
     {
-        CreateMap<CategoryDto, Category>().ReverseMap();
+        CreateMap<Category, CategoryDto>();
     }
 }

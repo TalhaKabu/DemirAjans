@@ -7,14 +7,14 @@ namespace Kab.DemirAjans.Domain.Categories;
 
 public class Category : AuditedAggregateRoot
 {
-    public int Id { get;  set; }
+    public int Id { get; protected set; }
 
     [MaxLength(CategoryConst.MaxNameLength)]
     [Required]
-    public string Name { get;  set; }
+    public string Name { get; protected set; }
 
     [Required]
-    public Guid ImageName { get;  set; }
+    public Guid ImageName { get; protected set; }
 
     public Category(string name, Guid imageName)
     {
