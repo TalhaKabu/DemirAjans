@@ -1,6 +1,7 @@
 ﻿using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Domain.Images;
 using Kab.DemirAjans.Domain.Products;
+using Kab.DemirAjans.Domain.SubCategories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection.Emit;
@@ -14,6 +15,14 @@ public static class KabDbContextModelCreatingExtensions
     {
         #region Category
         builder.Entity<Category>(typeBuilder =>
+        {
+            typeBuilder.HasMany<SubCategory>().WithOne();
+            typeBuilder.HasMany<Product>().WithOne();
+        });
+        #endregion
+
+        #region Category
+        builder.Entity<SubCategory>(typeBuilder =>
         {
             typeBuilder.HasMany<Product>().WithOne();
         });

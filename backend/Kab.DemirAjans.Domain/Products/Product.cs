@@ -12,4 +12,5 @@ public class Product : AuditedAggregateRoot
     [MaxLength(ProductConst.NameMaxLength)]
     public required string Name { get; set; }
     public required int CategoryId { get; set; } 
+    public int SubCategoryId { get; set; }
 }

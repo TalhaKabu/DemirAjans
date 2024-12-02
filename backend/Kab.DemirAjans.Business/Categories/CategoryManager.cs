@@ -17,7 +17,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
     public async Task<IEnumerable<CategoryDto>> GetListByAppearInFrontAsnc(bool appearInFront)
     {
-        var categoryList = await _categoryDal.GetListByAppearInFrontAsync(appearInFront);
+        var categoryList = await _categoryDal.GetListByAppearInFrontAsync(appearInFront) ?? [];
         List<Task<CategoryGetImageBase64Dto>> tasks = [];
 
         foreach (var categoryDto in categoryList)
@@ -29,7 +29,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
         foreach (var task in results)
         {
-            categoryList.ToList().Find(x => x.ImageName == task.ImageName).Base64 = task.Base64;
+            categoryList.ToList().Find(x => x.ImageName == task.ImageName)!.Base64 = task.Base64;
         }
 
         return categoryList;
@@ -61,7 +61,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
     {
         var category = await GetAsync(id);
 
-        var guid = category.ImageName;
+        var guid = category!.ImageName;
 
         if (!string.IsNullOrEmpty(update.Base64))
         {
