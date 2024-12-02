@@ -1,38 +1,42 @@
 <mat-toolbar>
-  <div class="row-container">
-    <mat-toolbar-row [hidden]="firstToolbarRowMobile" class="first-row">
-      <div class="search-container">
-        <i class="bi bi-search search-icon"></i>
-        <input id="search" type="text" placeholder="Ürünlerde ara" />
+  <mat-toolbar-row>
+    <div class="container" [hidden]="firstToolbarRowMobile">
+      <div class="link-container">
+        <a href="">ANASAYFA</a>
       </div>
-    </mat-toolbar-row>
-  </div>
-  <hr />
-  <div class="row-container" [hidden]="firstToolbarRowMobile">
-    <mat-toolbar-row>
-      <div class="menu-container">
-        <div href="" class="menu-a">
-          <span class="menu-span">
-            <i class="fa-solid fa-bars menu-icon"></i>
-            MENÜ
+      <div class="link-container">
+        <a href="">HİZMETLER</a>
+      </div>
+      <div class="link-container">
+        <a href="">ÜRÜNLER</a>
+      </div>
+    </div>
+    <div
+      #searchContainer
+      class="search-container"
+      [hidden]="firstToolbarRowMobile"
+    >
+      <input #searchInput id="search-input" type="text" />
+      <button
+        #searchButton
+        class="search-button"
+        (click)="searchButtonOnClick()"
+      >
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+    <div class="container" [hidden]="!firstToolbarRowMobile">
+      <mat-toolbar-row>
+        <div class="mobile-container">
+          <span class="mobile-menu-icon">
+            <i class="fa-solid fa-bars"></i>
+          </span>
+          <span class="mobile-title"><b>Demir Ajans</b></span>
+          <span class="mobile-search-icon">
+            <i class="bi bi-search"></i>
           </span>
         </div>
-      </div>
-      <div class="header-container"><span>ANASAYFA</span></div>
-    </mat-toolbar-row>
-  </div>
-  <div class="row-container" [hidden]="!firstToolbarRowMobile">
-    <mat-toolbar-row>
-      <div class="mobile-container">
-        <span class="mobile-menu-icon">
-          <i class="fa-solid fa-bars"></i>
-        </span>
-        <span class="mobile-title"><b>Demir Ajans</b></span>
-        <span class="mobile-search-icon">
-          <i class="bi bi-search"></i>
-        </span>
-      </div>
-    </mat-toolbar-row>
-  </div>
-  <hr />
+      </mat-toolbar-row>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
