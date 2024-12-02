@@ -17,7 +17,6 @@ export class CategoryService {
       })
       .pipe(
         catchError((error) => {
-          console.error('Error:', error);
           return throwError(() => error);
         })
       );
