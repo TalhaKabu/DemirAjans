@@ -19,7 +19,7 @@ export class HomeComponent {
     this.categoryService.getListByAppearInFront(true).subscribe({
       next: (n) => (this.categoryList = n),
       error: (e) => console.log(e),
-      complete: () => console.log(this.categoryList),
+      // complete: () => ,
     });
   }
   //#endregion
