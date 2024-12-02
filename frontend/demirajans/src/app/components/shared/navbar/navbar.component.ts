@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/categories/category.service';
+import { catchError, Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -9,15 +10,26 @@ import { CategoryService } from '../../../services/categories/category.service';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
+  //#region Props
   firstToolbarRowMobile: boolean = false;
   innerWidth: any;
+  //#endregion
 
+  //#region Utils
+  getListByAppearInFront() {
+    this.categoryService
+      .getListByAppearInFront(true)
+      .pipe(tap((res) => console.log(res)))
+      .subscribe((res) => {});
+  }
+  //#endregion
+
+  //#region Ctor
   constructor(private categoryService: CategoryService) {}
+  //#endregion
 
+  //#region Methods
   ngOnInit() {
-    this.categoryService.getlist().subscribe((res) => {
-      console.log(res);
-    });
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 768) this.firstToolbarRowMobile = true;
     else this.firstToolbarRowMobile = false;
@@ -29,4 +41,5 @@ export class NavbarComponent implements OnInit {
     if (this.innerWidth < 768) this.firstToolbarRowMobile = true;
     else this.firstToolbarRowMobile = false;
   }
+  //#endregion
 }

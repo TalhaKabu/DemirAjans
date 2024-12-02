@@ -11,13 +11,17 @@ export class ProxyService {
 
   constructor(private http: HttpClient) {}
 
-  get<T>(endpoint: string): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}/${endpoint}`).pipe(
-      catchError((error) => {
-        console.error('Error:', error);
-        return throwError(() => error);
+  get<T>(endpoint: string, data: any): Observable<T> {
+    return this.http
+      .get<T>(`${this.baseUrl}/${endpoint}`, {
+        params: data,
       })
-    );
+      .pipe(
+        catchError((error) => {
+          console.error('Error:', error);
+          return throwError(() => error);
+        })
+      );
   }
 
   post<T>(endpoint: string, data: any): Observable<T> {
