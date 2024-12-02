@@ -7,5 +7,6 @@ BEGIN
 		,ImageName
 		,CreationDate
 		,LastModificationDate
+		,AppearInFront
 	FROM dbo.[Categories];
 END

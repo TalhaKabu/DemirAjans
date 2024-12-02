@@ -64,6 +64,7 @@
     <Build Include="dbo\StoredProcedures\Categories\spCategories_GetAll.sql" />
     <Build Include="dbo\StoredProcedures\Categories\spCategories_Get.sql" />
     <Build Include="dbo\StoredProcedures\Categories\spCategories_Insert.sql" />
+    <Build Include="dbo\StoredProcedures\Categories\spCategories_GetAllByAppearInFront.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />

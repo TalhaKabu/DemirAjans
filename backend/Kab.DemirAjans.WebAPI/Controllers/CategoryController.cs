@@ -13,14 +13,17 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     [HttpGet("list")]
     public async Task<IActionResult> GetListAsync() => Ok(await _categoryService.GetListAsync());
 
+    [HttpGet("list-by-appear-in-front")]
+    public async Task<IActionResult> GetListByAppearInFrontAsnc(bool appearInFront) => Ok(await _categoryService.GetListByAppearInFrontAsnc(appearInFront));
+
     [HttpGet("get")]
     public async Task<IActionResult> GetAsync(int id)
     {
         var categoryDto = await _categoryService.GetAsync(id);
 
-        if (categoryDto != null) 
+        if (categoryDto != null)
             return Ok(categoryDto);
-        else 
+        else
             return NotFound();
     }
 

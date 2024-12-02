@@ -8,6 +8,7 @@ BEGIN
 		,ImageName
 		,CreationDate
 		,LastModificationDate
+		,AppearInFront
 	FROM dbo.[Categories]
 	WHERE Id = @Id;
 END
