@@ -39,7 +39,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
         try
         {
-            var category = new Category(create.Name, guid);
+            var category = new Category(create.Name, guid, create.AppearInFront);
 
             var res = await _categoryDal.InsertAsync(ObjectMapper.Mapper.Map<Category, CategoryDto>(category));
 

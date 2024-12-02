@@ -15,19 +15,27 @@ public class Category : AuditedAggregateRoot
 
     [Required]
     public Guid ImageName { get; protected set; }
+    public bool AppearInFront { get; protected set; }
 
-    public Category(string name, Guid imageName)
+    public Category(string name, Guid imageName, bool appearInFront)
     {
         SetDefaultExtraProperties(true);
         SetName(name);
         SetImageName(imageName);
+        SetAppearInFront(appearInFront);
     }
 
-    public Category(int id, string name, Guid imageName)
+    public Category(int id, string name, Guid imageName, bool appearInFront)
     {
         SetDefaultExtraProperties(false);
         SetName(name);
         SetImageName(imageName);
+        SetAppearInFront(appearInFront);
+    }
+
+    private void SetAppearInFront(bool appearInFront)
+    {
+        AppearInFront = appearInFront;
     }
 
     private void SetImageName(Guid imageName)

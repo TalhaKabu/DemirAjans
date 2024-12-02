@@ -2,10 +2,11 @@
 	@Name nvarchar(20),
 	@ImageName uniqueidentifier,
 	@CreationDate datetime2(7),
-	@LastModificationDate datetime2(7)
+	@LastModificationDate datetime2(7),
+	@AppearInFront bit
 AS
 BEGIN
-	INSERT INTO dbo.[Categories] (Name, ImageName, CreationDate, LastModificationDate)
-	VALUES (@Name, @ImageName, @CreationDate, @LastModificationDate);
+	INSERT INTO dbo.[Categories] (Name, ImageName, CreationDate, LastModificationDate, AppearInFront)
+	VALUES (@Name, @ImageName, @CreationDate, @LastModificationDate, @AppearInFront);
 	SELECT IDENT_CURRENT('dbo.[Categories]')
 END
