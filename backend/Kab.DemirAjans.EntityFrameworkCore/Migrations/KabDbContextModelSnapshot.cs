@@ -37,7 +37,9 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("ImageName")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
                     b.Property<DateTime?>("LastModificationDate")
                         .HasColumnType("datetime2");

@@ -4,8 +4,6 @@ using Kab.DemirAjans.Domain.Products;
 using Kab.DemirAjans.Domain.SubCategories;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Reflection.Emit;
-using System.Reflection.Metadata;
 
 namespace Kab.DemirAjans.EntityFrameworkCore.ModelCreatingExtensions;
 
@@ -18,6 +16,7 @@ public static class KabDbContextModelCreatingExtensions
         {
             typeBuilder.HasMany<SubCategory>().WithOne();
             typeBuilder.HasMany<Product>().WithOne();
+            typeBuilder.Property(t => t.ImageName).HasDefaultValue(Guid.Empty);
         });
         #endregion
 

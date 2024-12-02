@@ -12,8 +12,6 @@ public class Category : AuditedAggregateRoot
     [MaxLength(CategoryConst.MaxNameLength)]
     [Required]
     public string Name { get; protected set; }
-
-    [Required]
     public Guid ImageName { get; protected set; }
     public bool AppearInFront { get; protected set; }
 

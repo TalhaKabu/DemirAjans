@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(KabDbContext))]
-    [Migration("20241202191232_SubCategoriesAdded")]
-    partial class SubCategoriesAdded
+    [Migration("20241202194603_FirstInitialDbCreation")]
+    partial class FirstInitialDbCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,9 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("ImageName")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
                     b.Property<DateTime?>("LastModificationDate")
                         .HasColumnType("datetime2");
