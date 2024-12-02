@@ -7,5 +7,6 @@ public interface ICategoryDal
     Task<CategoryDto?> GetAsync(int id);
     Task<IEnumerable<CategoryDto>> GetListAsync();
     Task<IEnumerable<CategoryDto>> GetListByAppearInFrontAsync(bool appearInFront);
-    Task<int> InsertAsync(CategoryDto categoryDto);
+    Task InsertAsync(CategoryDto categoryDto);
+    Task UpdateAsync(int id, CategoryDto categoryDto);
 }

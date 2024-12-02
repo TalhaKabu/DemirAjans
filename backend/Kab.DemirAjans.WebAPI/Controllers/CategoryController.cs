@@ -30,6 +30,14 @@ public class CategoryController(ICategoryService categoryService) : ControllerBa
     [HttpPost("insert")]
     public async Task<IActionResult> InsertAsync(CategoryCreateDto create)
     {
-        return Ok(await _categoryService.InsertAsync(create));
+        await _categoryService.InsertAsync(create);
+        return Ok();
+    }
+
+    [HttpPost("update")]
+    public async Task<IActionResult> UpdateAsync(int id, CategoryUpdateDto update)
+    {
+        await _categoryService.UpdateAsync(id, update);
+        return Ok();
     }
 }

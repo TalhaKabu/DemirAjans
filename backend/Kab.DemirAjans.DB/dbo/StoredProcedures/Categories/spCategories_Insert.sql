@@ -8,5 +8,4 @@ AS
 BEGIN
 	INSERT INTO dbo.[Categories] (Name, ImageName, CreationDate, LastModificationDate, AppearInFront)
 	VALUES (@Name, @ImageName, @CreationDate, @LastModificationDate, @AppearInFront);
-	SELECT IDENT_CURRENT('dbo.[Categories]')
 END

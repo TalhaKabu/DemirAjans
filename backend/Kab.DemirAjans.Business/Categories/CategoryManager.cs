@@ -52,7 +52,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
     public async Task<CategoryDto?> GetAsync(int id) => await _categoryDal.GetAsync(id);
 
-    public async Task<int> InsertAsync(CategoryCreateDto create)
+    public async Task InsertAsync(CategoryCreateDto create)
     {
         var guid = await Task.Run(() => ImageHelper.SaveImage(create.Base64, ImageEnum.Category));
 
@@ -63,9 +63,36 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
         {
             var category = new Category(create.Name, guid, create.AppearInFront);
 
-            var res = await _categoryDal.InsertAsync(ObjectMapper.Mapper.Map<Category, CategoryDto>(category));
+            await _categoryDal.InsertAsync(ObjectMapper.Mapper.Map<Category, CategoryDto>(category));
+        }
+        catch (Exception ex)
+        {
+            await Task.Run(() => ImageHelper.DeleteImage(guid, ImageEnum.Category));
+            throw new ArgumentException("Beklenmedik bir hata oluştu." + ex.Message);
+        }
+    }
 
-            return res;
+    public async Task UpdateAsync(int id, CategoryUpdateDto update)
+    {
+        var category = await GetAsync(id);
+
+        var guid = category.ImageName;
+
+        if (!string.IsNullOrEmpty(update.Base64))
+        {
+            await Task.Run(() => ImageHelper.DeleteImage(category.ImageName, ImageEnum.Category));
+            guid = await Task.Run(() => ImageHelper.SaveImage(update.Base64, ImageEnum.Category));
+
+            if (string.IsNullOrEmpty(guid.ToString()))
+                throw new ArgumentException("Fotoğraf oluşturulamadı!");
+        }
+
+        try
+        {
+
+            var ct = new Category(id, update.Name ?? category.Name, guid, update.AppearInFront ?? category.AppearInFront);
+
+            await _categoryDal.UpdateAsync(id, ObjectMapper.Mapper.Map<Category, CategoryDto>(ct));
         }
         catch (Exception ex)
         {

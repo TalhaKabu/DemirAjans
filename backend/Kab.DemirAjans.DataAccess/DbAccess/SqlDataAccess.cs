@@ -17,10 +17,10 @@ public class SqlDataAccess(IConfiguration configuration) : ISqlDataAccess
         return await connection.QueryAsync<T>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
     }
 
-    public async Task<int> SaveDataAsync<T>(string storedProcedure, T parameters, string connectionId = "Default")
+    public async Task SaveDataAsync<T>(string storedProcedure, T parameters, string connectionId = "Default")
     {
         using IDbConnection connection = new SqlConnection(_configuration.GetConnectionString(connectionId));
 
-        return await connection.ExecuteScalarAsync<int>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+        await connection.ExecuteScalarAsync<int>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
     }
 }
