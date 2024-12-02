@@ -12,7 +12,9 @@ public static class ImageHelper
         {
             byte[] imageBytes = Convert.FromBase64String(base64);
             using Image image = Image.Load(imageBytes);
-            string projectPath = AppDomain.CurrentDomain.BaseDirectory;
+            string projectPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+            if (!Directory.Exists(projectPath))
+                Directory.CreateDirectory(projectPath);
 
             var guid = Guid.NewGuid();
             if (imageEnum.Equals(ImageEnum.Category))
