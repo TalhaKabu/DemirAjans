@@ -1,4 +1,7 @@
-﻿using SixLabors.ImageSharp;
+﻿using Kab.DemirAjans.Entities.Categories;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Formats.Png;
 using System;
 using System.IO;
 
@@ -48,6 +51,47 @@ public static class ImageHelper
         catch (Exception ex)
         {
             throw new Exception("Bilinmeyen bir hata oluştu." + ex.Message);
+        }
+    }
+
+    public static CategoryGetImageBase64Dto GetImage(Guid imageName, ImageEnum imageEnum)
+    {
+        try
+        {
+            string projectPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+
+            if (imageEnum.Equals(ImageEnum.Category))
+            {
+                var path = Path.Combine(projectPath, "Categories");
+
+                using var image = Image.Load(Path.Combine(path, imageName + ".jpg"));
+                using var memoryStream = new MemoryStream();
+
+                image.Save(memoryStream, new JpegEncoder());
+                memoryStream.Seek(0, SeekOrigin.Begin);
+
+                var base64String = Convert.ToBase64String(memoryStream.ToArray());
+                return new CategoryGetImageBase64Dto { ImageName = imageName, Base64 = base64String };
+            }
+            //else if (imageEnum.Equals(ImageEnum.Product))
+            //{
+            //    var path = Path.Combine(projectPath, "Products");
+
+            //    using var image = Image.Load(Path.Combine(path, imageName + ".jpg"));
+            //    using var memoryStream = new MemoryStream();
+
+            //    image.Save(memoryStream, new JpegEncoder());
+            //    memoryStream.Seek(0, SeekOrigin.Begin);
+
+            //    var base64String = Convert.ToBase64String(memoryStream.ToArray());
+            //    return base64String;
+            //}
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            return null;
         }
     }
 

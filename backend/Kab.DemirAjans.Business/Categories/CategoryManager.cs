@@ -10,7 +10,25 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 {
     private readonly ICategoryDal _categoryDal = categoryDal;
 
-    public async Task<IEnumerable<CategoryDto>> GetListAsync() => await _categoryDal.GetListAsync();
+    public async Task<IEnumerable<CategoryDto>> GetListAsync()
+    {
+        var categoryList = await _categoryDal.GetListAsync();
+        List<Task<CategoryGetImageBase64Dto>> tasks = [];
+
+        foreach (var categoryDto in categoryList)
+        {
+            tasks.Add(Task.Run(() => ImageHelper.GetImage(categoryDto.ImageName, ImageEnum.Category)));
+        }
+
+        var results = await Task.WhenAll(tasks);
+
+        foreach (var task in results)
+        {
+            categoryList.ToList().Find(x => x.ImageName == task.ImageName).Base64 = task.Base64;
+        }
+
+        return categoryList;
+    }
     public async Task<CategoryDto?> GetAsync(int id) => await _categoryDal.GetAsync(id);
     public async Task<int> InsertAsync(CategoryCreateDto create)
     {
