@@ -1,37 +1,9 @@
 <div class="home">
   <div class="home-container">
     <div class="circle">
-      <li class="circle-container">
-        <img src="assets/jpgs/pencil.jpg" alt="" />
-        <p>KALEMLER</p>
-      </li>
-      <li class="circle-container">
-        <img src="assets/jpgs/pencil.jpg" alt="" />
-        <p>KALEMLER</p>
-      </li>
-      <li class="circle-container">
-        <img src="assets/jpgs/pencil.jpg" alt="" />
-        <p>KALEMLER</p>
-      </li>
-      <li class="circle-container">
-        <img src="assets/jpgs/pencil.jpg" alt="" />
-        <p>KALEMLER</p>
-      </li>
-      <li class="circle-container">
-        <img src="assets/jpgs/pencil.jpg" alt="" />
-        <p>KALEMLER</p>
-      </li>
-      <li class="circle-container">
-        <img src="assets/jpgs/pencil.jpg" alt="" />
-        <p>KALEMLER</p>
-      </li>
-      <li class="circle-container">
-        <img src="assets/jpgs/pencil.jpg" alt="" />
-        <p>KALEMLER</p>
-      </li>
-      <li class="circle-container">
-        <img src="assets/jpgs/pencil.jpg" alt="" />
-        <p>KALEMLER</p>
+      <li class="circle-container" *ngFor="let category of categoryList">
+        <img [src]="'data:image/jpeg;base64,' + category.base64" alt="" />
+        <p>{{ category.name }}</p>
       </li>
     </div>
     <div class="categories">
@@ -99,35 +71,35 @@
       </div>
     </div>
     <div class="category">
-        <div class="category-title-container">
-          <span>Metal Kalemler</span>
+      <div class="category-title-container">
+        <span>Metal Kalemler</span>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="assets/jpgs/5335LCV.jpg" alt="Metal Kalem" />
+          <h3>5335LCV Metal Kalem</h3>
+          <p class="price">21.20 ₺</p>
+          <p class="code">ÜRÜN KODU: 5335LCV</p>
         </div>
-        <div class="product-grid">
-          <div class="product-card">
-            <img src="assets/jpgs/5335LCV.jpg" alt="Metal Kalem" />
-            <h3>5335LCV Metal Kalem</h3>
-            <p class="price">21.20 ₺</p>
-            <p class="code">ÜRÜN KODU: 5335LCV</p>
-          </div>
-          <div class="product-card">
-            <img src="assets/jpgs/5335LCV.jpg" alt="Metal Kalem" />
-            <h3>5375SYH Metal Kalem</h3>
-            <p class="price">48.20 ₺</p>
-            <p class="code">ÜRÜN KODU: 5375SYH</p>
-          </div>
-          <div class="product-card">
-            <img src="assets/jpgs/5335LCV.jpg" alt="Metal Kalem" />
-            <h3>5375SYH Metal Kalem</h3>
-            <p class="price">48.20 ₺</p>
-            <p class="code">ÜRÜN KODU: 5375SYH</p>
-          </div>
-          <div class="product-card">
-            <img src="assets/jpgs/5335LCV.jpg" alt="Metal Kalem" />
-            <h3>5375SYH Metal Kalem</h3>
-            <p class="price">48.20 ₺</p>
-            <p class="code">ÜRÜN KODU: 5375SYH</p>
-          </div>
+        <div class="product-card">
+          <img src="assets/jpgs/5335LCV.jpg" alt="Metal Kalem" />
+          <h3>5375SYH Metal Kalem</h3>
+          <p class="price">48.20 ₺</p>
+          <p class="code">ÜRÜN KODU: 5375SYH</p>
+        </div>
+        <div class="product-card">
+          <img src="assets/jpgs/5335LCV.jpg" alt="Metal Kalem" />
+          <h3>5375SYH Metal Kalem</h3>
+          <p class="price">48.20 ₺</p>
+          <p class="code">ÜRÜN KODU: 5375SYH</p>
+        </div>
+        <div class="product-card">
+          <img src="assets/jpgs/5335LCV.jpg" alt="Metal Kalem" />
+          <h3>5375SYH Metal Kalem</h3>
+          <p class="price">48.20 ₺</p>
+          <p class="code">ÜRÜN KODU: 5375SYH</p>
         </div>
       </div>
+    </div>
   </div>
 </div>
