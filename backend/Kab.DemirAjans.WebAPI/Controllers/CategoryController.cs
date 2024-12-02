@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Kab.DemirAjans.WebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class CategoryController(ICategoryService categoryService) : ControllerBase
 {
     private readonly ICategoryService _categoryService = categoryService;
