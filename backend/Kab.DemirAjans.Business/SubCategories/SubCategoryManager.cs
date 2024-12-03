@@ -22,4 +22,13 @@ public class SubCategoryManager(ISubCategoryDal subCategoryDal) : ISubCategorySe
 
         await _subCategoryDal.InsertAsync(ObjectMapper.Mapper.Map<SubCategory, SubCategoryDto>(subCategory));
     }
+
+    public async Task UpdateAsync(int id, SubCategoryUpdateDto update)
+    {
+        var subCategory = await GetAsync(id);
+
+        var sct = new SubCategory(id, update.Name ?? subCategory.Name, update.CategoryId ?? subCategory.CategoryId, update.Code ?? subCategory.Code);
+
+        await _subCategoryDal.UpdateAsync(id, ObjectMapper.Mapper.Map<SubCategory, SubCategoryDto>(sct));
+    }
 }

@@ -8,4 +8,5 @@ public interface ISubCategoryDal
     Task<IEnumerable<SubCategoryDto>> GetByCategoryIdAsync(int categoryId);
     Task<IEnumerable<SubCategoryDto>> GetListAsync();
     Task InsertAsync(SubCategoryDto subCategoryDto);
+    Task UpdateAsync(int id, SubCategoryDto subCategoryDto);
 }

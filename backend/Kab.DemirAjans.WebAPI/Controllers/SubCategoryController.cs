@@ -36,4 +36,11 @@ public class SubCategoryController(ISubCategoryService subCategoryService) : Con
         await _subCategoryService.InsertAsync(create);
         return Ok();
     }
+
+    [HttpPost("update")]
+    public async Task<IActionResult> UpdateAsync(int id, SubCategoryUpdateDto update)
+    {
+        await _subCategoryService.UpdateAsync(id, update);
+        return Ok();
+    }
 }
