@@ -50,7 +50,8 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
         }
         catch (Exception ex)
         {
-            await Task.Run(() => ImageHelper.DeleteImage(guid, ImageEnum.Category));
+            if (guid != Guid.Empty)
+                await Task.Run(() => ImageHelper.DeleteImage(guid, ImageEnum.Category));
             throw new ArgumentException("Beklenmedik bir hata oluştu." + ex.Message);
         }
     }
