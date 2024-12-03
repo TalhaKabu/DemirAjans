@@ -45,6 +45,8 @@ public class Category : AuditedAggregateRoot
     {
         if (string.IsNullOrEmpty(name))
             throw new ArgumentNullException("Kategori adi boş olamaz!");
+        if (name.Length > CategoryConst.MaxNameLength)
+            throw new Exception($"Kategori adı {CategoryConst.MaxNameLength} 'ten büyük olamaz!");
 
         Name = name;
     }

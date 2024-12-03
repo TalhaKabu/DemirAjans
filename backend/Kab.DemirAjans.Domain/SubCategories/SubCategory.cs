@@ -37,7 +37,9 @@ public class SubCategory : AuditedAggregateRoot
     private void SetName(string name)
     {
         if (string.IsNullOrEmpty(name))
-            throw new ArgumentNullException("Kategori adi boş olamaz!");
+            throw new ArgumentNullException("Alt kategori adi boş olamaz!");
+        if (name.Length > CategoryConst.MaxNameLength)
+            throw new Exception($"Alt kategori adı {CategoryConst.MaxNameLength} 'ten büyük olamaz!");
 
         Name = name;
     }

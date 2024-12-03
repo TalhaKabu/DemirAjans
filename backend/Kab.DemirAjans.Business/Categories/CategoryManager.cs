@@ -10,10 +10,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 {
     private readonly ICategoryDal _categoryDal = categoryDal;
 
-    public async Task<IEnumerable<CategoryDto>> GetListAsync()
-    {
-        return await _categoryDal.GetListAsync(); ;
-    }
+    public async Task<IEnumerable<CategoryDto>> GetListAsync() => await _categoryDal.GetListAsync();
 
     public async Task<IEnumerable<CategoryDto>> GetListByAppearInFrontAsnc(bool appearInFront)
     {

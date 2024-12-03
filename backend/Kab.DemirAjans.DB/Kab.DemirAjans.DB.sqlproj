@@ -59,6 +59,7 @@
     <Folder Include="dbo" />
     <Folder Include="dbo\StoredProcedures" />
     <Folder Include="dbo\StoredProcedures\Categories" />
+    <Folder Include="dbo\StoredProcedures\SubCategories" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\StoredProcedures\Categories\spCategories_GetAll.sql" />
@@ -66,6 +67,10 @@
     <Build Include="dbo\StoredProcedures\Categories\spCategories_Insert.sql" />
     <Build Include="dbo\StoredProcedures\Categories\spCategories_GetAllByAppearInFront.sql" />
     <Build Include="dbo\StoredProcedures\Categories\spCategories_Update.sql" />
+    <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_GetAll.sql" />
+    <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_Get.sql" />
+    <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_Insert.sql" />
+    <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_GetByCategoryId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />
