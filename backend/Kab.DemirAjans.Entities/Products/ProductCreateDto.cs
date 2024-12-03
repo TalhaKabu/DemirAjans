@@ -9,4 +9,5 @@ public class ProductCreateDto
     public int SubCategoryId { get; set; }
     public string Code { get; set; }
     public decimal Price { get; set; }
+    public string? Dimension { get; set; }
 }

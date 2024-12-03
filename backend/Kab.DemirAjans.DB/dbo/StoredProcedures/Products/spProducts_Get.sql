@@ -9,6 +9,7 @@ BEGIN
 		,SubCategoryId
 		,Code
 		,Price
+		,Dimension
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[Products]
