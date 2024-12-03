@@ -1,8 +1,6 @@
 ﻿using Kab.DemirAjans.Business.Mapper;
 using Kab.DemirAjans.DataAccess.SubCategories;
-using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Domain.SubCategories;
-using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.SubCategories;
 using System;
 

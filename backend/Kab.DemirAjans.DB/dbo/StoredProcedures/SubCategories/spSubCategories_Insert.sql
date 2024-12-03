@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spSubCategories_Insert]
-	@Name nvarchar(20),
+	@Name nvarchar(50),
 	@CategoryId int,
 	@CreationDate datetime2(7),
 	@LastModificationDate datetime2(7)

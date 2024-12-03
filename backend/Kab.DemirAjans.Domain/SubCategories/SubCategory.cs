@@ -1,5 +1,4 @@
-﻿using Kab.DemirAjans.Domain.Categories;
-using Kab.DemirAjans.Domain.ExtraProperties;
+﻿using Kab.DemirAjans.Domain.ExtraProperties;
 using System.ComponentModel.DataAnnotations;
 using System;
 
@@ -9,7 +8,7 @@ public class SubCategory : AuditedAggregateRoot
 {
     public int Id { get; protected set; }
 
-    [MaxLength(CategoryConst.MaxNameLength)]
+    [MaxLength(SubCategoryConst.MaxNameLength)]
     [Required]
     public string Name { get; protected set; }
     public int CategoryId { get; protected set; }
@@ -38,8 +37,8 @@ public class SubCategory : AuditedAggregateRoot
     {
         if (string.IsNullOrEmpty(name))
             throw new ArgumentNullException("Alt kategori adi boş olamaz!");
-        if (name.Length > CategoryConst.MaxNameLength)
-            throw new Exception($"Alt kategori adı {CategoryConst.MaxNameLength} 'ten büyük olamaz!");
+        if (name.Length > SubCategoryConst.MaxNameLength)
+            throw new Exception($"Alt kategori adı {SubCategoryConst.MaxNameLength} 'ten büyük olamaz!");
 
         Name = name;
     }
