@@ -11,7 +11,7 @@ public class ImageManager(IImageDal imageDal) : IImageService
 {
     private readonly IImageDal _imageDal = imageDal;
 
-    public async Task InsertAsync(ImageCreateDto create)
+    public async Task InsertAsync(ImageCreateDto create, int productId)
     {
         if (string.IsNullOrEmpty(create.Base64)) return;
 
@@ -20,7 +20,7 @@ public class ImageManager(IImageDal imageDal) : IImageService
         if (string.IsNullOrEmpty(guid.ToString()))
             throw new ArgumentException("Fotoğraf oluşturulamadı!");
 
-        var image = new Image(create.ProductId, create.IsFrontImage);
+        var image = new Image(productId, create.IsFrontImage);
 
         var imageDto = ObjectMapper.Mapper.Map<Image, ImageDto>(image);
         imageDto.Id = guid;

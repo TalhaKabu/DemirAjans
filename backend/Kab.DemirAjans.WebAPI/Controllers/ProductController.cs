@@ -1,4 +1,5 @@
-﻿using Kab.DemirAjans.Business.Products;
+﻿using Kab.DemirAjans.Business.Helper.ProductHelper;
+using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Entities.Products;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,4 +31,7 @@ public class ProductController(IProductService productService) : ControllerBase
         await _productService.InsertAsync(create);
         return Ok();
     }
+
+    [HttpGet("get-product")]
+    public async Task GetProducts() => new ProductHelper(_productService).GetProductsFromUri();
 }

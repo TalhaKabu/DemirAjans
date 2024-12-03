@@ -36,7 +36,4 @@ public class SubCategoryController(ISubCategoryService subCategoryService) : Con
         await _subCategoryService.InsertAsync(create);
         return Ok();
     }
-
-    [HttpGet("get-product")]
-    public async Task GetProducts() => ProductHelper.GetProductsFromUri();
 }

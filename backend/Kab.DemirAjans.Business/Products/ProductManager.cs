@@ -24,9 +24,6 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
     {
         if (create.Images.Count < 1) throw new Exception("Ürünler en az bir fotoğrafa sahip olmak zorundadır!");
 
-        foreach (var item in create.Images)
-            await _imageService.InsertAsync(item);
-
         var categoryDto = await _categoryService.GetAsync(create.CategoryId) ?? throw new ArgumentException("Kategori bulunamadı!");
 
         if (create.SubCategoryId > 0)
@@ -38,6 +35,9 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
 
         var product = new Product(create.Name, create.CategoryId, create.CategoryId, create.Code, create.Price, create.Dimension);
 
-        await _productDal.InsertAsync(ObjectMapper.Mapper.Map<Product, ProductDto>(product));
+        var productId = await _productDal.InsertAsync(ObjectMapper.Mapper.Map<Product, ProductDto>(product));
+
+        foreach (var item in create.Images)
+            await _imageService.InsertAsync(item, productId);
     }
 }
