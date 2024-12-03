@@ -6,6 +6,7 @@ BEGIN
 		 Id
 		,Name
 		,CategoryId
+		,Code
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[SubCategories]

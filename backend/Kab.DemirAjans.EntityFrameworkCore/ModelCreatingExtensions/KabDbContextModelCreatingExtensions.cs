@@ -24,6 +24,7 @@ public static class KabDbContextModelCreatingExtensions
         builder.Entity<SubCategory>(typeBuilder =>
         {
             typeBuilder.HasMany<Product>().WithOne();
+            //typeBuilder.HasIndex(t => t.Code).IsUnique();
         });
         #endregion
 
