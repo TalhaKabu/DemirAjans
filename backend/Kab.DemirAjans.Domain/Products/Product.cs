@@ -35,7 +35,7 @@ public class Product : AuditedAggregateRoot
 
     public Product(string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension)
     {
-        SetDefaultExtraProperties(false);
+        SetDefaultExtraProperties(true);
         SetName(name);
         SetCategoryId(categoryId);
         SetSubCategoryId(subCategoryId);
