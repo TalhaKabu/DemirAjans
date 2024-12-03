@@ -13,4 +13,5 @@ BEGIN
 		(Name, CategoryId, SubCategoryId, Code, Price, Dimension, CreationDate, LastModificationDate)
 	VALUES 
 		(@Name, @CategoryId, @SubCategoryId, @Code, @Price, @Dimension, @CreationDate, @LastModificationDate);
+	SELECT IDENT_CURRENT ('dbo.[Products]');
 END
