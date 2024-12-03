@@ -1,0 +1,15 @@
+﻿CREATE PROCEDURE [dbo].[spProducts_Insert]
+	@Name nvarchar(20),
+	@CategoryId int,
+	@SubCategoryId int,
+	@Code nvarchar(20),
+	@Price decimal(18,2),
+	@CreationDate datetime2(7),
+	@LastModificationDate datetime2(7)
+AS
+BEGIN
+	INSERT INTO dbo.[Products] 
+		(Name, CategoryId, SubCategoryId, Code, Price, CreationDate, LastModificationDate)
+	VALUES 
+		(@Name, @CategoryId, @SubCategoryId, @Code, @Price, @CreationDate, @LastModificationDate);
+END
