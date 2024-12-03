@@ -37,14 +37,14 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
     public async Task InsertAsync(CategoryCreateDto create)
     {
-        var guid = await Task.Run(() => ImageHelper.SaveImage(create.Base64, ImageEnum.Category));
+        var guid = string.IsNullOrEmpty(create.Base64) ? Guid.Empty : await Task.Run(() => ImageHelper.SaveImage(create.Base64, ImageEnum.Category));
 
         if (string.IsNullOrEmpty(guid.ToString()))
             throw new ArgumentException("Fotoğraf oluşturulamadı!");
 
         try
         {
-            var category = new Category(create.Name, guid, create.AppearInFront);
+            var category = new Category(create.Name, guid, !string.IsNullOrEmpty(create.Base64) && create.AppearInFront);
 
             await _categoryDal.InsertAsync(ObjectMapper.Mapper.Map<Category, CategoryDto>(category));
         }
