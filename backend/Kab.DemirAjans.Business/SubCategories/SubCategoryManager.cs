@@ -18,7 +18,7 @@ public class SubCategoryManager(ISubCategoryDal subCategoryDal) : ISubCategorySe
 
     public async Task InsertAsync(SubCategoryCreateDto create)
     {
-        var subCategory = new SubCategory(create.Name, create.CategoryId, create.Code);
+        var subCategory = new SubCategory(create.Name, create.CategoryId);
 
         await _subCategoryDal.InsertAsync(ObjectMapper.Mapper.Map<SubCategory, SubCategoryDto>(subCategory));
     }
@@ -27,7 +27,7 @@ public class SubCategoryManager(ISubCategoryDal subCategoryDal) : ISubCategorySe
     {
         var subCategory = await GetAsync(id);
 
-        var sct = new SubCategory(id, update.Name ?? subCategory.Name, update.CategoryId ?? subCategory.CategoryId, update.Code ?? subCategory.Code);
+        var sct = new SubCategory(id, update.Name ?? subCategory.Name, update.CategoryId ?? subCategory.CategoryId);
 
         await _subCategoryDal.UpdateAsync(id, ObjectMapper.Mapper.Map<SubCategory, SubCategoryDto>(sct));
     }

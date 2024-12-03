@@ -14,33 +14,18 @@ public class SubCategory : AuditedAggregateRoot
     public string Name { get; protected set; }
     public int CategoryId { get; protected set; }
 
-    [MaxLength(SubCategoryConst.MaxCodeLength)]
-    [Required]
-    public string Code { get; protected set; }
-    public SubCategory(string name, int categoryId, string code)
+    public SubCategory(string name, int categoryId)
     {
         SetDefaultExtraProperties(true);
         SetName(name);
         SetCategoryId(categoryId);
-        SetCode(code);
     }
 
-    public SubCategory(int id, string name, int categoryId, string code)
+    public SubCategory(int id, string name, int categoryId)
     {
         SetDefaultExtraProperties(false);
         SetName(name);
         SetCategoryId(categoryId);
-        SetCode(code);
-    }
-
-    private void SetCode(string code)
-    {
-        if (string.IsNullOrEmpty(code))
-            throw new ArgumentNullException("Alt kategori kodu boş olamaz!");
-        if (code.Length > SubCategoryConst.MaxCodeLength)
-            throw new Exception($"Alt kategori kodu {SubCategoryConst.MaxCodeLength} 'ten büyük olamaz!");
-
-        Code = code;
     }
 
     private void SetCategoryId(int categoryId)
