@@ -4,6 +4,7 @@ using Kab.DemirAjans.DataAccess.Categories;
 using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Entities.Categories;
 using System;
+
 namespace Kab.DemirAjans.Business.Categories;
 
 public class CategoryManager(ICategoryDal categoryDal) : ICategoryService

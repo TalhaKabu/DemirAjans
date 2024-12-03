@@ -1,4 +1,8 @@
-﻿using Kab.DemirAjans.DataAccess.SubCategories;
+﻿using Kab.DemirAjans.Business.Mapper;
+using Kab.DemirAjans.DataAccess.SubCategories;
+using Kab.DemirAjans.Domain.Categories;
+using Kab.DemirAjans.Domain.SubCategories;
+using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.SubCategories;
 using System;
 
@@ -14,5 +18,10 @@ public class SubCategoryManager(ISubCategoryDal subCategoryDal) : ISubCategorySe
 
     public async Task<SubCategoryDto?> GetAsync(int id) => await _subCategoryDal.GetAsync(id);
 
-    public async Task InsertAsync(SubCategoryDto subCategoryDto) => await _subCategoryDal.InsertAsync(subCategoryDto);
+    public async Task InsertAsync(SubCategoryCreateDto create)
+    {
+        var subCategory = new SubCategory(create.Name, create.CategoryId);
+
+        await _subCategoryDal.InsertAsync(ObjectMapper.Mapper.Map<SubCategory, SubCategoryDto>(subCategory));
+    }
 }

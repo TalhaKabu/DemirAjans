@@ -30,9 +30,9 @@ public class SubCategoryController(ISubCategoryService subCategoryService) : Con
     }
 
     [HttpPost("insert")]
-    public async Task<IActionResult> InsertAsync(SubCategoryDto subCategoryDto)
+    public async Task<IActionResult> InsertAsync(SubCategoryCreateDto create)
     {
-        await _subCategoryService.InsertAsync(subCategoryDto);
+        await _subCategoryService.InsertAsync(create);
         return Ok();
     }
 }
