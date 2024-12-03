@@ -1,4 +1,5 @@
 ﻿using Kab.DemirAjans.Business.Categories;
+using Kab.DemirAjans.Business.Helper.ProductHelper;
 using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.SubCategories;
@@ -35,4 +36,7 @@ public class SubCategoryController(ISubCategoryService subCategoryService) : Con
         await _subCategoryService.InsertAsync(create);
         return Ok();
     }
+
+    [HttpGet("get-product")]
+    public async Task GetProducts() => ProductHelper.GetProductsFromUri();
 }

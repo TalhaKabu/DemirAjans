@@ -1,7 +1,9 @@
 ﻿using Kab.DemirAjans.Business.Categories;
+using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.DataAccess.Categories;
 using Kab.DemirAjans.DataAccess.DbAccess;
+using Kab.DemirAjans.DataAccess.Products;
 using Kab.DemirAjans.DataAccess.SubCategories;
 using Kab.DemirAjans.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,9 @@ public static class DependencyInjection
         });
 
         services
+            .AddSingleton<IProductService, ProductManager>()
+            .AddSingleton<IProductDal, ProductDal>()
+
             .AddSingleton<ISubCategoryService, SubCategoryManager>()
             .AddSingleton<ISubCategoryDal, SubCategoryDal>()
 
