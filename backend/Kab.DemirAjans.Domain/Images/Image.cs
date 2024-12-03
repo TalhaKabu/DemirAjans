@@ -9,18 +9,18 @@ public class Image : AuditedAggregateRoot
     public bool IsFrontImage { get; set; }
     public int ProductId { get; set; }
 
-    public Image(Guid id, bool isFrontImage, int productId)
+    public Image(Guid id, int productId, bool isFrontImage)
     {
         SetDefaultExtraProperties(false);
-        SetIsFrontImage(isFrontImage);
         SetProductId(productId);
+        SetIsFrontImage(isFrontImage);
     }
 
-    public Image(bool isFrontImage, int productId)
+    public Image(int productId, bool isFrontImage)
     {
         SetDefaultExtraProperties(true);
-        SetIsFrontImage(isFrontImage);
         SetProductId(productId);
+        SetIsFrontImage(isFrontImage);
     }
 
     public void SetIsFrontImage(bool isFrontImage)
