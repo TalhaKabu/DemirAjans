@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spProducts_Insert]
-	@Name nvarchar(20),
+	@Name nvarchar(50),
 	@CategoryId int,
 	@SubCategoryId int,
 	@Code nvarchar(20),
