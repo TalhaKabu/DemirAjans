@@ -14,7 +14,7 @@ public class UserManager(IUserDal userDal) : IUserService
 
     public async Task InsertAsync(UserCreateDto create)
     {
-        var user = new User(create.Username, create.Password, create.Name, create.LastName, create.Email, false);
+        var user = new User(create.Username, create.Password, create.Name, create.LastName, create.Email, true);
 
         await _userDal.InsertAsync(ObjectMapper.Mapper.Map<User, UserDto>(user));
     }

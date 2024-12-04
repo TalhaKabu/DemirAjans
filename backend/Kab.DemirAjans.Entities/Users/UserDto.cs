@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Kab.DemirAjans.Entities.ExtraProperties;
+using System;
 
 namespace Kab.DemirAjans.Entities.Users;
 
-public class UserDto
+public class UserDto : AggregateRoot
 {
     public int Id { get; set; }
     public string Username { get; set; }

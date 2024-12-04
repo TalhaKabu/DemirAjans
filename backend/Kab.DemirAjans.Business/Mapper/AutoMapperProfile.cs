@@ -10,6 +10,7 @@ using Kab.DemirAjans.Entities.Products;
 using Kab.DemirAjans.Entities.SubCategories;
 using Kab.DemirAjans.Entities.Users;
 using System;
+
 namespace Kab.DemirAjans.Business.Mapper;
 
 public class AutoMapperProfile : Profile

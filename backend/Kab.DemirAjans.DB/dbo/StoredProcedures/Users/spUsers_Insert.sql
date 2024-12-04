@@ -4,9 +4,11 @@
 	@Name nvarchar(50),
 	@LastName nvarchar(50),
 	@Email nvarchar(50),
-	@IsAdmin bit
+	@IsAdmin bit,
+	@CreationDate datetime2(7),
+	@LastModificationDate datetime2(7)
 AS
 BEGIN
-	INSERT INTO dbo.[Users] (Username, Password, Name, LastName, Email, IsAdmin)
-	VALUES (@Username, @Password, @Name, @LastName, @Email, @IsAdmin);
+	INSERT INTO dbo.[Users] (Username, Password, Name, LastName, Email, IsAdmin, CreationDate, LastModificationDate)
+	VALUES (@Username, @Password, @Name, @LastName, @Email, @IsAdmin, @CreationDate, @LastModificationDate);
 END

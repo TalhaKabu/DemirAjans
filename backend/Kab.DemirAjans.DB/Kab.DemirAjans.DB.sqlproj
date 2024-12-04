@@ -82,6 +82,7 @@
     <Build Include="dbo\StoredProcedures\Products\spProducts_Update.sql" />
     <Build Include="dbo\StoredProcedures\Users\spUsers_Get.sql" />
     <Build Include="dbo\StoredProcedures\Users\spUsers_Insert.sql" />
+    <Build Include="dbo\StoredProcedures\Users\spUsers_GetByUsername.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />
