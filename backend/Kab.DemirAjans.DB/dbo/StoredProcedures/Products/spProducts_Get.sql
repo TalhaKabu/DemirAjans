@@ -10,6 +10,7 @@ BEGIN
 		,Code
 		,Price
 		,Dimension
+		,AppearInFront
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[Products]

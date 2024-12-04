@@ -11,5 +11,6 @@ public class ProductCreateDto
     public string Code { get; set; }
     public decimal Price { get; set; }
     public string? Dimension { get; set; }
+    public bool AppearInFront { get; set; }
     public List<ImageCreateDto> Images { get; set; }
 }

@@ -21,8 +21,9 @@ public class Product : AuditedAggregateRoot
 
     [MaxLength(ProductConst.MaxDimensionLength)]
     public string? Dimension { get; set; }
+    public bool AppearInFront { get; set; }
 
-    public Product(int id, string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension)
+    public Product(int id, string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension, bool appearInFront)
     {
         SetDefaultExtraProperties(false);
         SetName(name);
@@ -31,9 +32,10 @@ public class Product : AuditedAggregateRoot
         SetCode(code);
         SetPrice(Price);
         SetDimension(dimension);
+        SetAppearInFront(appearInFront);
     }
 
-    public Product(string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension)
+    public Product(string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension, bool appearInFront)
     {
         SetDefaultExtraProperties(true);
         SetName(name);
@@ -42,6 +44,7 @@ public class Product : AuditedAggregateRoot
         SetCode(code);
         SetPrice(Price);
         SetDimension(dimension);
+        SetAppearInFront(appearInFront);
     }
 
     public void SetName(string name)
@@ -52,6 +55,11 @@ public class Product : AuditedAggregateRoot
             throw new Exception($"Ürün adı {ProductConst.MaxNameLength} 'ten büyük olamaz!");
 
         Name = name;
+    }
+
+    public void SetAppearInFront(bool appearInFront)
+    {
+        AppearInFront = appearInFront;
     }
 
     public void SetCategoryId(int categoryId)
