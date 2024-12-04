@@ -84,8 +84,8 @@ public class Product : AuditedAggregateRoot
 
     public void SetPrice(decimal price)
     {
-        if (price < 1)
-            throw new ArgumentException("Ürün fiyatı 0 veya daha küçük olamaz!");
+        if (price < 0)
+            throw new ArgumentException("Ürün fiyatı 0'dan küçük olamaz!");
 
         Price = price;
     }

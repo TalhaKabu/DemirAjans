@@ -117,7 +117,7 @@ public class ProductHelper(IProductService productService, ISubCategoryService s
                         Code = productCode,
                         Name = productname,
                         Dimension = productDimension,
-                        Price = productprice < 1 ? 1 : productprice,
+                        Price = productprice,
                         Images = [
                             new ImageCreateDto {
                             Base64 = base64,
