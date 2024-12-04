@@ -1,5 +1,7 @@
-﻿using Kab.DemirAjans.Business.Helper.ProductHelper;
+﻿using Kab.DemirAjans.Business.Categories;
+using Kab.DemirAjans.Business.Helper.ProductHelper;
 using Kab.DemirAjans.Business.Products;
+using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.Entities.Products;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,9 +9,11 @@ namespace Kab.DemirAjans.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductController(IProductService productService) : ControllerBase
+public class ProductController(IProductService productService, ISubCategoryService subCategoryService, ICategoryService categoryService) : ControllerBase
 {
     private readonly IProductService _productService = productService;
+    private readonly ISubCategoryService _subCategoryService = subCategoryService;
+    private readonly ICategoryService categoryService1 = categoryService;
 
     [HttpGet("list")]
     public async Task<IActionResult> GetListAsync() => Ok(await _productService.GetListAsync());
@@ -33,5 +37,5 @@ public class ProductController(IProductService productService) : ControllerBase
     }
 
     [HttpGet("get-product")]
-    public async Task GetProducts() => new ProductHelper(_productService).GetProductsFromUri();
+    public async Task GetProducts() => await new ProductHelper(_productService, _subCategoryService, categoryService1).GetProductsFromUri();
 }
