@@ -3,10 +3,12 @@ using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Domain.Images;
 using Kab.DemirAjans.Domain.Products;
 using Kab.DemirAjans.Domain.SubCategories;
+using Kab.DemirAjans.Domain.Users;
 using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.Images;
 using Kab.DemirAjans.Entities.Products;
 using Kab.DemirAjans.Entities.SubCategories;
+using Kab.DemirAjans.Entities.Users;
 using System;
 namespace Kab.DemirAjans.Business.Mapper;
 
@@ -21,5 +23,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Product, ProductDto>();
 
         CreateMap<Image, ImageDto>();
+
+        CreateMap<User, UserDto>();
     }
 }

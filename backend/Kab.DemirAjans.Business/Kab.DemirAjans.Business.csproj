@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Kab.DemirAjans.EntityFrameworkCore\Kab.DemirAjans.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Users\" />
-  </ItemGroup>
-
 </Project>

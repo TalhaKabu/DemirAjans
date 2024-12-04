@@ -2,11 +2,13 @@
 using Kab.DemirAjans.Business.Images;
 using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
+using Kab.DemirAjans.Business.Users;
 using Kab.DemirAjans.DataAccess.Categories;
 using Kab.DemirAjans.DataAccess.DbAccess;
 using Kab.DemirAjans.DataAccess.Images;
 using Kab.DemirAjans.DataAccess.Products;
 using Kab.DemirAjans.DataAccess.SubCategories;
+using Kab.DemirAjans.DataAccess.Users;
 using Kab.DemirAjans.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,9 @@ public static class DependencyInjection
         });
 
         services
+            .AddSingleton<IUserService, UserManager>()
+            .AddSingleton<IUserDal, UserDal>()
+
             .AddSingleton<IImageService, ImageManager>()
             .AddSingleton<IImageDal, ImageDal>()
 
