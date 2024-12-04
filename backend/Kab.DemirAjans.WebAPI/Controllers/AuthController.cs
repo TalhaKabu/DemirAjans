@@ -13,7 +13,14 @@ public class AuthController(IAuthService authService) : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto userLoginDto)
     {
-        //todo dzelt
-        return Ok(await AuthService.Login(userLoginDto));
+        try
+        {
+            var accessToken = await AuthService.Login(userLoginDto);
+            return Ok(accessToken);
+        }
+        catch (Exception)
+        {
+            return Unauthorized();
+        }
     }
 }

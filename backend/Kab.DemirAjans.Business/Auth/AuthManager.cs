@@ -13,6 +13,10 @@ public class AuthManager(IAuthDal authDal, ITokenService tokenService) : IAuthSe
     {
         var userDto = await _authDal.GetUserAsync(loginDto) ?? throw new ArgumentException("Kullanıcı bulunamadı!");
 
+        //todo şifreyi encryptle
+        if (loginDto.Password != userDto.Password)
+            throw new ArgumentException("Şifre yanlış!");
+
         return await _tokenService.CreateToken(userDto);
     }
 }

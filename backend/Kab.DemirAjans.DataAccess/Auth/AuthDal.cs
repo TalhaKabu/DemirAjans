@@ -13,5 +13,5 @@ public class AuthDal(ISqlDataAccess db) : IAuthDal
 {
     private readonly ISqlDataAccess _db = db;
 
-    public async Task<UserDto?> GetUserAsync(LoginDto loginDto) => (await _db.LoadDataAsync<UserDto, dynamic>(storedProcedure: "spUsers_GetByUsername", new { loginDto.Username })).FirstOrDefault();
+    public async Task<UserDto?> GetUserAsync(LoginDto loginDto) => (await _db.LoadDataAsync<UserDto, dynamic>(storedProcedure: "spUsers_GetByUsername", new { Username = loginDto.Username, Email = loginDto.Username })).FirstOrDefault();
 }
