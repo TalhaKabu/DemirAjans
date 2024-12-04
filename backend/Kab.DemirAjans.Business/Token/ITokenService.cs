@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Kab.DemirAjans.Entities.Auth;
+using Kab.DemirAjans.Entities.Users;
 
 namespace Kab.DemirAjans.Business.Token;
 
 public interface ITokenService
 {
+    Task<AccessToken> CreateToken(UserDto user);
 }

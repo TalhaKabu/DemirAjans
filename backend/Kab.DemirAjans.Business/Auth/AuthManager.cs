@@ -1,26 +1,18 @@
-﻿using Kab.DemirAjans.DataAccess.Auth;
+﻿using Kab.DemirAjans.Business.Token;
+using Kab.DemirAjans.DataAccess.Auth;
 using Kab.DemirAjans.Entities.Auth;
 
-namespace Kab.DemirAjans.Business.Auth
+namespace Kab.DemirAjans.Business.Auth;
+
+public class AuthManager(IAuthDal authDal, ITokenService tokenService) : IAuthService
 {
-    public class AuthManager : IAuthService
+    private readonly IAuthDal _authDal = authDal;
+    private readonly ITokenService _tokenService = tokenService;
+
+    public async Task<AccessToken> Login(LoginDto loginDto)
     {
-        private readonly IAuthDal AuthDal;
+        var userDto = await _authDal.GetUserAsync(loginDto) ?? throw new ArgumentException("Kullanıcı bulunamadı!");
 
-        public AuthManager( IAuthDal authDal)
-        {
-            AuthDal = authDal;
-        }
-
-        public async Task<AccessToken> Login(LoginDto loginDto)
-        {
-            var user = await AuthDal.GetUserAsync(loginDto);
-
-            if (user == null)
-                throw new ArgumentException("Kullanıcı adı veya şifre yanlış!");
-
-            return null;
-            //return TokenHelper.CreateToken(user, claims);
-        }
+        return await _tokenService.CreateToken(userDto);
     }
 }

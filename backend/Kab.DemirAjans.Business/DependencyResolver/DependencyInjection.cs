@@ -3,6 +3,7 @@ using Kab.DemirAjans.Business.Categories;
 using Kab.DemirAjans.Business.Images;
 using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
+using Kab.DemirAjans.Business.Token;
 using Kab.DemirAjans.Business.Users;
 using Kab.DemirAjans.DataAccess.Auth;
 using Kab.DemirAjans.DataAccess.Categories;
@@ -46,6 +47,8 @@ public static class DependencyInjection
 
             .AddSingleton<ICategoryService, CategoryManager>()
             .AddSingleton<ICategoryDal, CategoryDal>()
+
+            .AddSingleton<ITokenService, TokenManager>()
 
             .AddSingleton<ISqlDataAccess, SqlDataAccess>();
     }
