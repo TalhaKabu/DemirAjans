@@ -27,7 +27,9 @@ public class SubCategoryManager(ISubCategoryDal subCategoryDal) : ISubCategorySe
     {
         var subCategory = await GetAsync(id);
 
-        var sct = new SubCategory(id, update.Name ?? subCategory.Name, update.CategoryId ?? subCategory.CategoryId);
+        var sct = new SubCategory(id,
+                                  update.Name ?? subCategory.Name,
+                                  update.CategoryId ?? subCategory.CategoryId);
 
         await _subCategoryDal.UpdateAsync(id, ObjectMapper.Mapper.Map<SubCategory, SubCategoryDto>(sct));
     }

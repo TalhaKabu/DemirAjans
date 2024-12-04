@@ -40,4 +40,21 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
         foreach (var item in create.Images)
             await _imageService.InsertAsync(item, productId);
     }
+
+    public async Task UpdateAsync(int id, ProductUpdateDto update)
+    {
+        //todo product appear in front orn. en fazla 4 tane ise kontrol et
+        var product = await GetAsync(id);
+
+        var pr = new Product(id,
+                             update.Name ?? product.Name,
+                             update.CategoryId ?? product.CategoryId,
+                             update.SubCategoryId ?? product.SubCategoryId,
+                             update.Code ?? product.Code,
+                             update.Price ?? product.Price,
+                             update.Dimension ?? product.Dimension,
+                             update.AppearInFront ?? product.AppearInFront);
+
+        await _productDal.UpdateAsync(id, ObjectMapper.Mapper.Map<Product, ProductDto>(pr));
+    }
 }

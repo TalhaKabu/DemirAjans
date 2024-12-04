@@ -78,6 +78,7 @@
     <Build Include="dbo\StoredProcedures\Products\spProducts_Insert.sql" />
     <Build Include="dbo\StoredProcedures\Images\spImages_Insert.sql" />
     <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_Update.sql" />
+    <Build Include="dbo\StoredProcedures\Products\spProducts_Update.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />

@@ -7,5 +7,6 @@ namespace Kab.DemirAjans.Business.Products
         Task<ProductDto?> GetAsync(int id);
         Task<IEnumerable<ProductDto>> GetListAsync();
         Task InsertAsync(ProductCreateDto create);
+        Task UpdateAsync(int id, ProductUpdateDto update);
     }
 }

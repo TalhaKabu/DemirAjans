@@ -36,6 +36,13 @@ public class ProductController(IProductService productService, ISubCategoryServi
         return Ok();
     }
 
+    [HttpPost("update")]
+    public async Task<IActionResult> UpdateAsync(int id, ProductUpdateDto update)
+    {
+        await _productService.UpdateAsync(id, update);
+        return Ok();
+    }
+
     [HttpGet("get-product")]
     public async Task GetProducts() => await new ProductHelper(_productService, _subCategoryService, categoryService1).GetProductsFromUri();
 }
