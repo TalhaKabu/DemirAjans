@@ -5,5 +5,5 @@ namespace Kab.DemirAjans.Business.Token;
 
 public interface ITokenService
 {
-    Task<AccessToken> CreateToken(UserDto user);
+    AccessToken CreateToken(UserDto user);
 }

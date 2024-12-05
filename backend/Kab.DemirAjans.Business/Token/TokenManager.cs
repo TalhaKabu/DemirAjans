@@ -4,8 +4,9 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using Kab.DemirAjans.Entities.Users;
-using System;
 using Kab.DemirAjans.Entities.Auth;
+using Kab.DemirAjans.Business.Helper.JwtHelper;
+using System;
 
 namespace Kab.DemirAjans.Business.Token;
 
@@ -13,26 +14,35 @@ public class TokenManager(IConfiguration configuration) : ITokenService
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public async Task<AccessToken> CreateToken(UserDto user)
+    public AccessToken CreateToken(UserDto userDto)
     {
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(
-            [
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
-                // Add more claims as needed
-            ]),
-            Expires = DateTime.Now.AddDays(1),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-            Issuer = _configuration["Jwt:Issuer"],
-            Audience = _configuration["Jwt:Audience"]
-        };
+        var securityKey = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
+        var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(securityKey), SecurityAlgorithms.HmacSha256Signature);
+        var jwt = CreateJwtSecurityToken(userDto, signingCredentials);
+        var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+        var token = jwtSecurityTokenHandler.WriteToken(jwt);
+        return new AccessToken { Token = token, Expiration = DateTime.Now.AddDays(1) };
+    }
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        var tokenStr = tokenHandler.WriteToken(token);
-        return new AccessToken { Token = tokenStr, Expiration = DateTime.Now.AddDays(1) };
+    public JwtSecurityToken CreateJwtSecurityToken(UserDto userDto, SigningCredentials signingCredentials)
+    {
+        var jwt = new JwtSecurityToken(
+            issuer: _configuration["Jwt:Issuer"],
+            audience: _configuration["Jwt:Audience"],
+            expires: DateTime.Now.AddDays(1),
+            notBefore: DateTime.Now,
+            claims: SetClaims(userDto),
+            signingCredentials: signingCredentials
+        );
+        return jwt;
+    }
+
+    private IEnumerable<Claim> SetClaims(UserDto userDto)
+    {
+        var claims = new List<Claim>();
+        claims.AddNameIdentifier(userDto.Id.ToString());
+        claims.AddName(userDto.Username);
+        claims.AddRoles(userDto.IsAdmin ? new List<string> { "Admin", "User" } : new List<string> { "User" });
+        return claims;
     }
 }

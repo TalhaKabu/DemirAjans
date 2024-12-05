@@ -17,6 +17,6 @@ public class AuthManager(IAuthDal authDal, ITokenService tokenService) : IAuthSe
         if (loginDto.Password != userDto.Password)
             throw new ArgumentException("Şifre yanlış!");
 
-        return await _tokenService.CreateToken(userDto);
+        return await Task.Run(() => _tokenService.CreateToken(userDto));
     }
 }
