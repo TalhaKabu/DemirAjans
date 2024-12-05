@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (n) => (
           localStorage.setItem('token', n.token),
-          localStorage.setItem('expiration', n.expiration.toString()),
           this.router.navigate([''])
         ),
         error: (e) => console.log(e),
