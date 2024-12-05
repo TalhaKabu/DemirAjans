@@ -8,13 +8,18 @@ import { environment } from '../../../environments/environment';
 })
 export class ProxyService {
   private baseUrl = environment.apiUrl;
+  private token = localStorage.getItem('token');
 
   constructor(private http: HttpClient) {}
 
-  get<T>(endpoint: string, data: any): Observable<T> {
+  get<T>(endpoint: string, params: any, headers: any = null): Observable<T> {
     return this.http
       .get<T>(`${this.baseUrl}/${endpoint}`, {
-        params: data,
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+          'Content-Type': 'application/json',
+        },
+        params: params,
       })
       .pipe(
         catchError((error) => {
@@ -24,13 +29,21 @@ export class ProxyService {
       );
   }
 
-  post<T>(endpoint: string, data: any): Observable<T> {
-    return this.http.post<T>(`${this.baseUrl}/${endpoint}`, data).pipe(
-      catchError((error) => {
-        console.error('Error:', error);
-        return throwError(() => error);
+  post<T>(endpoint: string, body: any = null, params: any = null): Observable<T> {
+    return this.http
+      .post<T>(`${this.baseUrl}/${endpoint}`, body, {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+          'Content-Type': 'application/json',
+        },
+        params: params,
       })
-    );
+      .pipe(
+        catchError((error) => {
+          console.error('Error:', error);
+          return throwError(() => error);
+        })
+      );
   }
 
   put<T>(endpoint: string, data: any): Observable<T> {
