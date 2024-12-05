@@ -8,6 +8,7 @@
           class="input"
           id="username"
           placeholder=" "
+          [(ngModel)]="loginDto.username"
           required
         />
         <label for="username">Kullanıcı Adı</label>
@@ -19,13 +20,14 @@
           class="input"
           id="password"
           placeholder=" "
+          [(ngModel)]="loginDto.password"
           required
         />
         <label for="password">Şifre</label>
       </div>
     </div>
     <div class="button-container">
-      <button class="login-button">Giriş yap</button>
+      <button class="login-button" (click)="login()" [disabled]="!loginDto.username && !loginDto.password">Giriş yap</button>
       <button class="register-button">Kayıt ol</button>
     </div>
   </div>
