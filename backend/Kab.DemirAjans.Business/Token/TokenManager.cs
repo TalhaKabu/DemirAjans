@@ -21,7 +21,7 @@ public class TokenManager(IConfiguration configuration) : ITokenService
         var jwt = CreateJwtSecurityToken(userDto, signingCredentials);
         var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
         var token = jwtSecurityTokenHandler.WriteToken(jwt);
-        return new AccessToken { Token = token, Expiration = DateTime.Now.AddDays(1) };
+        return new AccessToken { Token = token };
     }
 
     public JwtSecurityToken CreateJwtSecurityToken(UserDto userDto, SigningCredentials signingCredentials)

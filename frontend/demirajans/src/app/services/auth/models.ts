@@ -5,5 +5,4 @@ export interface LoginDto {
 
 export interface AccessToken {
   token: string;
-  expiration: Date;
 }
