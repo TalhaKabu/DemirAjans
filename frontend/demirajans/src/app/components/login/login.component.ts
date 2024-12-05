@@ -21,14 +21,17 @@ export class LoginComponent implements OnInit {
       })
       .subscribe({
         next: (n) => (
-          localStorage.setItem('token', n.token),
-          this.router.navigate([''])
+          localStorage.setItem('token', n.token), this.router.navigate([''])
         ),
         error: (e) => console.log(e),
       });
   }
 
-  constructor(private authService: AuthService, protected router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
+
+  register() {
+    this.router.navigate(['/register']);
+  }
 }
