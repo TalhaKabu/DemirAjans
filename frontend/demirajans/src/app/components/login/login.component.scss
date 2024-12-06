@@ -73,7 +73,7 @@
 
 .button-container {
   width: 100%;
-  padding: 20px 40px 40px 40px;
+  padding: 0 40px 40px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,3 +101,10 @@ button:hover {
   margin-top: 20px;
 }
 
+.error-message {
+  position: relative;
+  color: red;
+  top: 0;
+  left: 5px;
+  margin-bottom: 5px;
+}

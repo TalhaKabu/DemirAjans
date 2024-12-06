@@ -11,11 +11,11 @@ public class AuthManager(IAuthDal authDal, ITokenService tokenService) : IAuthSe
 
     public async Task<AccessToken> Login(LoginDto loginDto)
     {
-        var userDto = await _authDal.GetUserAsync(loginDto) ?? throw new ArgumentException("Kullanıcı bulunamadı!");
+        var userDto = await _authDal.GetUserAsync(loginDto) ?? throw new UnauthorizedAccessException("Kullanıcı adı veya şifre yanlış!");
 
         //todo şifreyi encryptle
         if (loginDto.Password != userDto.Password)
-            throw new ArgumentException("Şifre yanlış!");
+            throw new UnauthorizedAccessException("Kullanıcı adı veya şifre yanlış!");
 
         return await Task.Run(() => _tokenService.CreateToken(userDto));
     }

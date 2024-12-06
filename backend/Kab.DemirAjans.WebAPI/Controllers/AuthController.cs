@@ -18,7 +18,7 @@ public class AuthController(IAuthService authService) : ControllerBase
             var accessToken = await AuthService.Login(userLoginDto);
             return Ok(accessToken);
         }
-        catch (Exception)
+        catch (UnauthorizedAccessException)
         {
             return Unauthorized();
         }

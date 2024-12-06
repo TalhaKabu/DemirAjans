@@ -25,6 +25,7 @@
         />
         <label for="password">Şifre</label>
       </div>
+      <span class="error-message" [hidden]="loginErrMsg === ''">{{ loginErrMsg }}</span>
     </div>
     <div class="button-container">
       <button
