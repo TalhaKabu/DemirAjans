@@ -35,7 +35,11 @@
 
 .input-group {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-group-err {
+  margin-bottom: 2.5rem;
 }
 
 .input-group .input {
@@ -104,11 +108,10 @@ button:hover {
 }
 
 .error-message {
-  position: relative;
+  position: absolute;
   color: red;
-  top: 5px;
+  top: 52px;
   left: 5px;
-  margin-bottom: 5px;
 }
 
 button {

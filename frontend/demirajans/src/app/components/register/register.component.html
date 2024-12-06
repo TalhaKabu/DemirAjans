@@ -2,7 +2,11 @@
   <div class="container">
     <h3 class="header"><span>KAYDOL</span></h3>
     <div class="input-container">
-      <div class="input-group mb-4" [hidden]="verifyActivation">
+      <div
+        class="input-group"
+        [ngClass]="activationSendErrMsg !== '' ? 'input-group-err' : ''"
+        [hidden]="verifyActivation"
+      >
         <input
           type="email"
           class="input"
@@ -18,8 +22,10 @@
           {{ activationSendErrMsg }}
         </span>
       </div>
+
       <div
         class="input-group"
+        [ngClass]="verifyActivationErrMsg !== '' ? 'input-group-err' : ''"
         [hidden]="activationSend ? (verifyActivation ? true : false) : true"
       >
         <input
@@ -37,7 +43,7 @@
         </span>
       </div>
 
-      <div class="input-group mb-4" [hidden]="!verifyActivation">
+      <div class="input-group" [hidden]="!verifyActivation">
         <input
           type="text"
           class="input"
@@ -49,7 +55,7 @@
         <label for="name">Ad *</label>
       </div>
 
-      <div class="input-group mb-4" [hidden]="!verifyActivation">
+      <div class="input-group" [hidden]="!verifyActivation">
         <input
           type="text"
           class="input"
@@ -61,7 +67,7 @@
         <label for="lastname">Soyad *</label>
       </div>
 
-      <div class="input-group mb-4" [hidden]="!verifyActivation">
+      <div class="input-group" [hidden]="!verifyActivation">
         <input
           type="text"
           class="input"
@@ -73,7 +79,7 @@
         <label for="username">Kullanıcı Adı *</label>
       </div>
 
-      <div class="input-group mb-4" [hidden]="!verifyActivation">
+      <div class="input-group" [hidden]="!verifyActivation">
         <input
           type="password"
           class="input"

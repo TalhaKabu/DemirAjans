@@ -2,7 +2,7 @@
   <div class="container">
     <h3 class="header"><span>Giriş Yap</span></h3>
     <div class="input-container">
-      <div class="input-group mb-4">
+      <div class="input-group">
         <input
           type="text"
           class="input"
@@ -13,8 +13,10 @@
         />
         <label for="username">Kullanıcı Adı</label>
       </div>
-
-      <div class="input-group">
+      <div
+        class="input-group"
+        [ngClass]="loginErrMsg !== '' ? 'input-group-err' : ''"
+      >
         <input
           type="password"
           class="input"
@@ -24,16 +26,14 @@
           required
         />
         <label for="password">Şifre</label>
+        <span class="error-message" [hidden]="loginErrMsg === ''">{{
+          loginErrMsg
+        }}</span>
       </div>
-      <span class="error-message" [hidden]="loginErrMsg === ''">{{ loginErrMsg }}</span>
     </div>
+
     <div class="button-container">
-      <button
-        class="login-button"
-        (click)="login()"
-      >
-        Giriş yap
-      </button>
+      <button class="login-button" (click)="login()">Giriş yap</button>
       <button class="register-button" (click)="register()">KAYDOL</button>
     </div>
   </div>
