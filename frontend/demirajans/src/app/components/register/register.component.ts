@@ -6,6 +6,7 @@ import {
   ActivationCreateDto,
   VerifyActivationDto,
 } from '../../services/activations/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -67,7 +68,7 @@ export class RegisterComponent {
           this.counterStr = '3:00';
         } else if (e.status === 409) {
           this.verifyActivationErrMsg =
-            'Aktivasyon kodu yanlış, lütfen kontrol edip tekrar ediniz.';
+            'Aktivasyon kodu yanlış, lütfen kontrol edip tekrar deneyiniz.';
         }
       },
     });
@@ -75,7 +76,10 @@ export class RegisterComponent {
   //#endregion
 
   //#region Ctor
-  constructor(private activationService: ActivationService) {}
+  constructor(
+    private router: Router,
+    private activationService: ActivationService
+  ) {}
   //#endregion
 
   //#region Methods
@@ -108,7 +112,7 @@ export class RegisterComponent {
 
       this.activationCreateDto.expirationDate = new Date();
       this.activationCreateDto.expirationDate.setMinutes(
-        this.activationCreateDto.expirationDate.getMinutes() + 0.1
+        this.activationCreateDto.expirationDate.getMinutes() + this.counter / 60
       );
       this.sendActivationCode();
     } else {
@@ -128,11 +132,16 @@ export class RegisterComponent {
       } else {
         this.activationCreateDto.expirationDate = new Date();
         this.activationCreateDto.expirationDate.setMinutes(
-          this.activationCreateDto.expirationDate.getMinutes() + 0.1
+          this.activationCreateDto.expirationDate.getMinutes() +
+            this.counter / 60
         );
         this.sendActivationCode();
       }
     }
+  }
+
+  backButtonOnClick() {
+    this.router.navigate(['/login']);
   }
   //#endregion
 }
