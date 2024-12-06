@@ -1,17 +1,12 @@
-app-navbar {
-  width: 100%;
-}
+main {
+  padding: min(30px, 7%);
 
-.navbar {
-  margin: 0;
-  padding: 0;
+  // @media (max-width: 768px) {
+  //   padding: 0 5px;
+  // }
 }
 
 .router {
-  padding: 0 40px;
-  margin-top: 20px;
-
-  @media (max-width: 768px) {
-    padding: 0 5px;
-  }
+  padding: min(30px, 7%);
+  width: 100%;
 }

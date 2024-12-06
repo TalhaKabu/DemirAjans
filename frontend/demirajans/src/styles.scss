@@ -1,9 +1,29 @@
-body {
-  width: 100%;
-  background-color: whitesmoke;
-  padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+$base-clr: #11121a;
+$line-clr: #42434a;
+$hover-clr: #222533;
+$text-clr: #e6e6ef;
+$accent-clr: #5e63ff;
+$secondary-text-clr: #b0b3c1;
+
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
+}
+
+html {
+  font-family: Poppins, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5rem;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: $base-clr;
+  color: $text-clr;
+  // display: grid;
+  // grid-template-columns: auto 1fr;
 }
 
 input:-webkit-autofill,
@@ -11,4 +31,8 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+app-root {
+  display: flex;
 }
