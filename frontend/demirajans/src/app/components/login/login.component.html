@@ -4,7 +4,7 @@
     <div class="input-container">
       <div class="input-group mb-4">
         <input
-          type="email"
+          type="text"
           class="input"
           id="username"
           placeholder=" "
@@ -27,8 +27,8 @@
       </div>
     </div>
     <div class="button-container">
-      <button class="login-button" (click)="login()" [disabled]="!loginDto.username && !loginDto.password">Giriş yap</button>
-      <button class="register-button" (click)="register()" >Kayıt ol</button>
+      <button class="login-button" (click)="login()" [disabled]="!loginDto.username && !loginDto.password" (mouseenter)="login()">Giriş yap</button>
+      <button class="register-button" (click)="register()" >KAYDOL</button>
     </div>
   </div>
 </div>
