@@ -24,7 +24,11 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
       router.navigate['/login'];
     }
   } else {
-    if (req.url.includes('Auth/login')) {
+    if (
+      req.url.includes('Auth/login') ||
+      req.url.includes('Activation/send-activation-code') ||
+      req.url.includes('Activation/verify-activation-code')
+    ) {
       return next(req);
     } else {
       localStorage.removeItem('token');

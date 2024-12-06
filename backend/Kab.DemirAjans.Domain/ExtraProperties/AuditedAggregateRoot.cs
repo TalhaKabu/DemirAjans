@@ -11,6 +11,6 @@ public abstract class AuditedAggregateRoot : CreationAuditedAggregateRoot
         base.SetDefaultExtraProperties(isInsert);
 
         if (!isInsert)
-            LastModificationDate = DateTime.Now;
+            LastModificationDate = DateTime.UtcNow;
     }
 }

@@ -3,7 +3,14 @@
     <h3 class="header"><span>KAYDOL</span></h3>
     <div class="input-container">
       <div class="input-group mb-4" [hidden]="activated">
-        <input type="email" class="input" id="email" placeholder=" " required />
+        <input
+          type="email"
+          class="input"
+          id="email"
+          placeholder=" "
+          required
+          [(ngModel)]="activationCreateDto.email"
+        />
         <label for="email">Mail adresi</label>
       </div>
       <div class="input-group" [hidden]="activated">
@@ -12,6 +19,7 @@
           class="input"
           id="activation-code"
           placeholder=" "
+          [(ngModel)]="activationCreateDto.code"
           required
         />
         <label for="activation-code">Aktivasyon Kodu</label>

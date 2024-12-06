@@ -7,5 +7,6 @@ namespace Kab.DemirAjans.Business.Activations
         Task<ActivationDto?> GetByEmailAsync(string email);
         Task InsertAsync(ActivationCreateDto create);
         Task SendActivationCodeAsync(ActivationCreateDto create);
+        Task VerifyActivationCodeAsync(VerifyActivationDto verify);
     }
 }

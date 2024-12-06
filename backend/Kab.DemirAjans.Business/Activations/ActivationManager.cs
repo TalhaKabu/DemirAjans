@@ -22,11 +22,22 @@ public class ActivationManager(IActivationDal activationDal) : IActivationServic
     public async Task SendActivationCodeAsync(ActivationCreateDto create)
     {
         create.Code = string.Empty;
-        while (create.Code.Length <= 6)
+        while (create.Code.Length < 6)
             create.Code = string.Join("", create.Code, new Random().Next(0, 9).ToString());
 
         //todo send mail
 
         await InsertAsync(create);
+    }
+
+    public async Task VerifyActivationCodeAsync(VerifyActivationDto verify)
+    {
+        var activationDto = await GetByEmailAsync(verify.Email) ?? throw new ArgumentException("Aktivasyon kodu bulunamadı!");
+
+        if (activationDto.ExpirationDate < DateTime.UtcNow)
+            throw new ArgumentException("Doğrulama süresi doldu!");
+
+        if (!string.Equals(activationDto.Code, verify.Code))
+            throw new ArgumentException("Doğrulama kodu yanlış!");
     }
 }

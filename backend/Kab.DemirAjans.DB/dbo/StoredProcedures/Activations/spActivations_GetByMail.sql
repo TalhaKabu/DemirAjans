@@ -2,7 +2,7 @@
 	@Email nvarchar(50)
 AS
 BEGIN
-	SELECT
+	SELECT TOP 1
 		 Id
 		,Email
 		,Code
@@ -10,5 +10,6 @@ BEGIN
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[Activations]
-	WHERE Email = @Email;
+	WHERE Email = @Email
+	ORDER BY CreationDate DESC;
 END
