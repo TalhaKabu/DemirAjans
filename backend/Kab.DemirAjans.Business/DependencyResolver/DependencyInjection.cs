@@ -1,10 +1,12 @@
-﻿using Kab.DemirAjans.Business.Auth;
+﻿using Kab.DemirAjans.Business.Activations;
+using Kab.DemirAjans.Business.Auth;
 using Kab.DemirAjans.Business.Categories;
 using Kab.DemirAjans.Business.Images;
 using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.Business.Token;
 using Kab.DemirAjans.Business.Users;
+using Kab.DemirAjans.DataAccess.Activations;
 using Kab.DemirAjans.DataAccess.Auth;
 using Kab.DemirAjans.DataAccess.Categories;
 using Kab.DemirAjans.DataAccess.DbAccess;
@@ -30,6 +32,9 @@ public static class DependencyInjection
         });
 
         services
+            .AddSingleton<IActivationService, ActivationManager>()
+            .AddSingleton<IActivationDal, ActivationDal>()
+
             .AddSingleton<IAuthService, AuthManager>()
             .AddSingleton<IAuthDal, AuthDal>()
 

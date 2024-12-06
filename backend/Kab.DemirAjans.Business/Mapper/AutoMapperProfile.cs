@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Kab.DemirAjans.Domain.Activations;
 using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Domain.Images;
 using Kab.DemirAjans.Domain.Products;
 using Kab.DemirAjans.Domain.SubCategories;
 using Kab.DemirAjans.Domain.Users;
+using Kab.DemirAjans.Entities.Activations;
 using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.Images;
 using Kab.DemirAjans.Entities.Products;
@@ -26,5 +28,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Image, ImageDto>();
 
         CreateMap<User, UserDto>();
+
+        CreateMap<Activation, ActivationDto>();
     }
 }

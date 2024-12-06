@@ -63,6 +63,7 @@
     <Folder Include="dbo\StoredProcedures\Products" />
     <Folder Include="dbo\StoredProcedures\Images" />
     <Folder Include="dbo\StoredProcedures\Users" />
+    <Folder Include="dbo\StoredProcedures\Activations" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\StoredProcedures\Categories\spCategories_GetAll.sql" />
@@ -83,6 +84,8 @@
     <Build Include="dbo\StoredProcedures\Users\spUsers_Get.sql" />
     <Build Include="dbo\StoredProcedures\Users\spUsers_Insert.sql" />
     <Build Include="dbo\StoredProcedures\Users\spUsers_GetByUsernameOrEmail.sql" />
+    <Build Include="dbo\StoredProcedures\Activations\spActivations_GetByMail.sql" />
+    <Build Include="dbo\StoredProcedures\Activations\spActivations_Insert.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />

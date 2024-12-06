@@ -1,4 +1,5 @@
-﻿using Kab.DemirAjans.Domain.Categories;
+﻿using Kab.DemirAjans.Domain.Activations;
+using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Domain.Images;
 using Kab.DemirAjans.Domain.Products;
 using Kab.DemirAjans.Domain.SubCategories;
@@ -16,6 +17,7 @@ public class KabDbContext(DbContextOptions<KabDbContext> options) : DbContext(op
     public DbSet<Product> Products { get; set; }
     public DbSet<Image> Images { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<Activation> Activations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
