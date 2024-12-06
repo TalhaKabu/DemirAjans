@@ -2,6 +2,7 @@
 using Kab.DemirAjans.DataAccess.Activations;
 using Kab.DemirAjans.Domain.Activations;
 using Kab.DemirAjans.Entities.Activations;
+using Microsoft.IdentityModel.Tokens;
 using System;
 
 namespace Kab.DemirAjans.Business.Activations;
@@ -32,12 +33,12 @@ public class ActivationManager(IActivationDal activationDal) : IActivationServic
 
     public async Task VerifyActivationCodeAsync(VerifyActivationDto verify)
     {
-        var activationDto = await GetByEmailAsync(verify.Email) ?? throw new ArgumentException("Aktivasyon kodu bulunamadı!");
+        var activationDto = await GetByEmailAsync(verify.Email) ?? throw new ArgumentNullException("Aktivasyon kodu bulunamadı!");
 
         if (activationDto.ExpirationDate < DateTime.UtcNow)
-            throw new ArgumentException("Doğrulama süresi doldu!");
+            throw new TimeoutException("Doğrulama süresi doldu!");
 
         if (!string.Equals(activationDto.Code, verify.Code))
-            throw new ArgumentException("Doğrulama kodu yanlış!");
+            throw new InvalidDataException("Doğrulama kodu yanlış!");
     }
 }

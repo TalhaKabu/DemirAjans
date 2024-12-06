@@ -30,7 +30,7 @@
 
 .input-container {
   width: 100%;
-  padding: 40px 40px 20px 40px;
+  padding: 40px 40px 0 40px;
 }
 
 .input-group {
@@ -73,7 +73,7 @@
 
 .button-container {
   width: 100%;
-  padding: 0 40px 40px 40px;
+  padding: 10px 40px 40px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,4 +101,12 @@ button:hover {
   color: #777;
   right: 12px;
   top: 12px;
+}
+
+.error-message {
+  position: relative;
+  color: red;
+  top: 5px;
+  left: 5px;
+  margin-bottom: 5px;
 }

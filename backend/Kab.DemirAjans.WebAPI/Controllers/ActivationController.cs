@@ -1,6 +1,8 @@
 ﻿using Kab.DemirAjans.Business.Activations;
 using Kab.DemirAjans.Entities.Activations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.Net;
 
 namespace Kab.DemirAjans.WebAPI.Controllers;
 
@@ -20,7 +22,22 @@ public class ActivationController(IActivationService activationService) : Contro
     [HttpPost("verify-activation-code")]
     public async Task<IActionResult> VerifyActivationCodeAsync(VerifyActivationDto verifyActivationDto)
     {
-        await _activationService.VerifyActivationCodeAsync(verifyActivationDto);
-        return Ok(true);
+        try
+        {
+            await _activationService.VerifyActivationCodeAsync(verifyActivationDto);
+            return Ok(true);
+        }
+        catch (ArgumentNullException)
+        {
+            return NotFound();
+        }
+        catch (TimeoutException)
+        {
+            return StatusCode(408); //Timeout
+        }
+        catch (InvalidDataException)
+        {
+            return Conflict();
+        }
     }
 }

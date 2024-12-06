@@ -2,18 +2,25 @@
   <div class="container">
     <h3 class="header"><span>KAYDOL</span></h3>
     <div class="input-container">
-      <div class="input-group mb-4" [hidden]="activated">
+      <div class="input-group mb-4" [hidden]="verifyActivation">
         <input
           type="email"
           class="input"
           id="email"
           placeholder=" "
           required
+          [disabled]="activationSend"
           [(ngModel)]="activationCreateDto.email"
         />
         <label for="email">Mail adresi</label>
+        <span class="error-message" [hidden]="activationSendErrMsg === ''">
+          {{ activationSendErrMsg }}
+        </span>
       </div>
-      <div class="input-group" [hidden]="activated">
+      <div
+        class="input-group"
+        [hidden]="activationSend ? (verifyActivation ? true : false) : true"
+      >
         <input
           type="text"
           class="input"
@@ -24,9 +31,12 @@
         />
         <label for="activation-code">Aktivasyon Kodu</label>
         <span class="timer">{{ counterStr }}</span>
+        <span class="error-message" [hidden]="verifyActivationErrMsg === ''">
+          {{ verifyActivationErrMsg }}
+        </span>
       </div>
 
-      <div class="input-group mb-4" [hidden]="!activated">
+      <div class="input-group mb-4" [hidden]="!verifyActivation">
         <input
           type="text"
           class="input"
@@ -38,7 +48,7 @@
         <label for="name">Ad *</label>
       </div>
 
-      <div class="input-group mb-4" [hidden]="!activated">
+      <div class="input-group mb-4" [hidden]="!verifyActivation">
         <input
           type="text"
           class="input"
@@ -50,7 +60,7 @@
         <label for="lastname">Soyad *</label>
       </div>
 
-      <div class="input-group mb-4" [hidden]="!activated">
+      <div class="input-group mb-4" [hidden]="!verifyActivation">
         <input
           type="text"
           class="input"
@@ -62,7 +72,7 @@
         <label for="username">Kullanıcı Adı *</label>
       </div>
 
-      <div class="input-group mb-4" [hidden]="!activated">
+      <div class="input-group mb-4" [hidden]="!verifyActivation">
         <input
           type="password"
           class="input"
@@ -74,7 +84,7 @@
         <label for="password">Şifre *</label>
       </div>
 
-      <div class="input-group" [hidden]="!activated">
+      <div class="input-group" [hidden]="!verifyActivation">
         <input
           type="password"
           class="input"
@@ -89,9 +99,11 @@
     <div class="button-container">
       <button class="activation-button" (click)="buttonOnClick()">
         {{
-          !activationSend
+          activatinSendAgain
+            ? "Tekrar Aktivasyon Kodu Gönder"
+            : !activationSend
             ? "Aktivasyon Kodu Gönder"
-            : !activated
+            : !verifyActivation
             ? "Doğrula"
             : "Kaydol"
         }}

@@ -17,7 +17,10 @@ import {
 export class RegisterComponent {
   //#region Fields
   activationSend: boolean = false;
-  activated: boolean = false;
+  activatinSendAgain: boolean = false;
+  activationSendErrMsg: string = '';
+  verifyActivation: boolean = false;
+  verifyActivationErrMsg: string = '';
 
   counter: number = 180;
   counterStr: string = '3:00';
@@ -34,19 +37,39 @@ export class RegisterComponent {
       .subscribe({
         next: (n) => {
           this.activationSend = true;
+          this.activatinSendAgain = false;
           this.startTimer();
+          this.activationSendErrMsg = '';
+          this.verifyActivationErrMsg = '';
         },
-        error: (e) => console.log(e),
+        error: (e) => {
+          this.activationSendErrMsg =
+            'Aktivasyon kodu gönderilemedi, lütfen maili kontrol ediniz.';
+        },
       });
   }
 
   verifyActivationCode(verifyActivationDto: VerifyActivationDto) {
     this.activationService.verifyActivationCode(verifyActivationDto).subscribe({
       next: (n) => {
-        this.activated = true;
+        this.verifyActivation = true;
         this.stopTimer = true;
       },
-      error: (e) => console.log(e.error),
+      error: (e) => {
+        if (e.status === 404) {
+          this.verifyActivationErrMsg =
+            'Mail adresi bulunamadı, lütfen kontrol edip tekrar deneyiniz.';
+        } else if (e.status === 408) {
+          this.verifyActivationErrMsg =
+            'Aktivasyon süresi doldu, lütfen tekrar deneyiniz.';
+          this.activatinSendAgain = true;
+          this.stopTimer = true;
+          this.counterStr = '3:00';
+        } else if (e.status === 409) {
+          this.verifyActivationErrMsg =
+            'Aktivasyon kodu yanlış, lütfen kontrol edip tekrar ediniz.';
+        }
+      },
     });
   }
   //#endregion
@@ -57,9 +80,11 @@ export class RegisterComponent {
 
   //#region Methods
   startTimer() {
+    this.stopTimer = false;
+    this.counterStr = '3:00';
     timer(1000, 1000)
       .pipe(
-        takeWhile(() => this.counter >= 0 && !this.stopTimer),
+        takeWhile(() => this.counter > 0 && !this.stopTimer),
         tap(() => {
           this.counter--;
           this.formatCounter(this.counter);
@@ -71,29 +96,41 @@ export class RegisterComponent {
   }
 
   formatCounter(counter: number) {
-    this.counterStr = Math.floor(this.counter / 60) + ':' + (this.counter % 60);
+    this.counterStr =
+      Math.floor(this.counter / 60) +
+      ':' +
+      (this.counter % 60 < 10 ? '0' + (this.counter % 60) : this.counter % 60);
   }
 
   buttonOnClick() {
     if (!this.activationSend) {
       // mail kontrolu
+
       this.activationCreateDto.expirationDate = new Date();
       this.activationCreateDto.expirationDate.setMinutes(
-        this.activationCreateDto.expirationDate.getMinutes() + 3
+        this.activationCreateDto.expirationDate.getMinutes() + 0.1
       );
       this.sendActivationCode();
     } else {
-      if (!this.activated) {
-        // aktivasyon  dogrula
-        this.verifyActivationCode(<VerifyActivationDto>{
-          email: this.activationCreateDto.email,
-          code: this.activationCreateDto.code,
-        });
-        // this.activated = true;
-        // this.stopTimer = true;
+      if (!this.activatinSendAgain) {
+        if (!this.verifyActivation) {
+          // aktivasyon  dogrula
+          this.verifyActivationCode(<VerifyActivationDto>{
+            email: this.activationCreateDto.email,
+            code: this.activationCreateDto.code,
+          });
+          // this.activated = true;
+          // this.stopTimer = true;
+        } else {
+          console.log(this.userCreateDto);
+          //create user
+        }
       } else {
-        console.log(this.userCreateDto);
-        //create user
+        this.activationCreateDto.expirationDate = new Date();
+        this.activationCreateDto.expirationDate.setMinutes(
+          this.activationCreateDto.expirationDate.getMinutes() + 0.1
+        );
+        this.sendActivationCode();
       }
     }
   }
