@@ -10,6 +10,7 @@
           placeholder=" "
           required
           [disabled]="activationSend"
+          (blur)="validateEmail()"
           [(ngModel)]="activationCreateDto.email"
         />
         <label for="email">Mail adresi</label>

@@ -23,6 +23,8 @@ export class RegisterComponent {
   verifyActivation: boolean = false;
   verifyActivationErrMsg: string = '';
 
+  isEmailValid: boolean = true;
+
   counter: number = 180;
   counterStr: string = '3:00';
   stopTimer: boolean = false;
@@ -108,13 +110,14 @@ export class RegisterComponent {
 
   buttonOnClick() {
     if (!this.activationSend) {
-      // mail kontrolu
-
-      this.activationCreateDto.expirationDate = new Date();
-      this.activationCreateDto.expirationDate.setMinutes(
-        this.activationCreateDto.expirationDate.getMinutes() + this.counter / 60
-      );
-      this.sendActivationCode();
+      if (this.isEmailValid) {
+        this.activationCreateDto.expirationDate = new Date();
+        this.activationCreateDto.expirationDate.setMinutes(
+          this.activationCreateDto.expirationDate.getMinutes() +
+            this.counter / 60
+        );
+        this.sendActivationCode();
+      }
     } else {
       if (!this.activatinSendAgain) {
         if (!this.verifyActivation) {
@@ -143,5 +146,18 @@ export class RegisterComponent {
   backButtonOnClick() {
     this.router.navigate(['/login']);
   }
+
+  validateEmail = () => {
+    this.isEmailValid = String(this.activationCreateDto.email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+      ? true
+      : false;
+
+    if (this.isEmailValid) this.activationSendErrMsg = '';
+    else this.activationSendErrMsg = 'Lütfen maili kontrol ediniz.';
+  };
   //#endregion
 }
