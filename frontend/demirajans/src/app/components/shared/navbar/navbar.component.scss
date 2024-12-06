@@ -8,6 +8,7 @@ mat-toolbar-row {
   padding: 0 40px;
 }
 
+//#region Links
 .container {
   display: flex;
   flex-direction: row;
@@ -42,6 +43,42 @@ mat-toolbar-row {
 hr {
   margin: 0;
 }
+//#endregion
+
+//#region Nav Image
+.nav-img-container {
+  display: flex;
+  position: relative;
+  margin-left: 1rem;
+  border: 1px solid #ccc;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 2rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-img-container i {
+  position: absolute;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  top: 0;
+  color: #ccc;
+}
+
+.nav-img-container:hover {
+  border: 1px solid #f18125;
+}
+
+.nav-img-container:hover i {
+  color: #f18125;
+}
+//#endregion
 
 //#region search input
 .search-container {
@@ -55,13 +92,22 @@ hr {
 #search-input {
   padding: 10px 20px;
   border: 1px solid #ccc;
-  border-radius: 30px;
+  border-radius: 2rem;
   font-size: 16px;
-  height: 50px;
-  width: 50px;
+  height: 3rem;
+  width: 3rem;
   outline: none;
   caret-color: #9e9e9e;
   transition: width 0.3s ease;
+}
+
+.search-container:hover {
+  #search-input {
+    border: 1px solid #f18125;
+  }
+  .search-button {
+    color: #f18125 ;
+  }
 }
 
 .search-button {
@@ -71,16 +117,16 @@ hr {
   cursor: pointer;
   font-size: 24px;
   position: absolute;
-  height: 50px;
-  width: 50px;
+  height: 3rem;
+  width: 3rem;
   right: 0;
   transition: transform 0.3s ease;
 }
 
-#search-input:focus,
-.search-button:focus {
-  outline: none;
-}
+// #search-input:focus,
+// .search-button:focus {
+//   outline: none;
+// }
 
 .search-container.active #search-input {
   width: 300px;
