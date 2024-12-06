@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <mat-toolbar-row>
+  <mat-toolbar-row [hidden]="firstToolbarRowMobile">
     <div class="container" [hidden]="firstToolbarRowMobile">
       <div class="link-container">
         <a href="">ANASAYFA</a>
@@ -26,12 +26,14 @@
       </button>
     </div>
     <div class="nav-img-container">
-        <i class="bi bi-person"></i>
+      <i class="bi bi-person"></i>
     </div>
     <div class="nav-img-container">
       <i class="bi bi-cart"></i>
-  </div>
-    <div class="container" [hidden]="!firstToolbarRowMobile">
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row [hidden]="!firstToolbarRowMobile">
+    <div class="container">
       <mat-toolbar-row>
         <div class="mobile-container">
           <span class="mobile-menu-icon">
