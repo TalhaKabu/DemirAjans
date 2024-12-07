@@ -4,13 +4,17 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from '../helpers/guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { ProductComponent } from './product/product.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ServiceComponent } from './service/service.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     component: HomeComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: 'login',
@@ -21,6 +25,26 @@ const routes: Routes = [
     path: 'register',
     pathMatch: 'full',
     component: RegisterComponent,
+  },
+  {
+    path: 'product',
+    pathMatch: 'full',
+    component: ProductComponent,
+  },
+  {
+    path: 'profile',
+    pathMatch: 'full',
+    component: ProfileComponent,
+  },
+  {
+    path: 'shopping-cart',
+    pathMatch: 'full',
+    component: ShoppingCartComponent,
+  },
+  {
+    path: 'service',
+    pathMatch: 'full',
+    component: ServiceComponent,
   },
 ];
 

@@ -1,6 +1,13 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { CategoryService } from '../../../services/categories/category.service';
 import { CategoryDto } from '../../../services/categories/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -36,7 +43,10 @@ export class NavbarComponent implements OnInit {
   //#endregion
 
   //#region Ctor
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private router: Router,
+    private categoryService: CategoryService
+  ) {}
   //#endregion
 
   //#region Methods
@@ -85,6 +95,26 @@ export class NavbarComponent implements OnInit {
         this.searchInput.nativeElement.blur();
         this.searchInput.nativeElement.placeholder = '';
       }
+    }
+  }
+
+  liOnClick(link: HTMLLIElement, id?: number) {
+    Array.from(
+      this.sidebar.nativeElement.getElementsByClassName('active')
+    ).forEach((li) => {
+      li.classList.remove('active');
+    });
+
+    if (link.getElementsByTagName('span')[0].innerHTML === 'Ürünler') {
+      Array.from(link.getElementsByTagName('li')).forEach((li) => {
+        if (li.firstElementChild!.id === id!.toString()) {
+          li.classList.add('active');
+        } else {
+          li.classList.remove('active');
+        }
+      });
+    } else {
+      link.classList.add('active');
     }
   }
 

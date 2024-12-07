@@ -40,8 +40,8 @@
         </svg>
       </button>
     </li>
-    <li class="active">
-      <a href="">
+    <li #liHome (click)="liOnClick(liHome)" class="active">
+      <a routerLink="">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
@@ -56,8 +56,8 @@
         <span>Anasayfa</span></a
       >
     </li>
-    <li>
-      <a href="">
+    <li #liService (click)="liOnClick(liService)">
+      <a routerLink="/service">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -91,7 +91,7 @@
         <span>Hizmetler</span>
       </a>
     </li>
-    <li>
+    <li #liProduct>
       <button
         #dropdownBtn
         (click)="toggleSubMenu(dropdownBtn)"
@@ -108,7 +108,7 @@
             d="m260-520 220-360 220 360H260ZM700-80q-75 0-127.5-52.5T520-260q0-75 52.5-127.5T700-440q75 0 127.5 52.5T880-260q0 75-52.5 127.5T700-80Zm-580-20v-320h320v320H120Zm580-60q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm-500-20h160v-160H200v160Zm202-420h156l-78-126-78 126Zm78 0ZM360-340Zm340 80Z"
           />
         </svg>
-        <span> Ürünler </span>
+        <span>Ürünler</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
@@ -121,14 +121,17 @@
       </button>
       <ul class="sub-menu">
         <div>
-          <li *ngFor="let category of categoryList">
-            <a href="">{{ category.name }}</a>
+          <li
+            *ngFor="let category of categoryList"
+            (click)="liOnClick(liProduct, category.id)"
+          >
+            <a [id]="category.id" routerLink="">{{ category.name }}</a>
           </li>
         </div>
       </ul>
     </li>
-    <li>
-      <a href="">
+    <li #liProfile (click)="liOnClick(liProfile)">
+      <a routerLink="/profile">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
@@ -143,8 +146,8 @@
         <span>Profil</span>
       </a>
     </li>
-    <li>
-      <a href="">
+    <li #liShoppingCart (click)="liOnClick(liShoppingCart)">
+      <a routerLink="/shopping-cart">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"

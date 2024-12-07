@@ -7,6 +7,10 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ServiceComponent } from './service/service.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +18,10 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    ServiceComponent,
+    ProfileComponent,
+    ShoppingCartComponent,
+    ProductComponent,
   ],
   imports: [ComponentRoutingModule, CommonModule, FormsModule],
   exports: [NavbarComponent],
