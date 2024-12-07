@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   //#region Props
   categoryList!: CategoryDto[];
   openMenuIndex: number | null = null;
+  openMenuIndex2: number | null = null;
 
   @ViewChild('sidebarBtn') sidebarBtn!: ElementRef<HTMLButtonElement>;
   @ViewChild('sidebar') sidebar!: ElementRef<HTMLDivElement>;
@@ -37,8 +38,12 @@ export class NavbarComponent implements OnInit {
     this.getCategoryListByAppearInFront();
   }
 
-  toggleSubMenu(index: number): void {
-    this.openMenuIndex = this.openMenuIndex === index ? null : index;
+  toggleSubMenu(button: HTMLButtonElement): void {
+    if (!button.nextElementSibling!.classList.contains('show'))
+      this.closeAllSubMenus();
+
+    button.nextElementSibling!.classList.toggle('show');
+    button.classList.toggle('rotate');
 
     if (this.sidebar.nativeElement.classList.contains('close')) {
       this.sidebar.nativeElement.classList.toggle('close');
@@ -50,6 +55,10 @@ export class NavbarComponent implements OnInit {
     this.sidebar.nativeElement.classList.toggle('close');
     this.sidebarBtn.nativeElement.classList.toggle('rotate');
 
+    this.closeAllSubMenus();
+  }
+
+  closeAllSubMenus() {
     Array.from(
       this.sidebar.nativeElement.getElementsByClassName('show')
     ).forEach((ul) => {

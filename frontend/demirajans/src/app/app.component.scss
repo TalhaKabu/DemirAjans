@@ -10,3 +10,9 @@ main {
   padding: min(30px, 7%);
   width: 100%;
 }
+
+@media (max-width: 800px) {
+  .router {
+    padding: 2em 1em 60px 1em;
+  }
+}
