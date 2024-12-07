@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from '../../../services/categories/category.service';
 import { CategoryDto } from '../../../services/categories/models';
 
@@ -15,8 +15,14 @@ export class NavbarComponent implements OnInit {
   openMenuIndex: number | null = null;
   openMenuIndex2: number | null = null;
 
+  searchButtonClicked: boolean = false;
+
   @ViewChild('sidebarBtn') sidebarBtn!: ElementRef<HTMLButtonElement>;
   @ViewChild('sidebar') sidebar!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('searchButton') searchButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild('searchContainer') searchContainer!: ElementRef<HTMLDivElement>;
   //#endregion
 
   //#region Utils
@@ -65,6 +71,36 @@ export class NavbarComponent implements OnInit {
       ul.classList.remove('show');
       ul.previousElementSibling!.classList.remove('rotate');
     });
+  }
+
+  searchButtonOnClick() {
+    if (this.searchInput.nativeElement.value === '') {
+      this.searchButtonClicked = !this.searchButtonClicked;
+      this.searchButton.nativeElement.classList.toggle('active');
+      this.searchContainer.nativeElement.classList.toggle('active');
+      if (this.searchButtonClicked) {
+        this.searchInput.nativeElement.focus();
+        this.searchInput.nativeElement.placeholder = 'Ürünlerde Ara';
+      } else {
+        this.searchInput.nativeElement.blur();
+        this.searchInput.nativeElement.placeholder = '';
+      }
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    if (!this.searchButton.nativeElement.contains(target)) {
+      if (this.searchInput.nativeElement.value === '') {
+        this.searchButtonClicked = false;
+        this.searchButton.nativeElement.classList.remove('active');
+        this.searchContainer.nativeElement.classList.remove('active');
+        this.searchInput.nativeElement.blur();
+        this.searchInput.nativeElement.placeholder = '';
+      }
+    }
   }
   //#endregion
 }
