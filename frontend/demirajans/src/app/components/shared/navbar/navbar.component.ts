@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -15,14 +9,10 @@ import {
 })
 export class NavbarComponent implements OnInit {
   //#region Props
-  firstToolbarRowMobile: boolean = false;
-  innerWidth: any;
-  searchButtonClicked: boolean = false;
+  openMenuIndex: number | null = null;
 
-  // searchContainer = document.querySelector('.search-container');
-  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('searchButton') searchButton!: ElementRef<HTMLButtonElement>;
-  @ViewChild('searchContainer') searchContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('sidebarBtn') sidebarBtn!: ElementRef<HTMLButtonElement>;
+  @ViewChild('sidebar') sidebar!: ElementRef<HTMLDivElement>;
   //#endregion
 
   //#region Utils
@@ -32,47 +22,27 @@ export class NavbarComponent implements OnInit {
   //#endregion
 
   //#region Methods
-  ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    if (this.innerWidth < 768) this.firstToolbarRowMobile = true;
-    else this.firstToolbarRowMobile = false;
-  }
+  ngOnInit() {}
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.innerWidth = (event.target as Window).innerWidth;
-    if (this.innerWidth < 768) this.firstToolbarRowMobile = true;
-    else this.firstToolbarRowMobile = false;
-  }
+  toggleSubMenu(index: number): void {
+    this.openMenuIndex = this.openMenuIndex === index ? null : index;
 
-  searchButtonOnClick() {
-    if (this.searchInput.nativeElement.value === '') {
-      this.searchButtonClicked = !this.searchButtonClicked;
-      this.searchButton.nativeElement.classList.toggle('active');
-      this.searchContainer.nativeElement.classList.toggle('active');
-      if (this.searchButtonClicked) {
-        this.searchInput.nativeElement.focus();
-        this.searchInput.nativeElement.placeholder = 'Ürünlerde Ara';
-      } else {
-        this.searchInput.nativeElement.blur();
-        this.searchInput.nativeElement.placeholder = '';
-      }
+    if (this.sidebar.nativeElement.classList.contains('close')) {
+      this.sidebar.nativeElement.classList.toggle('close');
+      this.sidebarBtn.nativeElement.classList.toggle('rotate');
     }
   }
 
-  @HostListener('document:click', ['$event'])
-  handleDocumentClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
+  toogleSidebar() {
+    this.sidebar.nativeElement.classList.toggle('close');
+    this.sidebarBtn.nativeElement.classList.toggle('rotate');
 
-    if (!this.searchButton.nativeElement.contains(target)) {
-      if (this.searchInput.nativeElement.value === '') {
-        this.searchButtonClicked = false;
-        this.searchButton.nativeElement.classList.remove('active');
-        this.searchContainer.nativeElement.classList.remove('active');
-        this.searchInput.nativeElement.blur();
-        this.searchInput.nativeElement.placeholder = '';
-      }
-    }
+    Array.from(
+      this.sidebar.nativeElement.getElementsByClassName('show')
+    ).forEach((ul) => {
+      ul.classList.remove('show');
+      ul.previousElementSibling!.classList.remove('rotate');
+    });
   }
   //#endregion
 }
