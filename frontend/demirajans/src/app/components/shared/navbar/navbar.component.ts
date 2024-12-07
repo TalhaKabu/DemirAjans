@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CategoryService } from '../../../services/categories/category.service';
+import { CategoryDto } from '../../../services/categories/models';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +11,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   //#region Props
+  categoryList!: CategoryDto[];
   openMenuIndex: number | null = null;
 
   @ViewChild('sidebarBtn') sidebarBtn!: ElementRef<HTMLButtonElement>;
@@ -16,13 +19,23 @@ export class NavbarComponent implements OnInit {
   //#endregion
 
   //#region Utils
+  getCategoryListByAppearInFront() {
+    this.categoryService.getListByAppearInFront(true).subscribe({
+      next: (n) => (this.categoryList = n),
+      error: (e) => console.log(e),
+      // complete: () => ,
+    });
+  }
   //#endregion
 
   //#region Ctor
+  constructor(private categoryService: CategoryService) {}
   //#endregion
 
   //#region Methods
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCategoryListByAppearInFront();
+  }
 
   toggleSubMenu(index: number): void {
     this.openMenuIndex = this.openMenuIndex === index ? null : index;

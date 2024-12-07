@@ -19,7 +19,6 @@
 #sidebar.close {
   padding: 5px;
   width: 60px;
-
 }
 
 #sidebar ul {
@@ -66,7 +65,7 @@
 
 #sidebar svg {
   flex-shrink: 0;
-  fill: var($text-clr);
+  fill: var($text-clr) ;
 }
 
 #sidebar span,
