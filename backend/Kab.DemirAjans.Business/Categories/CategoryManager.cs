@@ -35,6 +35,8 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
     public async Task<CategoryDto?> GetAsync(int id) => await _categoryDal.GetAsync(id);
 
+    public async Task<CategoryDto?> GetByKidAsync(int kid) => await _categoryDal.GetByKidAsync(kid);
+
     public async Task InsertAsync(CategoryCreateDto create)
     {
         var guid = string.IsNullOrEmpty(create.Base64) ? Guid.Empty : await Task.Run(() => ImageHelper.SaveImage(create.Base64, ImageEnum.Category));

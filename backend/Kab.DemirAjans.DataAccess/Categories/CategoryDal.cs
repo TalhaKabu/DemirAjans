@@ -11,6 +11,7 @@ public class CategoryDal(ISqlDataAccess db) : ICategoryDal
     public async Task<IEnumerable<CategoryDto>> GetListAsync() => await _db.LoadDataAsync<CategoryDto, dynamic>(storedProcedure: "dbo.spCategories_GetAll", new { });
     public async Task<IEnumerable<CategoryDto>> GetListByAppearInFrontAsync(bool appearInFront) => await _db.LoadDataAsync<CategoryDto, dynamic>(storedProcedure: "dbo.spCategories_GetAllByAppearInFront", new { AppearInFront = appearInFront });
     public async Task<CategoryDto?> GetAsync(int id) => (await _db.LoadDataAsync<CategoryDto, dynamic>(storedProcedure: "dbo.spCategories_Get", new { Id = id })).FirstOrDefault();
+    public async Task<CategoryDto?> GetByKidAsync(int kid) => (await _db.LoadDataAsync<CategoryDto, dynamic>(storedProcedure: "dbo.spCategories_GetByKid", new { Kid = kid })).FirstOrDefault();
     public async Task InsertAsync(CategoryDto categoryDto) => await _db.SaveDataAsync(storedProcedure: "dbo.spCategories_Insert",
         new { categoryDto.Name, categoryDto.ImageName, categoryDto.Kid, categoryDto.CreationDate, categoryDto.LastModificationDate, categoryDto.AppearInFront });
     public async Task UpdateAsync(int id, CategoryDto categoryDto) => await _db.SaveDataAsync(storedProcedure: "dbo.spCategories_Update",
