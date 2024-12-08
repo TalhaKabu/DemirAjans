@@ -9,7 +9,7 @@
 	@AppearInFront bit,
 	@Header nvarchar(100),
 	@Color nvarchar(50),
-	@Description nvarchar(300),
+	@Description nvarchar(750),
 	@Vat int,
 	@Uid int,
 	@LastModificationDate datetime2(7)

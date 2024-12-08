@@ -31,8 +31,7 @@ public class Product : AuditedAggregateRoot
     public string Header { get; protected set; }
 
     [MaxLength(ProductConst.MaxColorLength)]
-    [Required]
-    public string Color { get; protected set; }
+    public string? Color { get; protected set; }
 
     [MaxLength(ProductConst.MaxDescriptionLength)]
     [Required]
@@ -42,7 +41,7 @@ public class Product : AuditedAggregateRoot
 
     public int Uid { get; protected set; }
 
-    public Product(int id, string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension, bool appearInFront, string header, string color, string description, int vat, int uid)
+    public Product(int id, string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension, bool appearInFront, string header, string? color, string description, int vat, int uid)
     {
         SetDefaultExtraProperties(false);
         SetName(name);
@@ -59,7 +58,7 @@ public class Product : AuditedAggregateRoot
         SetUid(uid);
     }
 
-    public Product(string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension, bool appearInFront, string header, string color, string description, int vat, int uid)
+    public Product(string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension, bool appearInFront, string header, string? color, string description, int vat, int uid)
     {
         SetDefaultExtraProperties(true);
         SetName(name);
@@ -96,10 +95,8 @@ public class Product : AuditedAggregateRoot
         Description = description;
     }
 
-    private void SetColor(string color)
+    private void SetColor(string? color)
     {
-        if (string.IsNullOrEmpty(color))
-            throw new ArgumentNullException("Ürün rengi boş olamaz!");
         if (color.Length > ProductConst.MaxColorLength)
             throw new Exception($"Ürün rengi {ProductConst.MaxColorLength} 'ten büyük olamaz!");
 

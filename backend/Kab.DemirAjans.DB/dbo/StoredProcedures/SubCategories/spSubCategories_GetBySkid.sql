@@ -11,5 +11,5 @@ BEGIN
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[SubCategories]
-	WHERE @Skid = @Skid;
+	WHERE Skid = @Skid;
 END

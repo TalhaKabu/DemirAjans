@@ -13,7 +13,7 @@ public class ProductController(IProductService productService, ISubCategoryServi
 {
     private readonly IProductService _productService = productService;
     private readonly ISubCategoryService _subCategoryService = subCategoryService;
-    private readonly ICategoryService categoryService1 = categoryService;
+    private readonly ICategoryService _categoryService = categoryService;
 
     [HttpGet("list")]
     public async Task<IActionResult> GetListAsync() => Ok(await _productService.GetListAsync());
@@ -43,6 +43,9 @@ public class ProductController(IProductService productService, ISubCategoryServi
         return Ok();
     }
 
-    [HttpGet("get-product")]
-    public async Task GetProducts() => await new ProductHelper(_productService, _subCategoryService, categoryService1).GetProductsFromUri();
+    [HttpGet("get-categories-and-save")]
+    public async Task GetCategoriesAndSaveAsync() => await new CategoryHelper(_categoryService, _subCategoryService).GetAndSaveCategoriesAsync();
+
+    [HttpGet("get-products-and-save")]
+    public async Task GetProductsAndSaveAsync() => await new ProductHelper(_productService, _subCategoryService, _categoryService).GetProductsAndSaveAsync();
 }
