@@ -7,6 +7,7 @@ BEGIN
 		,Name
 		,ImageName
 		,CategoryId
+		,Skid
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[SubCategories]

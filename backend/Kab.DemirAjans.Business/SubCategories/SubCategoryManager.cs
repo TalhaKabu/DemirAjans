@@ -19,6 +19,8 @@ public class SubCategoryManager(ISubCategoryDal subCategoryDal) : ISubCategorySe
 
     public async Task<SubCategoryDto?> GetAsync(int id) => await _subCategoryDal.GetAsync(id);
 
+    public async Task<SubCategoryDto?> GetBySkidAsync(int skid) => await _subCategoryDal.GetBySkidAsync(skid);
+
     public async Task InsertAsync(SubCategoryCreateDto create)
     {
         var guid = string.IsNullOrEmpty(create.Base64) ? Guid.Empty : await Task.Run(() => ImageHelper.SaveImage(create.Base64, ImageEnum.Category));

@@ -5,6 +5,7 @@ namespace Kab.DemirAjans.Business.SubCategories;
 public interface ISubCategoryService
 {
     Task<SubCategoryDto?> GetAsync(int id);
+    Task<SubCategoryDto?> GetBySkidAsync(int skid);
     Task<IEnumerable<SubCategoryDto>> GetByCategoryIdAsync(int categoryId);
     Task<IEnumerable<SubCategoryDto>> GetListAsync();
     Task InsertAsync(SubCategoryCreateDto create);

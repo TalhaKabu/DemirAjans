@@ -1,7 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[spSubCategories_GetAll]
+﻿CREATE PROCEDURE [dbo].[spSubCategories_GetBySkid]
+	@Skid int
 AS
 BEGIN
-	SELECT 
+	SELECT
 		 Id
 		,Name
 		,ImageName
@@ -10,4 +11,5 @@ BEGIN
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[SubCategories]
+	WHERE @Skid = @Skid;
 END

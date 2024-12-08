@@ -87,6 +87,7 @@
     <Build Include="dbo\StoredProcedures\Activations\spActivations_GetByMail.sql" />
     <Build Include="dbo\StoredProcedures\Activations\spActivations_Insert.sql" />
     <Build Include="dbo\StoredProcedures\Categories\spCategories_GetByKid.sql" />
+    <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_GetBySkid.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />
