@@ -3,7 +3,6 @@
 //#region Navbar
 #navbar {
   position: fixed;
-  display: block;
   top: 0;
   right: 0;
   height: 60px !important;
@@ -223,6 +222,7 @@
     border-top: 1px solid $line-clr;
     padding: 0;
     position: fixed;
+    display: block;
     top: unset;
     bottom: 0;
 

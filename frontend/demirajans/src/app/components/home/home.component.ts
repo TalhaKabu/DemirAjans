@@ -11,26 +11,17 @@ import { CategoryService } from '../../services/categories/category.service';
 })
 export class HomeComponent {
   //#region Props
-  categoryList!: CategoryDto[];
+
   //#endregion
 
   //#region Utils
-  getCategoryListByAppearInFront() {
-    this.categoryService.getListByAppearInFront(true).subscribe({
-      next: (n) => (this.categoryList = n),
-      error: (e) => console.log(e),
-      // complete: () => ,
-    });
-  }
   //#endregion
 
   //#region Ctor
-  constructor(private categoryService: CategoryService) {}
+
   //#endregion
 
   //#region Methods
-  ngOnInit() {
-    this.getCategoryListByAppearInFront();
-  }
+  ngOnInit() {}
   //#endregion
 }
