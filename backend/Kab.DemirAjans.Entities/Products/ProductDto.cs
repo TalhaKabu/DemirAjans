@@ -1,4 +1,5 @@
 ﻿using Kab.DemirAjans.Entities.ExtraProperties;
+using Kab.DemirAjans.Entities.Images;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,4 +20,5 @@ public class ProductDto : AggregateRoot
     public string Description { get; set; }
     public int Vat { get; set; }
     public int Uid { get; set; }
+    public IEnumerable<ImageDto> Images { get; set; }
 }

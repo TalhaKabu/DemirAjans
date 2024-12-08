@@ -54,7 +54,7 @@ public static class ImageHelper
         }
     }
 
-    public static CategoryGetImageBase64Dto GetImage(Guid imageName, ImageEnum imageEnum)
+    public static CategoryProductGetImageBase64Dto GetImage(Guid imageName, ImageEnum imageEnum)
     {
         try
         {
@@ -71,23 +71,22 @@ public static class ImageHelper
                 memoryStream.Seek(0, SeekOrigin.Begin);
 
                 var base64String = Convert.ToBase64String(memoryStream.ToArray());
-                return new CategoryGetImageBase64Dto { ImageName = imageName, Base64 = base64String };
+                return new CategoryProductGetImageBase64Dto { ImageName = imageName, Base64 = base64String };
             }
-            //else if (imageEnum.Equals(ImageEnum.Product))
-            //{
-            //    var path = Path.Combine(projectPath, "Products");
+            else if (imageEnum.Equals(ImageEnum.Product))
+            {
+                var path = Path.Combine(projectPath, "Products");
 
-            //    using var image = Image.Load(Path.Combine(path, imageName + ".jpg"));
-            //    using var memoryStream = new MemoryStream();
+                using var image = Image.Load(Path.Combine(path, imageName + ".jpg"));
+                using var memoryStream = new MemoryStream();
 
-            //    image.Save(memoryStream, new JpegEncoder());
-            //    memoryStream.Seek(0, SeekOrigin.Begin);
+                image.Save(memoryStream, new JpegEncoder());
+                memoryStream.Seek(0, SeekOrigin.Begin);
 
-            //    var base64String = Convert.ToBase64String(memoryStream.ToArray());
-            //    return base64String;
-            //}
-
-            return null;
+                var base64String = Convert.ToBase64String(memoryStream.ToArray());
+                return new CategoryProductGetImageBase64Dto { ImageName = imageName, Base64 = base64String }; ;
+            }
+            else throw new Exception("Enumaration Not Found!");
         }
         catch (Exception ex)
         {

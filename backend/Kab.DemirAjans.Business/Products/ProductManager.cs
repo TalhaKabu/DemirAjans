@@ -4,8 +4,10 @@ using Kab.DemirAjans.Business.Mapper;
 using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.DataAccess.Products;
 using Kab.DemirAjans.Domain.Products;
+using Kab.DemirAjans.Entities.Images;
 using Kab.DemirAjans.Entities.Products;
 using System;
+using System.Diagnostics;
 
 namespace Kab.DemirAjans.Business.Products;
 
@@ -72,5 +74,26 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
                              update.Uid ?? product.Uid);
 
         await _productDal.UpdateAsync(id, ObjectMapper.Mapper.Map<Product, ProductDto>(pr));
+    }
+
+    public async Task<IEnumerable<ProductDto>> GetListByAppearInFrontAsync(bool appearInFront)
+    {
+        var productList = await _productDal.GetListByAppearInFrontAsync(appearInFront) ?? [];
+
+        List<Task<IEnumerable<ImageDto>>> tasks = [];
+        foreach (var productDto in productList)
+        {
+            tasks.Add(Task.Run(() => _imageService.GetListByProductIdAsyns(productDto.Id)));
+        }
+        var results = await Task.WhenAll(tasks);
+
+        List<Task<IEnumerable<ImageDto>>> tasks2 = [];
+        foreach (var task in results)
+        {
+            tasks2.Add(Task.Run(() => productList.ToList().Find(x => x.Id == task.First().ProductId)!.Images = task));
+        }
+        await Task.WhenAll(tasks2);
+
+        return productList;
     }
 }

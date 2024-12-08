@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kab.DemirAjans.Entities.Categories;
 
-public class CategoryGetImageBase64Dto
+public class CategoryProductGetImageBase64Dto
 {
     public Guid ImageName { get; set; }
     public string Base64 { get; set; }

@@ -16,7 +16,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
     public async Task<IEnumerable<CategoryDto>> GetListByAppearInFrontAsnc(bool appearInFront)
     {
         var categoryList = await _categoryDal.GetListByAppearInFrontAsync(appearInFront) ?? [];
-        List<Task<CategoryGetImageBase64Dto>> tasks = [];
+        List<Task<CategoryProductGetImageBase64Dto>> tasks = [];
 
         foreach (var categoryDto in categoryList)
         {

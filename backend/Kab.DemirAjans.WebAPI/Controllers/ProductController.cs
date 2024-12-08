@@ -18,6 +18,9 @@ public class ProductController(IProductService productService, ISubCategoryServi
     [HttpGet("list")]
     public async Task<IActionResult> GetListAsync() => Ok(await _productService.GetListAsync());
 
+    [HttpGet("list-by-appear-in-front")]
+    public async Task<IActionResult> GetListByAppearInFrontAsync(bool appearInFront) => Ok(await _productService.GetListByAppearInFrontAsync(appearInFront));
+
     [HttpGet("get")]
     public async Task<IActionResult> GetAsync(int id)
     {
