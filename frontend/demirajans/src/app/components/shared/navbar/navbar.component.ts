@@ -105,7 +105,7 @@ export class NavbarComponent implements OnInit {
       li.classList.remove('active');
     });
 
-    if (link.getElementsByTagName('span')[0].innerHTML === 'Ürünler') {
+    if (link.getElementsByTagName('span')[0].innerHTML === 'Kategoriler') {
       Array.from(link.getElementsByTagName('li')).forEach((li) => {
         if (li.firstElementChild!.id === id!.toString()) {
           li.classList.add('active');
