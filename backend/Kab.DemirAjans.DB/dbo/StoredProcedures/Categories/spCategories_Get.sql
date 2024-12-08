@@ -9,6 +9,7 @@ BEGIN
 		,CreationDate
 		,LastModificationDate
 		,AppearInFront
+		,Kid
 	FROM dbo.[Categories]
 	WHERE Id = @Id;
 END

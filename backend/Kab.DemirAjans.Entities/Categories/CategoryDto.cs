@@ -10,4 +10,5 @@ public class CategoryDto : AggregateRoot
     public Guid ImageName { get; set; }
     public string Base64 { get; set; }
     public bool AppearInFront { get; set; }
+    public int Kid { get; set; }
 }

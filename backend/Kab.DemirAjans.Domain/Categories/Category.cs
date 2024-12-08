@@ -14,8 +14,9 @@ public class Category : AuditedAggregateRoot
     public string Name { get; protected set; }
     public Guid ImageName { get; protected set; }
     public bool AppearInFront { get; protected set; }
+    public int Kid { get; protected set; }
 
-    public Category(string name, Guid imageName, bool appearInFront)
+    public Category(string name, Guid imageName, bool appearInFront, int kid)
     {
         SetDefaultExtraProperties(true);
         SetName(name);
@@ -23,7 +24,7 @@ public class Category : AuditedAggregateRoot
         SetAppearInFront(appearInFront);
     }
 
-    public Category(int id, string name, Guid imageName, bool appearInFront)
+    public Category(int id, string name, Guid imageName, bool appearInFront, int kid)
     {
         SetDefaultExtraProperties(false);
         SetName(name);
@@ -49,5 +50,11 @@ public class Category : AuditedAggregateRoot
             throw new Exception($"Kategori adı {CategoryConst.MaxNameLength} 'ten büyük olamaz!");
 
         Name = name;
+    }
+
+    private void SetKid(int kid)
+    {
+        if (kid < 1) throw new Exception();
+        Kid = kid;
     }
 }

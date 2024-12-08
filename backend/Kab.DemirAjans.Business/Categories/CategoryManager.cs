@@ -44,7 +44,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
         try
         {
-            var category = new Category(create.Name, guid, !string.IsNullOrEmpty(create.Base64) && create.AppearInFront);
+            var category = new Category(create.Name, guid, !string.IsNullOrEmpty(create.Base64) && create.AppearInFront, create.Kid);
 
             await _categoryDal.InsertAsync(ObjectMapper.Mapper.Map<Category, CategoryDto>(category));
         }
@@ -73,7 +73,7 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
         try
         {
-            var ct = new Category(id, update.Name ?? category.Name, guid, update.AppearInFront ?? category.AppearInFront);
+            var ct = new Category(id, update.Name ?? category.Name, guid, update.AppearInFront ?? category.AppearInFront, category.Kid);
 
             await _categoryDal.UpdateAsync(id, ObjectMapper.Mapper.Map<Category, CategoryDto>(ct));
         }

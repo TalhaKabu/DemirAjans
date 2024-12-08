@@ -8,5 +8,6 @@ BEGIN
 		,CreationDate
 		,LastModificationDate
 		,AppearInFront
+		,Kid
 	FROM dbo.[Categories];
 END
