@@ -4,6 +4,7 @@ BEGIN
 	SELECT 
 		 Id
 		,Name
+		,ImageName
 		,CategoryId
 		,CreationDate
 		,LastModificationDate

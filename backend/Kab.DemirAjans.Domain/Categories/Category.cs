@@ -22,6 +22,7 @@ public class Category : AuditedAggregateRoot
         SetName(name);
         SetImageName(imageName);
         SetAppearInFront(appearInFront);
+        SetKid(kid);
     }
 
     public Category(int id, string name, Guid imageName, bool appearInFront, int kid)

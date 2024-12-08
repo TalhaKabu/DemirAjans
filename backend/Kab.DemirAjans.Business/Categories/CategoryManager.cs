@@ -73,7 +73,12 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
         try
         {
-            var ct = new Category(id, update.Name ?? category.Name, guid, update.AppearInFront ?? category.AppearInFront, category.Kid);
+            var ct = new Category(
+                id,
+                update.Name ?? category.Name,
+                guid,
+                update.AppearInFront ?? category.AppearInFront,
+                category.Kid);
 
             await _categoryDal.UpdateAsync(id, ObjectMapper.Mapper.Map<Category, CategoryDto>(ct));
         }

@@ -7,6 +7,8 @@ public class SubCategoryDto : AggregateRoot
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    public Guid ImageName { get; set; }
     public int CategoryId { get; set; } 
     public string Code { get; set; }
+    public int Skid { get; set; }
 }

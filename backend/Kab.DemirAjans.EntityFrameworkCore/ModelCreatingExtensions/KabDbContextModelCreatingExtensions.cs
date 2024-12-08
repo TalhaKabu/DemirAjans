@@ -20,10 +20,11 @@ public static class KabDbContextModelCreatingExtensions
         });
         #endregion
 
-        #region Category
+        #region SubCategory
         builder.Entity<SubCategory>(typeBuilder =>
         {
             typeBuilder.HasMany<Product>().WithOne();
+            typeBuilder.Property(t => t.ImageName).HasDefaultValue(Guid.Empty);
         });
         #endregion
 
