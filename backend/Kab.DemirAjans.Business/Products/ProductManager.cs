@@ -33,7 +33,18 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
             if (subCategoryDto.CategoryId != categoryDto.Id) throw new ArgumentException("Kategori ve alt kategori uyuşmuyor!");
         }
 
-        var product = new Product(create.Name, create.CategoryId, create.SubCategoryId, create.Code, create.Price, create.Dimension, create.AppearInFront);
+        var product = new Product(create.Name,
+                                  create.CategoryId,
+                                  create.SubCategoryId,
+                                  create.Code,
+                                  create.Price,
+                                  create.Dimension,
+                                  create.AppearInFront,
+                                  create.Header,
+                                  create.Color,
+                                  create.Description,
+                                  create.Vat,
+                                  create.Uid);
 
         var productId = await _productDal.InsertAsync(ObjectMapper.Mapper.Map<Product, ProductDto>(product));
 
@@ -53,7 +64,12 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
                              update.Code ?? product.Code,
                              update.Price ?? product.Price,
                              update.Dimension ?? product.Dimension,
-                             update.AppearInFront ?? product.AppearInFront);
+                             update.AppearInFront ?? product.AppearInFront,
+                             update.Header ?? product.Header,
+                             update.Color ?? product.Color,
+                             update.Description ?? product.Description,
+                             update.Vat ?? product.Vat,
+                             update.Uid ?? product.Uid);
 
         await _productDal.UpdateAsync(id, ObjectMapper.Mapper.Map<Product, ProductDto>(pr));
     }

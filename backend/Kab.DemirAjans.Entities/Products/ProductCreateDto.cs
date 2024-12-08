@@ -12,5 +12,10 @@ public class ProductCreateDto
     public decimal Price { get; set; }
     public string? Dimension { get; set; }
     public bool AppearInFront { get; set; }
+    public string Header { get; set; }
+    public string Color { get; set; }
+    public string Description { get; set; }
+    public int Vat { get; set; }
+    public int Uid { get; set; }
     public List<ImageCreateDto> Images { get; set; }
 }

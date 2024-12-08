@@ -10,6 +10,11 @@ BEGIN
 		,Price
 		,Dimension
 		,AppearInFront
+		,Header
+		,Color
+		,Description
+		,Vat
+		,Uid
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[Products];
