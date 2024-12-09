@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spColors_Insert]
-	@Name nvarchar(20),
-	@Code nvarchar(10),
+	@Name nvarchar(50),
+	@Code nvarchar(20),
 	@Header nvarchar(100),
 	@ProductId int,
 	@Uid int,

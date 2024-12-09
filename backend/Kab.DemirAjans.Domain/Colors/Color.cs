@@ -7,9 +7,8 @@ public class Color : AuditedAggregateRoot
 {
     public int Id { get; protected set; }
 
-    [Required]
     [MaxLength(ColorConst.MaxNameLength)]
-    public string Name { get; protected set; }
+    public string? Name { get; protected set; }
 
     [Required]
     [MaxLength(ColorConst.MaxCodeLength)]
@@ -28,7 +27,7 @@ public class Color : AuditedAggregateRoot
     [Required]
     public Guid ImageName { get; protected set; }
 
-    public Color(int id, int productId, string name, string code, string header, int uid, Guid imageName)
+    public Color(int id, int productId, string? name, string code, string header, int uid, Guid imageName)
     {
         SetDefaultExtraProperties(false);
         SetProductId(productId);
@@ -39,7 +38,7 @@ public class Color : AuditedAggregateRoot
         SetImageName(imageName);
     }
 
-    public Color(int productId, string name, string code, string header, int uid, Guid imageName)
+    public Color(int productId, string? name, string code, string header, int uid, Guid imageName)
     {
         SetDefaultExtraProperties(true);
         SetProductId(productId);
@@ -58,10 +57,8 @@ public class Color : AuditedAggregateRoot
         ProductId = productId;
     }
 
-    private void SetName(string name)
+    private void SetName(string? name)
     {
-        if (string.IsNullOrEmpty(name))
-            throw new ArgumentNullException("Renk adı boş olamaz!");
         if (name.Length > ColorConst.MaxNameLength)
             throw new Exception($"Renk adı {ColorConst.MaxNameLength} 'ten büyük olamaz!");
 

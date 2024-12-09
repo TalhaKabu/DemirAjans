@@ -23,7 +23,7 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
 
     public async Task<ProductDto?> GetByCodeAsync(string code) => await _productDal.GetByCodeAsync(code);
 
-    public async Task InsertAsync(ProductCreateDto create)
+    public async Task<int> InsertAsync(ProductCreateDto create)
     {
         if (string.IsNullOrEmpty(create.Base64)) throw new Exception("Ürünler en az bir fotoğrafa sahip olmak zorundadır!");
 
@@ -57,6 +57,8 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
                           );
 
             var productId = await _productDal.InsertAsync(ObjectMapper.Mapper.Map<Product, ProductDto>(product));
+
+            return productId;
         }
         catch (Exception ex)
         {

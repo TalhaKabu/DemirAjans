@@ -4,6 +4,7 @@ using Kab.DemirAjans.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(KabDbContext))]
-    partial class KabDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241209114942_ColorCodeLength10to20")]
+    partial class ColorCodeLength10to20
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,8 +122,9 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");

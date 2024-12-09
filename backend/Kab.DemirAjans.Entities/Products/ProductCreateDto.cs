@@ -2,7 +2,7 @@
 
 public class ProductCreateDto
 {
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public int CategoryId { get; set; }
     public int SubCategoryId { get; set; }
     public string Code { get; set; }

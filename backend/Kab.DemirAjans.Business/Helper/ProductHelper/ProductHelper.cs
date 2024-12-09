@@ -2,6 +2,7 @@
 using Kab.DemirAjans.Business.Colors;
 using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
+using Kab.DemirAjans.Domain.Products;
 using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.Colors;
 using Kab.DemirAjans.Entities.Products;
@@ -79,21 +80,35 @@ public class ProductHelper(IProductService productService, ISubCategoryService s
                             PrintExp = ""
                         };
 
-                        //var color = new ColorCreateDto
-                        //{
-                        //    Code = kod,
-                        //    Name = baslik,
-                        //    Col
-                        //};
+                        var productId = await productService.InsertAsync(product);
+
+                        var color = new ColorCreateDto
+                        {
+                            Code = kod,
+                            Header = baslik,
+                            Name = renk,
+                            ProductId = productId,
+                            Uid = Int32.Parse(uid),
+                            Base64 = base64true,
+                        };
+
+                        await colorService.InsertAsync(color);
+
                     }
                     else
                     {
+                        var color = new ColorCreateDto
+                        {
+                            Code = kod,
+                            Header = baslik,
+                            Name = renk,
+                            ProductId = productDto.Id,
+                            Uid = Int32.Parse(uid),
+                            Base64 = base64true,
+                        };
 
+                        await colorService.InsertAsync(color);
                     }
-
-
-
-                    //await productService.InsertAsync(product);
                 }
                 catch (Exception ex)
                 {

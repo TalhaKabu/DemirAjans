@@ -2,7 +2,7 @@
 
 public class ColorConst
 {
-    public const int MaxNameLength = 20;
-    public const int MaxCodeLength = 10;
+    public const int MaxNameLength = 50;
+    public const int MaxCodeLength = 20;
     public const int MaxHeaderLength = 100;
 }

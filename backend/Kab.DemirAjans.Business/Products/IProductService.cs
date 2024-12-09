@@ -8,7 +8,7 @@ namespace Kab.DemirAjans.Business.Products
         Task<ProductDto?> GetByCodeAsync(string code);
         Task<IEnumerable<ProductDto>> GetListAsync();
         Task<IEnumerable<ProductDto>> GetListByAppearInFrontAsync(bool appearInFront);
-        Task InsertAsync(ProductCreateDto create);
+        Task<int> InsertAsync(ProductCreateDto create);
         Task UpdateAsync(int id, ProductUpdateDto update);
     }
 }
