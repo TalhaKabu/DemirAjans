@@ -5,6 +5,7 @@ namespace Kab.DemirAjans.DataAccess.Products
     public interface IProductDal
     {
         Task<ProductDto?> GetAsync(int id);
+        Task<ProductDto?> GetByCodeAsync(string code);
         Task<IEnumerable<ProductDto>> GetListAsync();
         Task<IEnumerable<ProductDto>> GetListByAppearInFrontAsync(bool appearInFront);
         Task<int> InsertAsync(ProductDto productDto);

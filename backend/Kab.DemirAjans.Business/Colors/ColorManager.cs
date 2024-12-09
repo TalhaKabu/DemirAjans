@@ -23,7 +23,7 @@ public class ColorManager(IColorDal colorDal) : IColorService
 
         try
         {
-            var color = new Color(create.ProductId, create.Name, create.Code, create.Uid, guid);
+            var color = new Color(create.ProductId, create.Name, create.Code, create.Header, create.Uid, guid);
 
             await _colorDal.InsertAsync(ObjectMapper.Mapper.Map<Color, ColorDto>(color));
         }

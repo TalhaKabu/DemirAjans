@@ -1,4 +1,5 @@
 ﻿using Kab.DemirAjans.Business.Categories;
+using Kab.DemirAjans.Business.Colors;
 using Kab.DemirAjans.Business.Helper.ProductHelper;
 using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
@@ -9,11 +10,12 @@ namespace Kab.DemirAjans.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductController(IProductService productService, ISubCategoryService subCategoryService, ICategoryService categoryService) : ControllerBase
+public class ProductController(IProductService productService, ISubCategoryService subCategoryService, ICategoryService categoryService, IColorService colorService) : ControllerBase
 {
     private readonly IProductService _productService = productService;
     private readonly ISubCategoryService _subCategoryService = subCategoryService;
     private readonly ICategoryService _categoryService = categoryService;
+    private readonly IColorService _colorService = colorService;
 
     [HttpGet("list")]
     public async Task<IActionResult> GetListAsync() => Ok(await _productService.GetListAsync());
@@ -50,5 +52,5 @@ public class ProductController(IProductService productService, ISubCategoryServi
     public async Task GetCategoriesAndSaveAsync() => await new CategoryHelper(_categoryService, _subCategoryService).GetAndSaveCategoriesAsync();
 
     [HttpGet("get-products-and-save")]
-    public async Task GetProductsAndSaveAsync() => await new ProductHelper(_productService, _subCategoryService, _categoryService).GetProductsAndSaveAsync();
+    public async Task GetProductsAndSaveAsync() => await new ProductHelper(_productService, _subCategoryService, _categoryService, _colorService).GetProductsAndSaveAsync();
 }

@@ -5,6 +5,7 @@ namespace Kab.DemirAjans.Business.Products
     public interface IProductService
     {
         Task<ProductDto?> GetAsync(int id);
+        Task<ProductDto?> GetByCodeAsync(string code);
         Task<IEnumerable<ProductDto>> GetListAsync();
         Task<IEnumerable<ProductDto>> GetListByAppearInFrontAsync(bool appearInFront);
         Task InsertAsync(ProductCreateDto create);

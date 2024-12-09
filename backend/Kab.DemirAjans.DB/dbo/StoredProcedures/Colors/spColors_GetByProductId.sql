@@ -7,6 +7,7 @@ BEGIN
 		,Name
 		,ProductId
 		,Code
+		,Header
 		,Uid
 		,ImageName
 		,CreationDate

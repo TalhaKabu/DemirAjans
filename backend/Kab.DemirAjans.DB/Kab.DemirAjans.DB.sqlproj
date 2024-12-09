@@ -90,6 +90,7 @@
     <Build Include="dbo\StoredProcedures\Products\spProducts_GetAllByAppearInFront.sql" />
     <Build Include="dbo\StoredProcedures\Colors\spColors_GetByProductId.sql" />
     <Build Include="dbo\StoredProcedures\Colors\spProducts_Insert.sql" />
+    <Build Include="dbo\StoredProcedures\Products\spProducts_GetByCode.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />

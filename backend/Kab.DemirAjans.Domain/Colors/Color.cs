@@ -16,6 +16,10 @@ public class Color : AuditedAggregateRoot
     public string Code { get; protected set; }
 
     [Required]
+    [MaxLength(ColorConst.MaxHeaderLength)]
+    public string Header { get; protected set; }
+
+    [Required]
     public int ProductId { get; protected set; }
 
     [Required]
@@ -24,22 +28,24 @@ public class Color : AuditedAggregateRoot
     [Required]
     public Guid ImageName { get; protected set; }
 
-    public Color(int id, int productId, string name, string code, int uid, Guid imageName)
+    public Color(int id, int productId, string name, string code, string header, int uid, Guid imageName)
     {
         SetDefaultExtraProperties(false);
         SetProductId(productId);
         SetName(name);
         SetCode(code);
+        SetHeader(header);
         SetUid(uid);
         SetImageName(imageName);
     }
 
-    public Color(int productId, string name, string code, int uid, Guid imageName)
+    public Color(int productId, string name, string code, string header, int uid, Guid imageName)
     {
         SetDefaultExtraProperties(true);
         SetProductId(productId);
         SetName(name);
         SetCode(code);
+        SetHeader(header);
         SetUid(uid);
         SetImageName(imageName);
     }
@@ -60,6 +66,16 @@ public class Color : AuditedAggregateRoot
             throw new Exception($"Renk adı {ColorConst.MaxNameLength} 'ten büyük olamaz!");
 
         Name = name;
+    }
+
+    private void SetHeader(string header)
+    {
+        if (string.IsNullOrEmpty(header))
+            throw new ArgumentNullException("Renk başlığı boş olamaz!");
+        if (header.Length > ColorConst.MaxHeaderLength)
+            throw new Exception($"Renk başlığı {ColorConst.MaxHeaderLength} 'ten büyük olamaz!");
+
+        Header = header;
     }
 
     private void SetCode(string code)

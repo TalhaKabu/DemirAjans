@@ -4,6 +4,7 @@ public class ColorCreateDto
 {
     public string Name { get; set; }
     public string Code { get; set; }
+    public string Header { get; set; }
     public int ProductId { get; set; }
     public int Uid { get; set; }
     public string Base64 { get; set; }

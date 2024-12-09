@@ -21,6 +21,8 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
 
     public async Task<ProductDto?> GetAsync(int id) => await _productDal.GetAsync(id);
 
+    public async Task<ProductDto?> GetByCodeAsync(string code) => await _productDal.GetByCodeAsync(code);
+
     public async Task InsertAsync(ProductCreateDto create)
     {
         if (string.IsNullOrEmpty(create.Base64)) throw new Exception("Ürünler en az bir fotoğrafa sahip olmak zorundadır!");

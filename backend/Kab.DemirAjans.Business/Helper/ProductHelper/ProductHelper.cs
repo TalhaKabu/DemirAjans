@@ -1,14 +1,15 @@
 ﻿using Kab.DemirAjans.Business.Categories;
+using Kab.DemirAjans.Business.Colors;
 using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.Entities.Categories;
-using Kab.DemirAjans.Entities.Images;
+using Kab.DemirAjans.Entities.Colors;
 using Kab.DemirAjans.Entities.Products;
 using System.Xml.Linq;
 
 namespace Kab.DemirAjans.Business.Helper.ProductHelper;
 
-public class ProductHelper(IProductService productService, ISubCategoryService subCategoryService, ICategoryService categoryService)
+public class ProductHelper(IProductService productService, ISubCategoryService subCategoryService, ICategoryService categoryService, IColorService colorService)
 {
     public async Task GetProductsAndSaveAsync()
     {
@@ -35,6 +36,7 @@ public class ProductHelper(IProductService productService, ISubCategoryService s
                     string renk = ct.Element("renk")?.Value;
                     string aciklama = ct.Element("aciklama")?.Value;
                     string kod = ct.Element("kod")?.Value;
+                    string kodgrup = ct.Element("kodgrup")?.Value;
                     string ebat = ct.Element("ebat")?.Value;
                     string fiyat = ct.Element("fiyat")?.Value;
                     string kid = ct.Element("kid")?.Value;
@@ -57,33 +59,41 @@ public class ProductHelper(IProductService productService, ISubCategoryService s
                     byte[] imageBytes2 = await client.GetByteArrayAsync(kodgrupResim);
                     base64false = Convert.ToBase64String(imageBytes2);
 
-                    var product = new ProductCreateDto
-                    {
-                        Name = isim,
-                        Header = baslik,
-                        Print = renk,
-                        Description = aciklama,
-                        Code = kod,
-                        Dimension = ebat,
-                        Price = Decimal.Parse(fiyat),
-                        Vat = Int32.Parse(kdv.Substring(0, kdv.IndexOf('.'))),
-                        Uid = Int32.Parse(uid),
-                        AppearInFront = false,
-                        SubCategoryId = subCategory.Id,
-                        CategoryId = category.Id,
-                        Images = [
-                            new ImageCreateDto {
-                                IsFrontImage = true,
-                                Base64 = base64true,
-                            },
-                            new ImageCreateDto {
-                                IsFrontImage = false,
-                                Base64 = base64false,
-                            }
-                        ]
-                    };
+                    var productDto = await productService.GetByCodeAsync(kodgrup);
 
-                    await productService.InsertAsync(product);
+                    if (productDto == null)
+                    {
+                        var product = new ProductCreateDto
+                        {
+                            Name = isim,
+                            Code = kodgrup,
+                            Price = Decimal.Parse(fiyat),
+                            Dimension = ebat,
+                            AppearInFront = false,
+                            SubCategoryId = subCategory.Id,
+                            CategoryId = category.Id,
+                            Vat = Int32.Parse(kdv.Substring(0, kdv.IndexOf('.'))),
+                            Description = aciklama,
+
+                            Base64 = base64false,
+                            PrintExp = ""
+                        };
+
+                        //var color = new ColorCreateDto
+                        //{
+                        //    Code = kod,
+                        //    Name = baslik,
+                        //    Col
+                        //};
+                    }
+                    else
+                    {
+
+                    }
+
+
+
+                    //await productService.InsertAsync(product);
                 }
                 catch (Exception ex)
                 {
