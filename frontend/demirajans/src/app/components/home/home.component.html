@@ -1,0 +1,15 @@
+<div class="grid" *ngIf="categoryList && productList">
+  <div class="category-container" *ngFor="let category of categoryList">
+    <h3>
+      <span>{{ category.name }}</span>
+    </h3>
+    <div class="product-container">
+      <div
+        class="product"
+        *ngFor="let product of getProductsByCategoryId(category.id)"
+      >
+        {{ product.name }}
+      </div>
+    </div>
+  </div>
+</div>
