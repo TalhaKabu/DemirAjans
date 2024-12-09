@@ -66,7 +66,7 @@
   align-items: center;
 
   svg {
-    fill: $text-clr;
+    fill: none;
     width: 30px;
     height: 30px;
   }
@@ -123,7 +123,9 @@
   color: $accent-clr;
 
   svg {
-    fill: $accent-clr;
+    fill: none;
+    stroke: $accent-clr;
+    stroke-width: 2;
   }
 }
 
@@ -131,8 +133,16 @@
   color: $base-clr;
 
   svg {
-    fill: $base-clr;
+    fill: none;
+    stroke: $base-clr;
+    stroke-width: 2;
   }
+}
+
+#sidebar svg {
+  flex-shrink: 0;
+  fill: none;
+  stroke: $text-clr;
 }
 
 #sidebar a,
@@ -154,11 +164,6 @@
   border: none;
   font: inherit;
   cursor: pointer;
-}
-
-#sidebar svg {
-  flex-shrink: 0;
-  fill: $text-clr;
 }
 
 #sidebar span,
