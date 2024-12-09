@@ -16,7 +16,7 @@
 .category-container h3 span {
   font-size: 24px;
   font-weight: 500;
-  color: $text-clr;
+  color: $accent-clr;
 }
 
 .category-container h3,
@@ -40,7 +40,7 @@
   gap: 1em;
   padding: 10px;
   border: 1px solid $line-clr;
-  border-radius: 10px;  
+  border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: white;
@@ -85,4 +85,48 @@
   color: $hover-clr;
   font-size: 20px;
   font-weight: 500;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    gap: 4px;
+  }
+
+  .category-container h3 span {
+    font-size: 20px;
+  }
+
+  .category-container h3,
+  .product-container {
+    margin-bottom: 10px;
+  }
+
+  .category-container {
+    padding: 0 2px;
+  }
+
+  .product-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .product {
+    gap: 5px;
+  }
+
+  .left {
+    img {
+      max-width: 150px;
+      min-width: 150px;
+    }
+  }
+
+  .box {
+    align-items: center;
+  }
+
+  .price {
+    font-size: 14px;
+  }
 }
