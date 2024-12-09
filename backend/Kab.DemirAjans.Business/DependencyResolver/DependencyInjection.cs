@@ -1,6 +1,7 @@
 ﻿using Kab.DemirAjans.Business.Activations;
 using Kab.DemirAjans.Business.Auth;
 using Kab.DemirAjans.Business.Categories;
+using Kab.DemirAjans.Business.Colors;
 using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.Business.Token;
@@ -8,6 +9,7 @@ using Kab.DemirAjans.Business.Users;
 using Kab.DemirAjans.DataAccess.Activations;
 using Kab.DemirAjans.DataAccess.Auth;
 using Kab.DemirAjans.DataAccess.Categories;
+using Kab.DemirAjans.DataAccess.Colors;
 using Kab.DemirAjans.DataAccess.DbAccess;
 using Kab.DemirAjans.DataAccess.Products;
 using Kab.DemirAjans.DataAccess.SubCategories;
@@ -30,6 +32,9 @@ public static class DependencyInjection
         });
 
         services
+            .AddSingleton<IColorService, ColorManager>()
+            .AddSingleton<IColorDal, ColorDal>()
+
             .AddSingleton<IActivationService, ActivationManager>()
             .AddSingleton<IActivationDal, ActivationDal>()
 
