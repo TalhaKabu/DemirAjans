@@ -5,19 +5,24 @@ export interface ProductDto {
   subCategoryId: number;
   code: string;
   price: number;
-  dimension: string | null;
   appearInFront: boolean;
-  header: string;
-  color: string | null;
-  description: string;
   vat: number;
-  uid: number;
-  images: ImageDto[];
+  base64: string;
+  printExp: string;
+  imageName: string;
+  description: string | null;
+  dimension: string | null;
+  colors: ColorDto[] ;
 }
 
-export interface ImageDto {
-  id: string;
-  productId: number;
-  isFrontImage: boolean;
+export interface ColorDto {
+  id: number;
+  name: string;
+  code: string;
+  color: string | null;
   base64: string;
+  header: string;
+  productId: number;
+  uid: number;
+  imageName: string;
 }
