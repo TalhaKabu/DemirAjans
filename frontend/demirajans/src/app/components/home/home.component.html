@@ -22,7 +22,9 @@
             {{ product.colors[0].name.toLocaleUpperCase("tr-TR") }}
           </div>
           <div class="box price">
-            <span>{{ product.price }} ₺</span>
+            <span>
+              {{ product.price | currency : "TRY" : "symbol-narrow" }}
+            </span>
           </div>
           <div class="box">ÜRÜN KODU: {{ product.colors[0].code }}</div>
         </div>
