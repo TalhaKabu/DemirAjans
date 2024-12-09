@@ -6,8 +6,9 @@ public class ProductConst
 {
     public const int MaxNameLength = 50;
     public const int MaxCodeLength = 20;
+    public const int MaxGroupCodeLength = 10;
     public const int MaxDimensionLength = 30;
     public const int MaxHeaderLength = 100;
-    public const int MaxColorLength = 50;
+    public const int MaxPrintExpLength = 50;
     public const int MaxDescriptionLength = 750;
 }

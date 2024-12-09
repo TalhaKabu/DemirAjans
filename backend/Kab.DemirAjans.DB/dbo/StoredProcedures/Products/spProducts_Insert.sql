@@ -3,11 +3,12 @@
 	@CategoryId int,
 	@SubCategoryId int,
 	@Code nvarchar(20),
+	@GroupCode nvarchar(10),
 	@Price decimal(18,2),
 	@Dimension nvarchar(30),
 	@AppearInFront bit,
 	@Header nvarchar(100),
-	@Color nvarchar(50),
+	@PrintExp nvarchar(50),
 	@Description nvarchar(750),
 	@Vat int,
 	@Uid int,
@@ -16,8 +17,8 @@
 AS
 BEGIN
 	INSERT INTO dbo.[Products] 
-		(Name, CategoryId, SubCategoryId, Code, Price, Dimension, AppearInFront, Header, Color, Description, Vat, Uid, CreationDate, LastModificationDate)
+		(Name, CategoryId, SubCategoryId, Code, GroupCode, Price, Dimension, AppearInFront, Header, PrintExp, Description, Vat, Uid, CreationDate, LastModificationDate)
 	VALUES 
-		(@Name, @CategoryId, @SubCategoryId, @Code, @Price, @Dimension, @AppearInFront, @Header, @Color, @Description, @Vat, @Uid, @CreationDate, @LastModificationDate);
+		(@Name, @CategoryId, @SubCategoryId, @Code, @GroupCode, @Price, @Dimension, @AppearInFront, @Header, @PrintExp, @Description, @Vat, @Uid, @CreationDate, @LastModificationDate);
 	SELECT IDENT_CURRENT ('dbo.[Products]');
 END

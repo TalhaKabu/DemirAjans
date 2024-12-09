@@ -8,6 +8,7 @@ using Kab.DemirAjans.Entities.Images;
 using Kab.DemirAjans.Entities.Products;
 using System;
 using System.Diagnostics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Kab.DemirAjans.Business.Products;
 
@@ -39,14 +40,16 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
                                   create.CategoryId,
                                   create.SubCategoryId,
                                   create.Code,
+                                  create.GroupCode,
                                   create.Price,
-                                  create.Dimension,
                                   create.AppearInFront,
                                   create.Header,
-                                  create.Color,
-                                  create.Description,
                                   create.Vat,
-                                  create.Uid);
+                                  create.Uid,
+                                  create.Dimension,
+                                  create.Print,
+                                  create.Description
+                                  );
 
         var productId = await _productDal.InsertAsync(ObjectMapper.Mapper.Map<Product, ProductDto>(product));
 
@@ -64,14 +67,16 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
                              update.CategoryId ?? product.CategoryId,
                              update.SubCategoryId ?? product.SubCategoryId,
                              update.Code ?? product.Code,
+                             update.GroupCode ?? product.GroupCode,
                              update.Price ?? product.Price,
-                             update.Dimension ?? product.Dimension,
                              update.AppearInFront ?? product.AppearInFront,
                              update.Header ?? product.Header,
-                             update.Color ?? product.Color,
-                             update.Description ?? product.Description,
                              update.Vat ?? product.Vat,
-                             update.Uid ?? product.Uid);
+                             update.Uid ?? product.Uid,
+                             update.Dimension ?? product.Dimension,
+                             update.Print ?? product.Print,
+                             update.Description ?? product.Description
+                             );
 
         await _productDal.UpdateAsync(id, ObjectMapper.Mapper.Map<Product, ProductDto>(pr));
     }
@@ -94,6 +99,6 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
         }
         await Task.WhenAll(tasks2);
 
-        return productList;
+        ; return productList;
     }
 }

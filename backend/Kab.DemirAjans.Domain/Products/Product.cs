@@ -1,9 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Kab.DemirAjans.Domain.ExtraProperties;
-using System;
-using System.Drawing;
-using System.Reflection.PortableExecutable;
-using System.Security.Cryptography;
 
 namespace Kab.DemirAjans.Domain.Products;
 
@@ -14,62 +10,71 @@ public class Product : AuditedAggregateRoot
     [MaxLength(ProductConst.MaxNameLength)]
     [Required]
     public string Name { get; protected set; }
+
     public int CategoryId { get; protected set; }
+
     public int SubCategoryId { get; protected set; }
 
     [MaxLength(ProductConst.MaxCodeLength)]
     [Required]
     public string Code { get; protected set; }
+
+    [MaxLength(ProductConst.MaxGroupCodeLength)]
+    [Required]
+    public string GroupCode { get; protected set; }
+
     public decimal Price { get; protected set; }
 
-    [MaxLength(ProductConst.MaxDimensionLength)]
-    public string? Dimension { get; protected set; }
+    public int Vat { get; protected set; }
+
+    public int Uid { get; protected set; }
+
     public bool AppearInFront { get; protected set; }
 
     [MaxLength(ProductConst.MaxHeaderLength)]
     [Required]
     public string Header { get; protected set; }
 
-    [MaxLength(ProductConst.MaxColorLength)]
-    public string? Color { get; protected set; }
+    [MaxLength(ProductConst.MaxDimensionLength)]
+    public string? Dimension { get; protected set; }
+
+    [MaxLength(ProductConst.MaxPrintExpLength)]
+    public string? PrintExp { get; protected set; }
 
     [MaxLength(ProductConst.MaxDescriptionLength)]
-    [Required]
-    public string Description { get; protected set; }
+    public string? Description { get; protected set; }
 
-    public int Vat { get; protected set; }
-
-    public int Uid { get; protected set; }
-
-    public Product(int id, string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension, bool appearInFront, string header, string? color, string description, int vat, int uid)
+    public Product(int id, string name, int categoryId, int subCategoryId, string code, string groupCode, decimal Price, bool appearInFront, string header, int vat, int uid, string? dimension, string? printExp, string? description)
     {
         SetDefaultExtraProperties(false);
         SetName(name);
         SetCategoryId(categoryId);
         SetSubCategoryId(subCategoryId);
         SetCode(code);
+        SetGroupCode(groupCode);
         SetPrice(Price);
         SetDimension(dimension);
         SetAppearInFront(appearInFront);
         SetHeader(header);
-        SetColor(color);
+        SetPrintExp(printExp);
         SetDescription(description);
         SetVat(vat);
         SetUid(uid);
     }
 
-    public Product(string name, int categoryId, int subCategoryId, string code, decimal Price, string? dimension, bool appearInFront, string header, string? color, string description, int vat, int uid)
+    public Product(string name, int categoryId, int subCategoryId, string code, string groupCode, decimal Price, bool appearInFront, string header, int vat, int uid, string? dimension, string? printExp, string? description)
     {
         SetDefaultExtraProperties(true);
         SetName(name);
         SetCategoryId(categoryId);
         SetSubCategoryId(subCategoryId);
         SetCode(code);
+        SetGroupCode(groupCode);
         SetPrice(Price);
         SetDimension(dimension);
         SetAppearInFront(appearInFront);
         SetHeader(header);
-        SetColor(color);
+        SetPrintExp(printExp);
         SetDescription(description);
         SetVat(vat);
         SetUid(uid);
@@ -85,22 +90,20 @@ public class Product : AuditedAggregateRoot
         Vat = vat;
     }
 
-    private void SetDescription(string description)
+    private void SetDescription(string? description)
     {
-        if (string.IsNullOrEmpty(description))
-            throw new ArgumentNullException("Ürün açıklaması boş olamaz!");
         if (description.Length > ProductConst.MaxDescriptionLength)
             throw new Exception($"Ürün açıklaması {ProductConst.MaxDescriptionLength} 'ten büyük olamaz!");
 
         Description = description;
     }
 
-    private void SetColor(string? color)
+    private void SetPrintExp(string? printExp)
     {
-        if (color.Length > ProductConst.MaxColorLength)
-            throw new Exception($"Ürün rengi {ProductConst.MaxColorLength} 'ten büyük olamaz!");
+        if (printExp.Length > ProductConst.MaxPrintExpLength)
+            throw new Exception($"Ürün baskı {ProductConst.MaxPrintExpLength} 'ten büyük olamaz!");
 
-        Color = color;
+        PrintExp = printExp;
     }
 
     private void SetHeader(string header)
@@ -149,6 +152,16 @@ public class Product : AuditedAggregateRoot
             throw new Exception($"Ürün kodu {ProductConst.MaxCodeLength} 'ten büyük olamaz!");
 
         Code = code;
+    }
+
+    private void SetGroupCode(string groupCode)
+    {
+        if (string.IsNullOrEmpty(groupCode))
+            throw new ArgumentNullException("Ürün grup kodu boş olamaz!");
+        if (groupCode.Length > ProductConst.MaxGroupCodeLength)
+            throw new Exception($"Ürün grup kodu {ProductConst.MaxGroupCodeLength} 'ten büyük olamaz!");
+
+        GroupCode = groupCode;
     }
 
     private void SetDimension(string? dimension)

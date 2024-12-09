@@ -4,11 +4,12 @@
 	@CategoryId int,
 	@SubCategoryId int,
 	@Code nvarchar(20),
+	@GroupCode nvarchar(10),
 	@Price decimal(18,2),
 	@Dimension nvarchar(30),
 	@AppearInFront bit,
 	@Header nvarchar(100),
-	@Color nvarchar(50),
+	@PrintExp nvarchar(50),
 	@Description nvarchar(750),
 	@Vat int,
 	@Uid int,
@@ -16,6 +17,6 @@
 AS
 BEGIN
 	UPDATE dbo.[products]
-	SET Name = @Name, @CategoryId = @CategoryId, SubCategoryId = @SubCategoryId, Code = @Code, Price = @Price, Dimension = @Dimension, AppearInFront = @AppearInFront, Header = @Header, Color = @Color, Description = @Description, Vat = @Vat, Uid = @Uid, LastModificationDate = @LastModificationDate
+	SET Name = @Name, @CategoryId = @CategoryId, SubCategoryId = @SubCategoryId, Code = @Code, GroupCode = @GroupCode, Price = @Price, Dimension = @Dimension, AppearInFront = @AppearInFront, Header = @Header, PrintExp = @PrintExp, Description = @Description, Vat = @Vat, Uid = @Uid, LastModificationDate = @LastModificationDate
 	WHERE Id = @Id
 END

@@ -7,11 +7,12 @@ BEGIN
 		,CategoryId
 		,SubCategoryId
 		,Code
+		,GroupCode
 		,Price
 		,Dimension
 		,AppearInFront
 		,Header
-		,Color
+		,PrintExp
 		,Description
 		,Vat
 		,Uid

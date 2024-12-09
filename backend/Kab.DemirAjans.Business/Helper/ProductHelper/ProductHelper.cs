@@ -61,7 +61,7 @@ public class ProductHelper(IProductService productService, ISubCategoryService s
                     {
                         Name = isim,
                         Header = baslik,
-                        Color = renk,
+                        Print = renk,
                         Description = aciklama,
                         Code = kod,
                         Dimension = ebat,
