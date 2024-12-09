@@ -1,4 +1,5 @@
-﻿using Kab.DemirAjans.Entities.ExtraProperties;
+﻿using Kab.DemirAjans.Entities.Colors;
+using Kab.DemirAjans.Entities.ExtraProperties;
 
 namespace Kab.DemirAjans.Entities.Products;
 
@@ -13,7 +14,9 @@ public class ProductDto : AggregateRoot
     public int Vat { get; set; }
     public bool AppearInFront { get; set; }
     public Guid ImageName { get; set; }
+    public string Base64 { get; set; }
     public string? Dimension { get; set; }
     public string? PrintExp { get; set; }
     public string? Description { get; set; }
+    public IEnumerable<ColorDto> Colors { get; set; }
 }

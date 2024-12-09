@@ -1,4 +1,5 @@
 ﻿using Kab.DemirAjans.Business.Categories;
+using Kab.DemirAjans.Business.Colors;
 using Kab.DemirAjans.Business.Helper.ImageHelper;
 using Kab.DemirAjans.Business.Mapper;
 using Kab.DemirAjans.Business.SubCategories;
@@ -8,14 +9,16 @@ using Kab.DemirAjans.Domain.Products;
 using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.Colors;
 using Kab.DemirAjans.Entities.Products;
+using System.Diagnostics;
 
 namespace Kab.DemirAjans.Business.Products;
 
-public class ProductManager(IProductDal productDal, ISubCategoryService subCategoryService, ICategoryService categoryService) : IProductService
+public class ProductManager(IProductDal productDal, ISubCategoryService subCategoryService, ICategoryService categoryService, IColorService colorService) : IProductService
 {
     private readonly IProductDal _productDal = productDal;
     private readonly ISubCategoryService _subCategoryService = subCategoryService;
     private readonly ICategoryService _categoryService = categoryService;
+    private readonly IColorService _colorService = colorService;
 
     public async Task<IEnumerable<ProductDto>> GetListAsync() => await _productDal.GetListAsync();
 
@@ -113,6 +116,23 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
     public async Task<IEnumerable<ProductDto>> GetListByAppearInFrontAsync(bool appearInFront)
     {
         var productList = await _productDal.GetListByAppearInFrontAsync(appearInFront) ?? [];
+
+        List<Task<IEnumerable<ColorDto>>> tasks = [];
+
+        foreach (var productDto in productList)
+        {
+            tasks.Add(Task.Run(() => productDto.Colors = _colorService.GetListByProductIdAsync(productDto.Id).Result));
+        }
+
+
+        List<Task<string>> tasks2 = [];
+        foreach (var productDto in productList)
+        {
+            tasks2.Add(Task.Run(() => productDto.Base64 = ImageHelper.GetImage(productDto.ImageName, ImageEnum.Product).Base64));
+        }
+
+        await Task.WhenAll(tasks);
+        await Task.WhenAll(tasks2);
 
         return productList;
     }
