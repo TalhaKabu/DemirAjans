@@ -14,7 +14,9 @@ public class ColorManager(IColorDal colorDal) : IColorService
 
     public async Task InsertAsync(ColorCreateDto create)
     {
-        var guid = string.IsNullOrEmpty(create.Base64) ? Guid.Empty : await Task.Run(() => ImageHelper.SaveImage(create.Base64, ImageEnum.Product));
+        if (string.IsNullOrEmpty(create.Base64)) throw new Exception("Renkler en az bir fotoğrafa sahip olmak zorundadır!");
+
+        var guid = await Task.Run(() => ImageHelper.SaveImage(create.Base64, ImageEnum.Product));
 
         if (string.IsNullOrEmpty(guid.ToString()))
             throw new ArgumentException("Fotoğraf oluşturulamadı!");

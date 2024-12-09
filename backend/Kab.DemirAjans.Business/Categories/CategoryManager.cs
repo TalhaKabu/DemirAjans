@@ -66,11 +66,12 @@ public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
 
         if (!string.IsNullOrEmpty(update.Base64))
         {
-            await Task.Run(() => ImageHelper.DeleteImage(category.ImageName, ImageEnum.Category));
             guid = await Task.Run(() => ImageHelper.SaveImage(update.Base64, ImageEnum.Category));
 
             if (string.IsNullOrEmpty(guid.ToString()))
                 throw new ArgumentException("Fotoğraf oluşturulamadı!");
+
+            await Task.Run(() => ImageHelper.DeleteImage(category.ImageName, ImageEnum.Category));
         }
 
         try

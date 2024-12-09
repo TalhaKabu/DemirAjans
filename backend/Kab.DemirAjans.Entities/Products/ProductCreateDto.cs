@@ -1,6 +1,4 @@
-﻿using Kab.DemirAjans.Entities.Images;
-
-namespace Kab.DemirAjans.Entities.Products;
+﻿namespace Kab.DemirAjans.Entities.Products;
 
 public class ProductCreateDto
 {
@@ -8,14 +6,11 @@ public class ProductCreateDto
     public int CategoryId { get; set; }
     public int SubCategoryId { get; set; }
     public string Code { get; set; }
-    public string GroupCode { get; set; }
     public decimal Price { get; set; }
-    public string? Dimension { get; set; }
-    public bool AppearInFront { get; set; }
-    public string Header { get; set; }
-    public string? Print { get; set; }
-    public string? Description { get; set; }
     public int Vat { get; set; }
-    public int Uid { get; set; }
-    public List<ImageCreateDto> Images { get; set; }
+    public bool AppearInFront { get; set; }
+    public string Base64 { get; set; }
+    public string? Dimension { get; set; }
+    public string? PrintExp { get; set; }
+    public string? Description { get; set; }
 }
