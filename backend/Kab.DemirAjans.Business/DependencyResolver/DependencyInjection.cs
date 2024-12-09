@@ -1,7 +1,6 @@
 ﻿using Kab.DemirAjans.Business.Activations;
 using Kab.DemirAjans.Business.Auth;
 using Kab.DemirAjans.Business.Categories;
-using Kab.DemirAjans.Business.Images;
 using Kab.DemirAjans.Business.Products;
 using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.Business.Token;
@@ -10,7 +9,6 @@ using Kab.DemirAjans.DataAccess.Activations;
 using Kab.DemirAjans.DataAccess.Auth;
 using Kab.DemirAjans.DataAccess.Categories;
 using Kab.DemirAjans.DataAccess.DbAccess;
-using Kab.DemirAjans.DataAccess.Images;
 using Kab.DemirAjans.DataAccess.Products;
 using Kab.DemirAjans.DataAccess.SubCategories;
 using Kab.DemirAjans.DataAccess.Users;
@@ -40,9 +38,6 @@ public static class DependencyInjection
 
             .AddSingleton<IUserService, UserManager>()
             .AddSingleton<IUserDal, UserDal>()
-
-            .AddSingleton<IImageService, ImageManager>()
-            .AddSingleton<IImageDal, ImageDal>()
 
             .AddSingleton<IProductService, ProductManager>()
             .AddSingleton<IProductDal, ProductDal>()

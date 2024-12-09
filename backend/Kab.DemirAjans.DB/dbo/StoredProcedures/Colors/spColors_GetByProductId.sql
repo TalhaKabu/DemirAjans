@@ -1,13 +1,16 @@
-﻿CREATE PROCEDURE [dbo].[spImages_GetByProductId]
+﻿CREATE PROCEDURE [dbo].[spColors_GetByProductId]
 	@ProductId int
 AS
 BEGIN
 	SELECT
 		 Id
-		,IsFrontImage
+		,Name
 		,ProductId
+		,Code
+		,Uid
+		,ImageName
 		,CreationDate
 		,LastModificationDate
-	FROM dbo.[Images]
+	FROM dbo.[Colors]
 	WHERE ProductId = @ProductId;
 END

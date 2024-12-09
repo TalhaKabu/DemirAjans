@@ -4,6 +4,7 @@ using Kab.DemirAjans.EntityFrameworkCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(KabDbContext))]
-    partial class KabDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241209092349_ImagesDeleted")]
+    partial class ImagesDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,48 +92,6 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Kab.DemirAjans.Domain.Colors.Color", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ImageName")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
-
-                    b.Property<DateTime?>("LastModificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Uid")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Colors");
-                });
-
             modelBuilder.Entity("Kab.DemirAjans.Domain.Products.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -161,10 +122,15 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<Guid>("ImageName")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
+                    b.Property<string>("GroupCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Header")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("LastModificationDate")
                         .HasColumnType("datetime2");
@@ -182,6 +148,9 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Uid")
                         .HasColumnType("int");
 
                     b.Property<int>("Vat")
@@ -278,15 +247,6 @@ namespace Kab.DemirAjans.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Kab.DemirAjans.Domain.Colors.Color", b =>
-                {
-                    b.HasOne("Kab.DemirAjans.Domain.Products.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Kab.DemirAjans.Domain.Products.Product", b =>

@@ -1,5 +1,5 @@
 ﻿using Kab.DemirAjans.Domain.Categories;
-using Kab.DemirAjans.Domain.Images;
+using Kab.DemirAjans.Domain.Colors;
 using Kab.DemirAjans.Domain.Products;
 using Kab.DemirAjans.Domain.SubCategories;
 using Microsoft.EntityFrameworkCore;
@@ -31,19 +31,16 @@ public static class KabDbContextModelCreatingExtensions
         #region Product
         builder.Entity<Product>(typeBuilder =>
         {
-            typeBuilder.Property(t => t.CategoryId).IsRequired();
-            typeBuilder.HasMany<Image>().WithOne();
+            typeBuilder.HasMany<Color>().WithOne();
+            typeBuilder.Property(t => t.ImageName).HasDefaultValue(Guid.Empty);
         });
         #endregion
 
-        #region Image
-        builder.Entity<Image>(typeBuilder =>
+        #region Color
+        builder.Entity<Color>(typeBuilder =>
         {
-            typeBuilder.Property(t => t.ProductId).IsRequired();
+            typeBuilder.Property(t => t.ImageName).HasDefaultValue(Guid.Empty);
         });
-        #endregion
-
-        #region Activation
         #endregion
     }
 }

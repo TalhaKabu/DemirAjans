@@ -8,15 +8,13 @@ BEGIN
 		,CategoryId
 		,SubCategoryId
 		,Code
-		,GroupCode
 		,Price
-		,Dimension
+		,Vat
 		,AppearInFront
-		,Header
+		,ImageName
+		,Dimension
 		,PrintExp
 		,Description
-		,Vat
-		,Uid
 		,CreationDate
 		,LastModificationDate
 	FROM dbo.[Products]

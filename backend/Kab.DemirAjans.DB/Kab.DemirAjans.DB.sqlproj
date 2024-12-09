@@ -61,7 +61,7 @@
     <Folder Include="dbo\StoredProcedures\Categories" />
     <Folder Include="dbo\StoredProcedures\SubCategories" />
     <Folder Include="dbo\StoredProcedures\Products" />
-    <Folder Include="dbo\StoredProcedures\Images" />
+    <Folder Include="dbo\StoredProcedures\Colors" />
     <Folder Include="dbo\StoredProcedures\Users" />
     <Folder Include="dbo\StoredProcedures\Activations" />
   </ItemGroup>
@@ -78,7 +78,6 @@
     <Build Include="dbo\StoredProcedures\Products\spProducts_GetAll.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_Get.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_Insert.sql" />
-    <Build Include="dbo\StoredProcedures\Images\spImages_Insert.sql" />
     <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_Update.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_Update.sql" />
     <Build Include="dbo\StoredProcedures\Users\spUsers_Get.sql" />
@@ -89,7 +88,8 @@
     <Build Include="dbo\StoredProcedures\Categories\spCategories_GetByKid.sql" />
     <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_GetBySkid.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_GetAllByAppearInFront.sql" />
-    <Build Include="dbo\StoredProcedures\Images\spImages_GetByProductId.sql" />
+    <Build Include="dbo\StoredProcedures\Colors\spColors_GetByProductId.sql" />
+    <Build Include="dbo\StoredProcedures\Colors\spProducts_Insert.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />

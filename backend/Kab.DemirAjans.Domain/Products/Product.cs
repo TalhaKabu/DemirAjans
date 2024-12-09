@@ -11,29 +11,27 @@ public class Product : AuditedAggregateRoot
     [Required]
     public string Name { get; protected set; }
 
+    [Required]
     public int CategoryId { get; protected set; }
 
+    [Required]
     public int SubCategoryId { get; protected set; }
 
     [MaxLength(ProductConst.MaxCodeLength)]
     [Required]
     public string Code { get; protected set; }
 
-    [MaxLength(ProductConst.MaxGroupCodeLength)]
     [Required]
-    public string GroupCode { get; protected set; }
-
     public decimal Price { get; protected set; }
 
+    [Required]
     public int Vat { get; protected set; }
 
-    public int Uid { get; protected set; }
-
+    [Required]
     public bool AppearInFront { get; protected set; }
 
-    [MaxLength(ProductConst.MaxHeaderLength)]
     [Required]
-    public string Header { get; protected set; }
+    public Guid ImageName { get; protected set; }
 
     [MaxLength(ProductConst.MaxDimensionLength)]
     public string? Dimension { get; protected set; }
@@ -44,45 +42,36 @@ public class Product : AuditedAggregateRoot
     [MaxLength(ProductConst.MaxDescriptionLength)]
     public string? Description { get; protected set; }
 
-    public Product(int id, string name, int categoryId, int subCategoryId, string code, string groupCode, decimal Price, bool appearInFront, string header, int vat, int uid, string? dimension, string? printExp, string? description)
+    public Product(int id, string name, int categoryId, int subCategoryId, string code, decimal Price, bool appearInFront, int vat, Guid imageName, string? dimension, string? printExp, string? description)
     {
         SetDefaultExtraProperties(false);
         SetName(name);
         SetCategoryId(categoryId);
         SetSubCategoryId(subCategoryId);
         SetCode(code);
-        SetGroupCode(groupCode);
         SetPrice(Price);
         SetDimension(dimension);
         SetAppearInFront(appearInFront);
-        SetHeader(header);
         SetPrintExp(printExp);
         SetDescription(description);
         SetVat(vat);
-        SetUid(uid);
+        SetImageName(imageName);
     }
 
-    public Product(string name, int categoryId, int subCategoryId, string code, string groupCode, decimal Price, bool appearInFront, string header, int vat, int uid, string? dimension, string? printExp, string? description)
+    public Product(string name, int categoryId, int subCategoryId, string code, decimal Price, bool appearInFront, int vat, Guid imageName, string? dimension, string? printExp, string? description)
     {
         SetDefaultExtraProperties(true);
         SetName(name);
         SetCategoryId(categoryId);
         SetSubCategoryId(subCategoryId);
         SetCode(code);
-        SetGroupCode(groupCode);
         SetPrice(Price);
         SetDimension(dimension);
         SetAppearInFront(appearInFront);
-        SetHeader(header);
         SetPrintExp(printExp);
         SetDescription(description);
         SetVat(vat);
-        SetUid(uid);
-    }
-
-    private void SetUid(int uid)
-    {
-        Uid = uid;
+        SetImageName(imageName);
     }
 
     private void SetVat(int vat)
@@ -104,16 +93,6 @@ public class Product : AuditedAggregateRoot
             throw new Exception($"Ürün baskı {ProductConst.MaxPrintExpLength} 'ten büyük olamaz!");
 
         PrintExp = printExp;
-    }
-
-    private void SetHeader(string header)
-    {
-        if (string.IsNullOrEmpty(header))
-            throw new ArgumentNullException("Ürün başlıği boş olamaz!");
-        if (header.Length > ProductConst.MaxHeaderLength)
-            throw new Exception($"Ürün başlıği {ProductConst.MaxHeaderLength} 'ten büyük olamaz!");
-
-        Header = header;
     }
 
     private void SetName(string name)
@@ -154,16 +133,6 @@ public class Product : AuditedAggregateRoot
         Code = code;
     }
 
-    private void SetGroupCode(string groupCode)
-    {
-        if (string.IsNullOrEmpty(groupCode))
-            throw new ArgumentNullException("Ürün grup kodu boş olamaz!");
-        if (groupCode.Length > ProductConst.MaxGroupCodeLength)
-            throw new Exception($"Ürün grup kodu {ProductConst.MaxGroupCodeLength} 'ten büyük olamaz!");
-
-        GroupCode = groupCode;
-    }
-
     private void SetDimension(string? dimension)
     {
         Dimension = dimension;
@@ -175,5 +144,10 @@ public class Product : AuditedAggregateRoot
             throw new ArgumentException("Ürün fiyatı 0'dan küçük olamaz!");
 
         Price = price;
+    }
+
+    private void SetImageName(Guid imageName)
+    {
+        ImageName = imageName;
     }
 }
