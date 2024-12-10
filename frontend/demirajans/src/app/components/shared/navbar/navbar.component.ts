@@ -105,17 +105,49 @@ export class NavbarComponent implements OnInit {
       li.classList.remove('active');
     });
 
+    Array.from(
+      this.sidebar.nativeElement.getElementsByClassName('active-dropdown')
+    ).forEach((li) => {
+      li.classList.remove('active-dropdown');
+    });
+
     if (link.getElementsByTagName('span')[0].innerHTML === 'Kategoriler') {
-      Array.from(link.getElementsByTagName('li')).forEach((li) => {
-        if (li.firstElementChild!.id === id!.toString()) {
-          li.classList.add('active');
-        } else {
-          li.classList.remove('active');
-        }
-      });
+      if (id !== undefined)
+        Array.from(link.getElementsByTagName('li')).forEach((li) => {
+          if (li.firstElementChild!.id === id!.toString()) {
+            li.classList.add('active');
+          } else {
+            li.classList.remove('active');
+          }
+        });
     } else {
       link.classList.add('active');
     }
+  }
+
+  liDropdownOnClick(link: HTMLLIElement, id?: number) {
+    Array.from(
+      this.sidebar.nativeElement.getElementsByClassName('active')
+    ).forEach((li) => {
+      if (li.getElementsByTagName('span')[0].innerHTML === 'Kategoriler') {
+        if (id !== undefined)
+          Array.from(link.getElementsByTagName('li')).forEach((li) => {
+            if (li.firstElementChild!.id === id!.toString()) {
+              li.classList.add('active');
+            } else {
+              li.classList.remove('active');
+            }
+          });
+      } else li.classList.remove('active');
+    });
+
+    Array.from(
+      this.sidebar.nativeElement.getElementsByClassName('active-dropdown')
+    ).forEach((li) => {
+      li.classList.remove('active-dropdown');
+    });
+
+    link.classList.add('active-dropdown');
   }
 
   @HostListener('document:click', ['$event'])

@@ -9,6 +9,7 @@
   width: 100%;
   background-color: $base-clr;
   border-bottom: 1px solid $line-clr;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 998;
   box-sizing: border-box;
   padding: 5px 1em;
@@ -91,6 +92,7 @@
   padding: 5px 1em;
   background-color: $base-clr;
   border-right: 1px solid $line-clr;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 
   position: sticky;
   top: 0;
@@ -119,7 +121,7 @@
   }
 }
 
-#sidebar ul li.active a {
+#sidebar ul li.active a, #sidebar ul li.active-dropdown button {
   color: $accent-clr;
 
   svg {
@@ -129,10 +131,12 @@
   }
 }
 
-#sidebar ul li.active a:hover {
+#sidebar ul li.active a:hover, #sidebar ul li.active-dropdown button:hover {
   color: $base-clr;
 
   svg {
+    rotate: -360deg;
+    transition: rotate 450ms ease;
     fill: none;
     stroke: $base-clr;
     stroke-width: 2;
