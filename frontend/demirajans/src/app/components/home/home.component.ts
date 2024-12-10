@@ -20,7 +20,7 @@ export class HomeComponent {
   //#region Utils
   getProductListByAppearInFront() {
     this.productService.getListByAppearInFront(true).subscribe({
-      next: (n) => ((this.productList = n), console.log(n)),
+      next: (n) => (this.productList = n),
       error: (e) => console.log(e),
       // complete: () => ,
     });
@@ -28,7 +28,7 @@ export class HomeComponent {
 
   getCategoryListByAppearInFront() {
     this.categoryService.getListByAppearInFront(true).subscribe({
-      next: (n) => ((this.categoryList = n), console.log(n)),
+      next: (n) => (this.categoryList = n),
       error: (e) => console.log(e),
       // complete: () => ,
     });

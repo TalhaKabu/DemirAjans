@@ -21,4 +21,14 @@ export class CategoryService {
         })
       );
   }
+
+  getList(): Observable<any> {
+    return this.proxyService
+      .get<any>(this.baseUrl + '/list')
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
 }

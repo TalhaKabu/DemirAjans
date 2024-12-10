@@ -1,0 +1,93 @@
+@import "../../../styles.scss";
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 10px;
+  margin: 0 80px;
+}
+
+.category-list {
+  display: grid;
+  max-width: 300px;
+  border: 1px solid $line-clr;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid ul {
+  list-style: none;
+}
+
+.grid a,
+.grid .dropdown-btn {
+  border: none;
+  padding: 0.3em;
+  text-decoration: none;
+  color: $secondary-text-clr;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.dropdown-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.grid span,
+.grid .dropdown-btn span {
+  flex-grow: 1;
+}
+
+.grid a:hover,
+.grid .dropdown-btn:hover svg {
+  color: $text-clr;
+  fill: $text-clr;
+}
+
+.grid .sub-category {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 300ms ease-in-out;
+
+  > div {
+    overflow: hidden;
+  }
+}
+
+.grid .sub-category.show {
+  grid-template-rows: 1fr;
+}
+
+.dropdown-btn svg {
+  transition: 200ms ease;
+}
+
+.rotate svg:last-child {
+  rotate: 180deg;
+}
+
+.grid .sub-category a {
+  padding-left: 24px;
+}
+
+.grid ul li.active a,
+.grid ul li.active button {
+  color: $text-clr;
+
+  svg {
+    fill: $text-clr;
+  }
+}
+
+.grid svg {
+  flex-shrink: 0;
+  fill: $secondary-text-clr;
+}

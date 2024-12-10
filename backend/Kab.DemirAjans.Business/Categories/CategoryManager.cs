@@ -1,5 +1,6 @@
 ﻿using Kab.DemirAjans.Business.Helper.ImageHelper;
 using Kab.DemirAjans.Business.Mapper;
+using Kab.DemirAjans.Business.SubCategories;
 using Kab.DemirAjans.DataAccess.Categories;
 using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Entities.Categories;
@@ -7,11 +8,29 @@ using System;
 
 namespace Kab.DemirAjans.Business.Categories;
 
-public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
+public class CategoryManager(ICategoryDal categoryDal, ISubCategoryService subCategoryService) : ICategoryService
 {
     private readonly ICategoryDal _categoryDal = categoryDal;
+    private readonly ISubCategoryService _subCategoryService = subCategoryService;
 
-    public async Task<IEnumerable<CategoryDto>> GetListAsync() => await _categoryDal.GetListAsync();
+    public async Task<IEnumerable<CategoryDto>> GetListAsync()
+    {
+        var categoryList = await _categoryDal.GetListAsync();
+
+        List<Task> tasks = [];
+
+        foreach (var categoryDto in categoryList)
+        {
+            tasks.Add(Task.Run(() =>
+            {
+                categoryDto.subCategoryList = _subCategoryService.GetByCategoryIdAsync(categoryDto.Id).Result;
+            }));
+        }
+
+        await Task.WhenAll(tasks);
+
+        return categoryList;
+    }
 
     public async Task<IEnumerable<CategoryDto>> GetListByAppearInFrontAsnc(bool appearInFront)
     {

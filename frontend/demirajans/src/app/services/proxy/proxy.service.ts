@@ -12,7 +12,7 @@ export class ProxyService {
 
   constructor(private http: HttpClient) {}
 
-  get<T>(endpoint: string, params: any, headers: any = null): Observable<T> {
+  get<T>(endpoint: string, params: any = null, headers: any = null): Observable<T> {
     return this.http
       .get<T>(`${this.baseUrl}/${endpoint}`, {
         headers: {

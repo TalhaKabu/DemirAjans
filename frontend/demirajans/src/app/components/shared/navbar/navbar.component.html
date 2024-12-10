@@ -173,6 +173,9 @@
       </button>
       <ul class="sub-menu">
         <div>
+          <li (click)="liOnClick(liProduct, 0)">
+            <a id="0" routerLink="/product">Tüm Kategoriler</a>
+          </li>
           <li
             *ngFor="let category of categoryList"
             (click)="liOnClick(liProduct, category.id)"
