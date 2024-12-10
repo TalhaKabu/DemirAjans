@@ -97,6 +97,14 @@
   }
 }
 
+.category-list ul li.active ul li a {
+  color: $secondary-text-clr;
+}
+
+.category-list ul li.active ul li:hover a {
+  color: $text-clr;
+}
+
 .category-list svg {
   flex-shrink: 0;
   fill: $secondary-text-clr;

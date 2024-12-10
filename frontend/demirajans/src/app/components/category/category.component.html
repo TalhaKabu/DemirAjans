@@ -29,7 +29,9 @@
           <ul class="sub-category">
             <div>
               <li *ngFor="let subCategory of category.subCategoryList">
-                <a routerLink="">- {{ subCategory.name }}</a>
+                <a [routerLink]="['/category', category.id, subCategory.id]">
+                  - {{ subCategory.name }}
+                </a>
               </li>
             </div>
           </ul>
@@ -41,6 +43,8 @@
     <div class="header">
       <span>Kalemler/Kursun kalemler</span>
     </div>
-    <div class="product-list"></div>
+    <div class="product-list">
+      <app-product-list></app-product-list>
+    </div>
   </div>
 </div>

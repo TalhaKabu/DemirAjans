@@ -32,6 +32,11 @@ const routes: Routes = [
     component: CategoryComponent,
   },
   {
+    path: 'category/:id/:sid',
+    pathMatch: 'full',
+    component: CategoryComponent,
+  },
+  {
     path: 'profile',
     pathMatch: 'full',
     component: ProfileComponent,

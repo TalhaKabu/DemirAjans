@@ -4,37 +4,37 @@ import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-  let router = Inject(Router);
-  const token = localStorage.getItem('token');
+  // let router = Inject(Router);
+  // const token = localStorage.getItem('token');
 
-  if (token) {
-    try {
-      let decodedToken = jwtDecode(token);
-      const isExpired =
-        decodedToken && decodedToken.exp
-          ? decodedToken.exp < Date.now() / 1000
-          : false;
+  // if (token) {
+  //   try {
+  //     let decodedToken = jwtDecode(token);
+  //     const isExpired =
+  //       decodedToken && decodedToken.exp
+  //         ? decodedToken.exp < Date.now() / 1000
+  //         : false;
 
-      if (isExpired) {
-        localStorage.removeItem('token');
-        router.navigate['/login'];
-      } else return next(req);
-    } catch (error) {
-      localStorage.removeItem('token');
-      router.navigate['/login'];
-    }
-  } else {
-    if (
-      req.url.includes('Auth/login') ||
-      req.url.includes('Activation/send-activation-code') ||
-      req.url.includes('Activation/verify-activation-code')
-    ) {
-      return next(req);
-    } else {
-      localStorage.removeItem('token');
-      router.navigate['/login'];
-    }
-  }
+  //     if (isExpired) {
+  //       localStorage.removeItem('token');
+  //       router.navigate['/login'];
+  //     } else return next(req);
+  //   } catch (error) {
+  //     localStorage.removeItem('token');
+  //     router.navigate['/login'];
+  //   }
+  // } else {
+  //   if (
+  //     req.url.includes('Auth/login') ||
+  //     req.url.includes('Activation/send-activation-code') ||
+  //     req.url.includes('Activation/verify-activation-code')
+  //   ) {
+  //     return next(req);
+  //   } else {
+  //     localStorage.removeItem('token');
+  //     router.navigate['/login'];
+  //   }
+  // }
 
   return next(req);
 };

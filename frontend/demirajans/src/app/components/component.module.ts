@@ -11,6 +11,7 @@ import { ServiceComponent } from './service/service.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CategoryComponent } from './category/category.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CategoryComponent } from './category/category.component';
     ProfileComponent,
     ShoppingCartComponent,
     CategoryComponent,
+    ProductListComponent,
   ],
   imports: [ComponentRoutingModule, CommonModule, FormsModule],
   exports: [NavbarComponent],
