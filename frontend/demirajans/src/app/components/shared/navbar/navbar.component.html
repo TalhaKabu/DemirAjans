@@ -175,7 +175,7 @@
       <ul class="sub-menu">
         <div>
           <li (click)="liOnClick(liProduct, 0)">
-            <a id="0" routerLink="/category">Tüm Kategoriler</a>
+            <a id="0" [routerLink]="['/category', 0]">Tüm Kategoriler</a>
           </li>
           <li
             *ngFor="let category of categoryList"

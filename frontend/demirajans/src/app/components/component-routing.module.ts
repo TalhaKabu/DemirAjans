@@ -27,7 +27,7 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'category',
+    path: 'category/:id',
     pathMatch: 'full',
     component: CategoryComponent,
   },
