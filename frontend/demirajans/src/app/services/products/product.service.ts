@@ -3,7 +3,7 @@ import { ProxyService } from '../proxy/proxy.service';
 import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
   private baseUrl = 'Product';
@@ -15,6 +15,29 @@ export class ProductService {
       .get<any>(this.baseUrl + '/list-by-appear-in-front', {
         appearInFront: appearInFront,
       })
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
+  getListByCategoryIdAndSubCategoryId(
+    categoryId: number,
+    subCategoryId: number
+  ): Observable<any> {
+    return this.proxyService
+      .get<any>(
+        this.baseUrl + '/list-by-category-id-sub-category-id',
+        subCategoryId === 0
+          ? {
+              categoryId: categoryId,
+            }
+          : {
+              categoryId: categoryId,
+              subCategoryId: subCategoryId,
+            }
+      )
       .pipe(
         catchError((error) => {
           return throwError(() => error);

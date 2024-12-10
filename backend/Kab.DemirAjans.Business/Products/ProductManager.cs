@@ -136,4 +136,28 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
 
         return productList;
     }
+
+    public async Task<IEnumerable<ProductDto>> GetListByCategoryIdAndSubCategoryIdAsync(int categoryId, int? subCategoryId)
+    {
+        var productList = await _productDal.GetListByCategoryIdAndSubCategoryIdAsync(categoryId, subCategoryId) ?? [];
+
+        List<Task<IEnumerable<ColorDto>>> tasks = [];
+
+        foreach (var productDto in productList)
+        {
+            tasks.Add(Task.Run(() => productDto.Colors = _colorService.GetListByProductIdAsync(productDto.Id).Result));
+        }
+
+
+        List<Task<string>> tasks2 = [];
+        foreach (var productDto in productList)
+        {
+            tasks2.Add(Task.Run(() => productDto.Base64 = ImageHelper.GetImage(productDto.ImageName, ImageEnum.Product).Base64));
+        }
+
+        await Task.WhenAll(tasks);
+        await Task.WhenAll(tasks2);
+
+        return productList;
+    }
 }
