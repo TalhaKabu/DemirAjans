@@ -12,25 +12,32 @@ import { CategoryDto } from '../../services/categories/models';
   selector: 'app-product',
   standalone: false,
 
-  templateUrl: './product.component.html',
-  styleUrl: './product.component.scss',
+  templateUrl: './category.component.html',
+  styleUrl: './category.component.scss',
 })
-export class ProductComponent implements OnInit {
+export class CategoryComponent implements OnInit {
+  //#region Props
   categoryList!: CategoryDto[];
 
   @ViewChild('grid') grid!: ElementRef<HTMLDivElement>;
   @ViewChild('category') category!: ElementRef<HTMLDivElement>;
+  //#endregion
 
+  //#region Utils
   getCategoryList() {
     this.categoryService.getList().subscribe({
-      next: (n) => ((this.categoryList = n), console.log(n)),
+      next: (n) => (this.categoryList = n),
       error: (e) => console.log(e),
       // complete: () => ,
     });
   }
+  //#endregion
 
+  //#region Ctor
   constructor(private categoryService: CategoryService) {}
+  //#endregion
 
+  //#region Methods
   ngOnInit(): void {
     this.getCategoryList();
   }
@@ -73,9 +80,10 @@ export class ProductComponent implements OnInit {
     const offset = this.category.nativeElement.offsetTop;
 
     if (window.scrollY > offset) {
-      this.category.nativeElement.style.top = (window.scrollY + 100) + 'px';
+      this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
     } else {
-      this.category.nativeElement.style.top = (window.scrollY + 100) + 'px';
+      this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
     }
   }
+  //#endregion
 }

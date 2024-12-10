@@ -10,7 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { ServiceComponent } from './service/service.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { ProductComponent } from './product/product.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { ProductComponent } from './product/product.component';
     ServiceComponent,
     ProfileComponent,
     ShoppingCartComponent,
-    ProductComponent,
+    CategoryComponent,
   ],
   imports: [ComponentRoutingModule, CommonModule, FormsModule],
   exports: [NavbarComponent],

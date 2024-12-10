@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from '../helpers/guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
-import { ProductComponent } from './product/product.component';
+import { CategoryComponent } from './category/category.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ServiceComponent } from './service/service.component';
@@ -27,9 +27,9 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'product',
+    path: 'category',
     pathMatch: 'full',
-    component: ProductComponent,
+    component: CategoryComponent,
   },
   {
     path: 'profile',
