@@ -2,28 +2,35 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
-  gap: 10px;
+  grid-template-columns: 350px auto;
+  grid-template-rows: 1fr;
+  gap: 2em;
   margin: 0 80px;
 }
 
+//#region Category
 .category-list {
   display: grid;
-  max-width: 300px;
+  grid-template-rows: auto max(1fr);
+  max-width: 350px;
+  min-width: 250px;
+}
+
+.category-list .category-container {
   border: 1px solid $line-clr;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.grid ul {
+.category-list ul {
   list-style: none;
 }
 
-.grid a,
-.grid .dropdown-btn {
+.category-list a,
+.category-list .dropdown-btn {
   border: none;
-  padding: 0.3em;
+  padding: 0.2em;
   text-decoration: none;
   color: $secondary-text-clr;
   display: flex;
@@ -41,18 +48,18 @@
   cursor: pointer;
 }
 
-.grid span,
-.grid .dropdown-btn span {
+.category-list span,
+.category-list .dropdown-btn span {
   flex-grow: 1;
 }
 
-.grid a:hover,
-.grid .dropdown-btn:hover svg {
+.category-list a:hover,
+.category-list .dropdown-btn:hover svg {
   color: $text-clr;
   fill: $text-clr;
 }
 
-.grid .sub-category {
+.category-list .sub-category {
   display: grid;
   grid-template-rows: 0fr;
   transition: 300ms ease-in-out;
@@ -62,8 +69,9 @@
   }
 }
 
-.grid .sub-category.show {
+.category-list .sub-category.show {
   grid-template-rows: 1fr;
+  margin-bottom: 1em;
 }
 
 .dropdown-btn svg {
@@ -74,12 +82,12 @@
   rotate: 180deg;
 }
 
-.grid .sub-category a {
+.category-list .sub-category a {
   padding-left: 24px;
 }
 
-.grid ul li.active a,
-.grid ul li.active button {
+.category-list ul li.active a,
+.category-list ul li.active button {
   color: $text-clr;
 
   svg {
@@ -87,7 +95,20 @@
   }
 }
 
-.grid svg {
+.category-list svg {
   flex-shrink: 0;
   fill: $secondary-text-clr;
 }
+//#endregion
+
+//#region Product
+.product-container {
+  display: grid;
+  grid-template-rows: 40px auto;
+}
+
+.product-container .header {
+  display: flex;
+  align-items: center;
+}
+//#endregion
