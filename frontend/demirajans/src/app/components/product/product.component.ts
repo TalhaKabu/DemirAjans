@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { CategoryService } from '../../services/categories/category.service';
 import { CategoryDto } from '../../services/categories/models';
 
@@ -13,6 +19,7 @@ export class ProductComponent implements OnInit {
   categoryList!: CategoryDto[];
 
   @ViewChild('grid') grid!: ElementRef<HTMLDivElement>;
+  @ViewChild('category') category!: ElementRef<HTMLDivElement>;
 
   getCategoryList() {
     this.categoryService.getList().subscribe({
@@ -41,7 +48,6 @@ export class ProductComponent implements OnInit {
   }
 
   liOnClick(id: number) {
-    console.log(id)
     Array.from(this.grid.nativeElement.getElementsByTagName('li')).forEach(
       (li) => {
         if (li.id === id.toString()) {
@@ -60,5 +66,16 @@ export class ProductComponent implements OnInit {
         ul.previousElementSibling!.classList.remove('rotate');
       }
     );
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const offset = this.category.nativeElement.offsetTop;
+
+    if (window.scrollY > offset) {
+      this.category.nativeElement.style.top = (window.scrollY + 100) + 'px';
+    } else {
+      this.category.nativeElement.style.top = (window.scrollY + 100) + 'px';
+    }
   }
 }

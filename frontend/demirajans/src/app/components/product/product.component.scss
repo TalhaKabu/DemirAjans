@@ -10,6 +10,7 @@
 
 //#region Category
 .category-list {
+  top: 0px;
   display: grid;
   grid-template-rows: auto max(1fr);
   max-width: 350px;
@@ -17,6 +18,7 @@
 }
 
 .category-list .category-container {
+  position: absolute;
   border: 1px solid $line-clr;
   border-radius: 10px;
   padding: 10px;
