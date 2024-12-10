@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { CategoryService } from '../../services/categories/category.service';
 import { CategoryDto } from '../../services/categories/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -34,12 +35,13 @@ export class CategoryComponent implements OnInit {
   //#endregion
 
   //#region Ctor
-  constructor(private categoryService: CategoryService) {}
+  constructor(private router: Router,private categoryService: CategoryService) {}
   //#endregion
 
   //#region Methods
   ngOnInit(): void {
     this.getCategoryList();
+    console.log(this.router.url)
   }
 
   toggleSubMenu(dropdownBtn: HTMLButtonElement) {
