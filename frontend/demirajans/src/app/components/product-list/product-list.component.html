@@ -1,1 +1,24 @@
-<p>product-list works!</p>
+<div class="grid">
+  <div class="product" *ngFor="let product of productList">
+    <div class="left">
+      <img
+        [src]="'data:image/jpeg;base64,' + product.colors[0].base64"
+        alt=""
+      />
+    </div>
+    <div class="right">
+      <div class="box name">
+        <span>{{ product.name.toLocaleUpperCase("tr-TR") }}</span>
+      </div>
+      <div class="box">
+        {{ product.colors[0].name.toLocaleUpperCase("tr-TR") }}
+      </div>
+      <div class="box price">
+        <span>
+          {{ product.price | currency : "TRY" : "symbol-narrow" }}
+        </span>
+      </div>
+      <div class="box">ÜRÜN KODU: {{ product.colors[0].code }}</div>
+    </div>
+  </div>
+</div>

@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
 
   getProductListByAppearInFront() {
     this.productService.getListByAppearInFront(true).subscribe({
-      next: (n) => ((this.productList = n), console.log(this.productList)),
+      next: (n) => (this.productList = n),
       error: (e) => console.log(e),
     });
   }
@@ -27,10 +27,10 @@ export class ProductListComponent implements OnInit {
     this.productService
       .getListByCategoryIdAndSubCategoryId(
         this.selectedCategoryId,
-        this.selectedSubCategoryId 
+        this.selectedSubCategoryId
       )
       .subscribe({
-        next: (n) => ((this.productList = n), console.log(this.productList)),
+        next: (n) => (this.productList = n),
         error: (e) => console.log(e),
       });
   }
@@ -45,8 +45,6 @@ export class ProductListComponent implements OnInit {
       this.selectedCategoryId = parseInt(params['id']);
       this.selectedSubCategoryId =
         params['sid'] !== undefined ? parseInt(params['sid']) : 0;
-      console.log(this.selectedCategoryId);
-      console.log(this.selectedSubCategoryId);
       if (this.selectedCategoryId === 0) this.getProductListByAppearInFront();
       else this.getListByCategoryIdAndSubCategoryId();
     });

@@ -43,10 +43,7 @@ export class NavbarComponent implements OnInit {
   //#endregion
 
   //#region Ctor
-  constructor(
-    private router: Router,
-    private categoryService: CategoryService
-  ) {}
+  constructor(private categoryService: CategoryService) {}
   //#endregion
 
   //#region Methods
