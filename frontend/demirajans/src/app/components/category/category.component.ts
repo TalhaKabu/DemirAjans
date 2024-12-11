@@ -79,19 +79,6 @@ export class CategoryComponent implements OnInit {
     );
   }
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    if (window.innerWidth > 1000) {
-      const offset = this.category.nativeElement.offsetTop;
-
-      if (window.scrollY > offset) {
-        this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
-      } else {
-        this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
-      }
-    }
-  }
-
   getHeader(): string {
     var header = '';
     this.activatedRoute.params.subscribe((params) => {
@@ -126,6 +113,16 @@ export class CategoryComponent implements OnInit {
     });
 
     return header;
+  }
+
+  categoryBtnOnClick() {
+    this.category.nativeElement.classList.toggle('hidden');
+    this.category.nativeElement
+      .getElementsByTagName('button')[0]
+      .classList.toggle('rotate');
+    this.category.nativeElement
+      .getElementsByClassName('category-list')[0]
+      .classList.toggle('hidden');
   }
   //#endregion
 }

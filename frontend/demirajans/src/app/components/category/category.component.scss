@@ -44,20 +44,69 @@
 //#endregion
 
 //#region Category
-.category-list {
-  top: 60px;
+.category-container {
+  position: fixed;
   display: grid;
-  grid-template-rows: auto max(1fr);
-  max-width: 350px;
-  min-width: 250px;
-}
+  grid-template-rows: repeat(auto-fit, minmax(40px, 1fr));
+  right: 0;
+  top: 100px;
+  width: 350px;
+  min-height: 60px;
 
-.category-list .category-container {
-  position: absolute;
   border: 1px solid $line-clr;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: $base-clr;
+
+  overflow: hidden;
+  text-wrap: nowrap;
+
+  transition: 300ms ease-in-out;
+
+  #toggle-btn {
+    display: flex;
+    position: absolute;
+    padding: 0.5em;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 0.5em;
+    background: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      flex-shrink: 0;
+      transition: rotate 150ms ease;
+    }
+  }
+}
+
+.category-container.hidden {
+  width: 60px;
+
+  #toggle-btn.rotate {
+    svg {
+      rotate: 180deg;
+    }
+  }
+}
+
+.category-list.hidden {
+  height: 0px;
+}
+
+.category-container.hidden .toggle-btn {
+  right: -390px;
+}
+
+.category-list {
+  display: grid;
+  margin-top: 40px;
+  grid-template-rows: auto max(1fr);
+  // transition: 300ms ease-in-out;
 }
 
 .category-list ul {
@@ -72,7 +121,7 @@
   color: $secondary-text-clr;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1em;
 }
 
