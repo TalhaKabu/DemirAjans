@@ -6,6 +6,7 @@
     <div class="product-container">
       <div
         class="product"
+        (click)="productOnClick(product.id)"
         *ngFor="let product of getProductsByCategoryId(category.id)"
       >
         <div class="left">

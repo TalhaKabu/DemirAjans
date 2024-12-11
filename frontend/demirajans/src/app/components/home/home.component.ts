@@ -4,6 +4,7 @@ import { CategoryService } from '../../services/categories/category.service';
 import { ProductService } from '../../services/products/product.service';
 import { ProductDto } from '../../services/products/models';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +40,7 @@ export class HomeComponent {
 
   //#region Ctor
   constructor(
+    private router: Router,
     private productService: ProductService,
     private categoryService: CategoryService
   ) {}
@@ -53,6 +55,10 @@ export class HomeComponent {
 
   getProductsByCategoryId(categoryId: number): ProductDto[] {
     return this.productList.filter((x) => x.categoryId === categoryId);
+  }
+
+  productOnClick(productId: number) {
+    this.router.navigate(['product', productId]);
   }
   //#endregion
 }

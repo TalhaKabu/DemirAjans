@@ -8,6 +8,7 @@ import { CategoryComponent } from './category/category.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ServiceComponent } from './service/service.component';
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
     component: CategoryComponent,
   },
   {
+    path: 'product/:id',
+    pathMatch: 'full',
+    component: ProductComponent,
+  },
+  {
     path: 'profile',
     pathMatch: 'full',
     component: ProfileComponent,
@@ -50,6 +56,10 @@ const routes: Routes = [
     path: 'service',
     pathMatch: 'full',
     component: ServiceComponent,
+  },
+  {
+    path: '**',
+    component: HomeComponent,
   },
 ];
 
