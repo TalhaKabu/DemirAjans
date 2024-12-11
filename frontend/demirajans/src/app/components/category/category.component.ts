@@ -124,5 +124,20 @@ export class CategoryComponent implements OnInit {
       .getElementsByClassName('category-list')[0]
       .classList.toggle('hidden');
   }
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    if (!this.category.nativeElement.contains(target)) {
+      this.category.nativeElement.classList.add('hidden');
+      this.category.nativeElement
+        .getElementsByTagName('button')[0]
+        .classList.add('rotate');
+      this.category.nativeElement
+        .getElementsByClassName('category-list')[0]
+        .classList.add('hidden');
+    }
+  }
   //#endregion
 }
