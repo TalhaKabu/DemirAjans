@@ -110,6 +110,7 @@
 
 #sidebar ul {
   list-style: none;
+  height: 100%;
 }
 
 #sidebar > ul > li:first-child {
@@ -221,6 +222,38 @@
 
 #toggle-btn:hover {
   background-color: $hover-clr;
+}
+
+#sidebar .sign {
+  width: 100%;
+  border-radius: 10px;
+  height: 50px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 150ms ease;
+  margin-top: 20px;
+  display: flex;
+  padding: 5px 1em;
+  align-items: center;
+
+  svg {
+    position: relative;
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
+
+#sidebar .sign:hover {
+  transform: scale(1.05);
+}
+
+#sidebar .in {
+  background: $hover-clr;
+  border: 1px solid $hover-clr;
+}
+
+#sidebar .up {
+  border: 1px solid $secondary-text-clr;
 }
 
 @media (max-width: 800px) {
