@@ -41,7 +41,13 @@
   </div>
   <div class="product-container">
     <div class="header">
-      <span>Kalemler/Kursun kalemler</span>
+      <a><span>Kategoriler</span></a>
+      <a>
+        <span>{{ this.getHeader() }}</span>
+      </a>
+      <a>
+        <span>{{ this.getSubHeader() }}</span>
+      </a>
     </div>
     <div class="product-list">
       <app-product-list></app-product-list>

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { CategoryService } from '../../services/categories/category.service';
 import { CategoryDto } from '../../services/categories/models';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -34,7 +35,10 @@ export class CategoryComponent implements OnInit {
   //#endregion
 
   //#region Ctor
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private activatedRoute: ActivatedRoute
+  ) {}
   //#endregion
 
   //#region Methods
@@ -84,6 +88,42 @@ export class CategoryComponent implements OnInit {
     } else {
       this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
     }
+  }
+
+  getHeader(): string {
+    var header = '';
+    this.activatedRoute.params.subscribe((params) => {
+      var categoryId = parseInt(params['id']);
+
+      if (categoryId === 0) header = ' Tüm Kategoriler';
+      else if (categoryId > 0) {
+        var category = this.categoryList.find((x) => x.id === categoryId);
+        header = category!.name;
+      }
+    });
+
+    return header;
+  }
+
+  getSubHeader() {
+    var header = '';
+    this.activatedRoute.params.subscribe((params) => {
+      var categoryId = parseInt(params['id']);
+      var subCategoryId = parseInt(params['sid']);
+
+      if (categoryId === 0) header = 'Öne Çıkanlar';
+      else if (categoryId > 0) {
+        var category = this.categoryList.find((x) => x.id === categoryId);
+        var categoryName = category!.name;
+        if (Number.isNaN(subCategoryId)) header = categoryName;
+        else
+          header = category!.subCategoryList.find(
+            (x) => x.id === subCategoryId
+          )!.name;
+      }
+    });
+
+    return header;
   }
   //#endregion
 }
