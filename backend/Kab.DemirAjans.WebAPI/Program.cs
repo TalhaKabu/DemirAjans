@@ -1,5 +1,6 @@
 using Kab.DemirAjans.Business.DependencyResolver;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -82,6 +83,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseCors("DemirAjans");
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images")),
+    RequestPath = "/Images"
+});
 
 app.MapControllers();
 

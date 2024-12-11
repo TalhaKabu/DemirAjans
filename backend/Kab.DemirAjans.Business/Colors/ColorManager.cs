@@ -2,7 +2,6 @@
 using Kab.DemirAjans.Business.Mapper;
 using Kab.DemirAjans.DataAccess.Colors;
 using Kab.DemirAjans.Domain.Colors;
-using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.Colors;
 
 namespace Kab.DemirAjans.Business.Colors;
@@ -11,25 +10,7 @@ public class ColorManager(IColorDal colorDal) : IColorService
 {
     private readonly IColorDal _colorDal = colorDal;
 
-    public async Task<IEnumerable<ColorDto>> GetListByProductIdAsync(int productId)
-    {
-        var colorList = (await _colorDal.GetListByProductIdAsync(productId)).ToList();
-
-        List<Task> tasks = [];
-
-        foreach (var colorDto in colorList)
-        {
-            tasks.Add(Task.Run(() =>
-            {
-                var image = ImageHelper.GetImage(colorDto.ImageName, ImageEnum.Product);
-                colorList.Find(x => x.ImageName == image.ImageName)!.Base64 = image.Base64;
-            }));
-        }
-
-        await Task.WhenAll(tasks);
-
-        return colorList;
-    }
+    public async Task<IEnumerable<ColorDto>> GetListByProductIdAsync(int productId) => await _colorDal.GetListByProductIdAsync(productId);
 
     public async Task InsertAsync(ColorCreateDto create)
     {

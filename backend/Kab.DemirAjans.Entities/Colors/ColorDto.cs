@@ -10,5 +10,4 @@ public class ColorDto : AggregateRoot
     public int ProductId { get; set; }
     public int Uid { get; set; }
     public Guid ImageName { get; set; }
-    public string Base64 { get; set; }
 }

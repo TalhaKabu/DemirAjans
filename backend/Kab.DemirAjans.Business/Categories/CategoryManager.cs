@@ -32,25 +32,7 @@ public class CategoryManager(ICategoryDal categoryDal, ISubCategoryService subCa
         return categoryList;
     }
 
-    public async Task<IEnumerable<CategoryDto>> GetListByAppearInFrontAsnc(bool appearInFront)
-    {
-        var categoryList = await _categoryDal.GetListByAppearInFrontAsync(appearInFront) ?? [];
-        List<Task<CategoryProductGetImageBase64Dto>> tasks = [];
-
-        foreach (var categoryDto in categoryList)
-        {
-            tasks.Add(Task.Run(() => ImageHelper.GetImage(categoryDto.ImageName, ImageEnum.Category)));
-        }
-
-        var results = await Task.WhenAll(tasks);
-
-        foreach (var task in results)
-        {
-            categoryList.ToList().Find(x => x.ImageName == task.ImageName)!.Base64 = task.Base64;
-        }
-
-        return categoryList;
-    }
+    public async Task<IEnumerable<CategoryDto>> GetListByAppearInFrontAsnc(bool appearInFront) => await _categoryDal.GetListByAppearInFrontAsync(appearInFront);
 
     public async Task<CategoryDto?> GetAsync(int id) => await _categoryDal.GetAsync(id);
 
