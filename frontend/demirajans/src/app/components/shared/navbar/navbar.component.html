@@ -164,7 +164,9 @@
             *ngFor="let category of categoryList"
             (click)="liOnClick(liProduct, category.id)"
           >
-            <a [id]="category.id" [routerLink]="['/category', category.id]">{{ category.name }}</a>
+            <a [id]="category.id" [routerLink]="['/category', category.id]">{{
+              category.name
+            }}</a>
           </li>
         </div>
       </ul>
@@ -231,3 +233,18 @@
     </li>
   </ul>
 </aside>
+<nav #footer id="footer">
+  <div class="footer-container">
+    <div class="copy-right">
+      <span>©{{ year }} <b>Demir Ajans.</b> Tüm hakları saklıdır</span>
+    </div>
+    <div class="maker">
+      <span>
+        Yazılım ve kodlama:
+        <b>
+          <a href="https://www.linkedin.com/in/talhakabu/">&#64;Talha Kabu</a>
+        </b>
+      </span>
+    </div>
+  </div>
+</nav>

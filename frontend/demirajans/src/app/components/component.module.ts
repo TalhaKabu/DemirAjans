@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,9 @@ import { ProductListComponent } from './product-list/product-list.component';
     ShoppingCartComponent,
     CategoryComponent,
     ProductListComponent,
+    FooterComponent,
   ],
   imports: [ComponentRoutingModule, CommonModule, FormsModule],
-  exports: [NavbarComponent],
+  exports: [NavbarComponent, FooterComponent],
 })
 export class ComponentModule {}

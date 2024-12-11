@@ -8,4 +8,13 @@
   .router {
     padding-top: 10px;
   }
+  app-footer {
+    display: flex;
+  }
+}
+
+@media (min-width: 800px) {
+  app-footer {
+    display: none;
+  }
 }

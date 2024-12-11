@@ -19,10 +19,10 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   //#region Props
   categoryList!: CategoryDto[];
-  openMenuIndex: number | null = null;
-  openMenuIndex2: number | null = null;
 
   searchButtonClicked: boolean = false;
+
+  year: number = new Date().getFullYear();
 
   @ViewChild('sidebarBtn') sidebarBtn!: ElementRef<HTMLButtonElement>;
   @ViewChild('sidebar') sidebar!: ElementRef<HTMLDivElement>;
@@ -30,6 +30,8 @@ export class NavbarComponent implements OnInit {
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
   @ViewChild('searchButton') searchButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('searchContainer') searchContainer!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('footer') footer!: ElementRef<HTMLDivElement>;
   //#endregion
 
   //#region Utils
@@ -67,6 +69,7 @@ export class NavbarComponent implements OnInit {
   toogleSidebar() {
     this.sidebar.nativeElement.classList.toggle('close');
     this.sidebarBtn.nativeElement.classList.toggle('rotate');
+    this.footer.nativeElement.classList.toggle('close');
 
     this.closeAllSubMenus();
   }

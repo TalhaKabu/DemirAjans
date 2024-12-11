@@ -1,0 +1,41 @@
+@import "../../../../styles.scss";
+
+#footer {
+  position: relative;
+  display: flex;
+  background-color: $base-clr;
+  border-top: 1px solid $line-clr;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  margin: 0 auto;
+  color: $secondary-text-clr;
+  justify-content: center;
+  align-items: center;
+}
+
+.copy-right,
+.maker {
+  display: flex;
+  line-height: 2em;
+
+  span {
+    b {
+      font-weight: 500;
+      color: $text-clr;
+    }
+
+    a {
+      list-style: none;
+      color: $text-clr;
+      text-decoration: none;
+    }
+  }
+}
