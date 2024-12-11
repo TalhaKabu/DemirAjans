@@ -81,12 +81,14 @@ export class CategoryComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const offset = this.category.nativeElement.offsetTop;
+    if (window.innerWidth > 1000) {
+      const offset = this.category.nativeElement.offsetTop;
 
-    if (window.scrollY > offset) {
-      this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
-    } else {
-      this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
+      if (window.scrollY > offset) {
+        this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
+      } else {
+        this.category.nativeElement.style.top = window.scrollY + 100 + 'px';
+      }
     }
   }
 
