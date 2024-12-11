@@ -64,30 +64,14 @@
 
 @media (max-width: 800px) {
   .grid {
-    gap: 4px;
-  }
-
-  .category-container h3 span {
-    font-size: 20px;
-  }
-
-  .category-container h3,
-  .product-container {
-    margin-bottom: 10px;
-  }
-
-  .category-container {
-    padding: 0 2px;
-  }
-
-  .product-container {
     grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
-    font-size: 12px;
+    justify-content: center;
     gap: 4px;
   }
 
   .product {
-    gap: 5px;
+    gap: 4px;
+    font-size: 12px;
   }
 
   .left {

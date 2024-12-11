@@ -10,7 +10,7 @@ import { CategoryDto } from '../../services/categories/models';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-category',
   standalone: false,
 
   templateUrl: './category.component.html',
