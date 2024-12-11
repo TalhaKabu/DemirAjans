@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/products/product.service';
 import { ProductDto } from '../../services/products/models';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-product-list',
@@ -13,6 +14,7 @@ import { ProductDto } from '../../services/products/models';
 export class ProductListComponent implements OnInit {
   selectedCategoryId: number = 0;
   selectedSubCategoryId: number = 0;
+  apiUrl!: string;
 
   productList!: ProductDto[];
 
@@ -41,6 +43,7 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.apiUrl = environment.apiUrl;
     this.activatedRoute.params.subscribe((params) => {
       this.selectedCategoryId = parseInt(params['id']);
       this.selectedSubCategoryId =

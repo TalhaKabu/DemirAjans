@@ -10,7 +10,12 @@
       >
         <div class="left">
           <img
-            [src]="'data:image/jpeg;base64,' + product.colors[0].base64"
+            [src]="
+              apiUrl +
+              '/Images/Products/' +
+              product.colors[0].imageName +
+              '.jpg'
+            "
             alt=""
           />
         </div>
@@ -23,7 +28,7 @@
           </div>
           <div class="box price">
             <span>
-              {{ product.price | currency:'TRY':'symbol-narrow'}}
+              {{ product.price | currency : "TRY" : "symbol-narrow" }}
             </span>
           </div>
           <div class="box">ÜRÜN KODU: {{ product.colors[0].code }}</div>

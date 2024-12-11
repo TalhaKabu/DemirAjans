@@ -88,7 +88,7 @@ app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
         Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images")),
-    RequestPath = "/Images"
+    RequestPath = "/api/Images"
 });
 
 app.MapControllers();

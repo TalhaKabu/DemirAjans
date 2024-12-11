@@ -1,8 +1,32 @@
 <div class="grid">
   <div class="product" *ngFor="let product of productList">
-    <div class="left">
+    <!-- <div class="left">
       <img
+        
+        alt=""
+      />
+    </div>
+    <div class="right">
+      <div class="box name">
+        <span>dasd</span>
+      </div>
+      <div class="box">asdasdsa</div>
+      <div class="box price">
+        <span>
+          {{ 20 | currency : "TRY" : "symbol-narrow" }}
+        </span>
+      </div>
+      <div class="box">ÜRÜN KODU: urun kodu</div>
+    </div> -->
+    <div class="left">
+      <!-- <img
         [src]="'data:image/jpeg;base64,' + product.colors[0].base64"
+        alt=""
+      /> -->
+      <img
+        [src]="
+          apiUrl + '/Images/Products/' + product.colors[0].imageName + '.jpg'
+        "
         alt=""
       />
     </div>

@@ -3,6 +3,7 @@ import { CategoryDto } from '../../services/categories/models';
 import { CategoryService } from '../../services/categories/category.service';
 import { ProductService } from '../../services/products/product.service';
 import { ProductDto } from '../../services/products/models';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomeComponent {
   //#region Props
   productList!: ProductDto[];
   categoryList!: CategoryDto[];
+  apiUrl!: string;
   //#endregion
 
   //#region Utils
@@ -44,6 +46,7 @@ export class HomeComponent {
 
   //#region Methods
   ngOnInit() {
+    this.apiUrl = environment.apiUrl;
     this.getCategoryListByAppearInFront();
     this.getProductListByAppearInFront();
   }
