@@ -29,7 +29,7 @@
           </div>
           <div class="box price">
             <span>
-              {{ product.price | currency : "TRY" : "symbol-narrow" }}
+              {{ product.price | number:'1.2-2' }} ₺
             </span>
           </div>
           <div class="box">ÜRÜN KODU: {{ product.colors[0].code }}</div>
