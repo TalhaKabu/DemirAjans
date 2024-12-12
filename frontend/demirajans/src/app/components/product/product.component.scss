@@ -25,6 +25,10 @@
   gap: 10px;
 }
 
+.thumbnails-img.active {
+  opacity: 0.5;
+}
+
 .thumbnails img {
   width: 120px;
   height: auto;
@@ -32,10 +36,55 @@
   cursor: pointer;
 }
 
+.main-image {
+  position: relative;
+}
+
 .main-image img {
   width: 100%;
   height: auto;
   border: 1px solid $line-clr;
+  cursor: pointer;
+}
+
+.main-image button {
+  box-sizing: border-box;
+  position: absolute;
+  display: none;
+  z-index: 3;
+  border: none;
+  background: none;
+  width: 32px;
+  height: auto;
+  top: calc(50% - 16px);
+  cursor: pointer;
+  transition: transform 150ms ease;
+
+  svg {
+    fill: $secondary-text-clr;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.main-image:hover button {
+  display: flex;
+}
+
+.main-image button:hover {
+  transform: scale(1.2);
+
+  svg {
+    fill: $text-clr;
+  }
+}
+
+.main-image :first-child {
+  left: 10px;
+}
+
+.main-image :last-child {
+  right: 10px;
 }
 //#endregion
 
@@ -83,6 +132,23 @@
   strong {
     color: $text-clr;
   }
+
+  .color {
+    cursor: pointer;
+  }
+
+  .color:hover {
+    color: $text-clr;
+  }
+
+  .color::after {
+    content: "-";
+    margin: 0 2px;
+  }
+
+  .color:last-child::after {
+    content: "";
+  }
 }
 
 .hr {
@@ -109,6 +175,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 150ms ease;
+  }
+
+  a:hover {
+    transform: scale(1.1);
   }
 }
 //#endregion
