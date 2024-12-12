@@ -22,7 +22,12 @@ public class ProductManager(IProductDal productDal, ISubCategoryService subCateg
 
     public async Task<IEnumerable<ProductDto>> GetListAsync() => await _productDal.GetListAsync();
 
-    public async Task<ProductDto?> GetAsync(int id) => await _productDal.GetAsync(id);
+    public async Task<ProductDto?> GetAsync(int id)
+    {
+        var productDto = await _productDal.GetAsync(id) ?? throw new ArgumentNullException($"{id} data referanslı ürün bulunamadı!");
+        productDto!.Colors = await _colorService.GetListByProductIdAsync(productDto.Id);
+        return productDto;
+    }
 
     public async Task<ProductDto?> GetByCodeAsync(string code) => await _productDal.GetByCodeAsync(code);
 

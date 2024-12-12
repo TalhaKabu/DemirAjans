@@ -29,12 +29,18 @@ public class ProductController(IProductService productService, ISubCategoryServi
     [HttpGet("get")]
     public async Task<IActionResult> GetAsync(int id)
     {
-        var categoryDto = await _productService.GetAsync(id);
-
-        if (categoryDto != null)
-            return Ok(categoryDto);
-        else
+        try
+        {
+            return Ok(await _productService.GetAsync(id));
+        }
+        catch (ArgumentNullException)
+        {
             return NotFound();
+        }
+        catch (Exception)
+        {
+            return Problem();
+        }
     }
 
     [HttpPost("insert")]
