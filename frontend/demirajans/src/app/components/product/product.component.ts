@@ -32,8 +32,7 @@ export class ProductComponent implements OnInit {
         (this.product = n),
         ((this.selectedColor = this.product.colors[0]),
         this.images.push(this.product.imageName, this.selectedColor.imageName),
-        (this.selectedImage = this.images[1]),
-        console.log(this.product))
+        (this.selectedImage = this.images[1]))
       ),
       error: (e) => console.log(e),
     });

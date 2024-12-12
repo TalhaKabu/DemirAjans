@@ -111,7 +111,6 @@
   font-weight: 600;
   letter-spacing: 2px;
   color: $hover-clr;
-  margin-bottom: 10px;
 }
 
 .info-section .note {
@@ -213,6 +212,7 @@
     grid-template-rows: auto auto;
     letter-spacing: unset;
     height: calc(100%);
+    padding: 5px;
 
     h1 {
       font-size: 18px;
@@ -221,7 +221,6 @@
 
     .price {
       font-size: 16px;
-      margin-bottom: 5px;
     }
 
     .note {
@@ -246,6 +245,10 @@
   .thumbnails img {
     width: auto;
     height: 60px;
+  }
+
+  .icons {
+    justify-content: flex-end;
   }
 }
 //#endregion

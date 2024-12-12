@@ -67,12 +67,12 @@
           </button>
           <ul class="sub-category">
             <div>
-              <li>
+              <li (click)="subLiOnClick()">
                 <a [routerLink]="['/category', category.id]">
                   - Tüm {{ category.name }}
                 </a>
-              </li>
-              <li *ngFor="let subCategory of category.subCategoryList">
+              </li >
+              <li (click)="subLiOnClick()" *ngFor="let subCategory of category.subCategoryList">
                 <a [routerLink]="['/category', category.id, subCategory.id]">
                   - {{ subCategory.name }}
                 </a>

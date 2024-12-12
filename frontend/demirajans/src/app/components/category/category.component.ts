@@ -123,6 +123,16 @@ export class CategoryComponent implements OnInit {
       .classList.toggle('hidden');
   }
 
+  subLiOnClick() {
+    this.category.nativeElement.classList.add('hidden');
+    this.category.nativeElement
+      .getElementsByTagName('button')[0]
+      .classList.add('rotate');
+    this.category.nativeElement
+      .getElementsByClassName('category-list')[0]
+      .classList.add('hidden');
+  }
+
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;

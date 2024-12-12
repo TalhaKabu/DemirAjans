@@ -4,7 +4,7 @@
   display: grid;
   gap: 2em;
   margin: 0 40px;
-  align-items: center;
+  min-height: calc(100% - 120px);
 }
 
 //#region Product
@@ -54,6 +54,7 @@
   padding: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   background-color: $base-clr;
+  z-index: 99;
 
   overflow: hidden;
   text-wrap: nowrap;
