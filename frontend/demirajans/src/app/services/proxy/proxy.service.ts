@@ -28,7 +28,7 @@ export class ProxyService {
         params: params,
       })
       .pipe(
-        tap((_) => setTimeout( () => { this.sp.loading(false) }, 3000 )),
+        tap((_) => this.sp.loading(false)),
         catchError((error) => {
           console.error('Error:', error);
           return throwError(() => error);

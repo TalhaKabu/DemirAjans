@@ -1,0 +1,83 @@
+@import "../../../styles.scss";
+
+.product-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px;
+  padding: 20px;
+  justify-self: center;
+}
+
+.image-section {
+  display: grid;
+  grid-template-columns: auto 450px;
+  gap: 10px;
+  align-items: start;
+}
+
+.thumbnails {
+  display: grid;
+  grid-auto-rows: auto;
+  gap: 10px;
+}
+
+.thumbnails img {
+  width: 120px;
+  height: auto;
+  border: 1px solid $line-clr;
+  cursor: pointer;
+}
+
+.main-image img {
+  width: 100%;
+  height: auto;
+  border: 1px solid $line-clr;
+}
+
+/* Info Section */
+.info-section {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 10px;
+}
+
+.info-section h1 {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.info-section .price {
+  font-size: 20px;
+  color: green;
+  margin: 10px 0;
+}
+
+.info-section .note {
+  font-size: 14px;
+  color: red;
+}
+
+.details li {
+  list-style: none;
+  margin: 5px 0;
+}
+
+.share {
+  margin-top: 20px;
+}
+
+.share .icons a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: blue;
+}
+
+@media (max-width: 768px) {
+  .image-section {
+    grid-template-columns: 1fr;
+  }
+
+  .thumbnails {
+    display: none;
+  }
+}

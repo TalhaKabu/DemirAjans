@@ -1,1 +1,86 @@
-<p>product works!</p>
+<div class="product-container">
+  <div class="image-section">
+    <div class="thumbnails">
+      <div class="thumbnails-img">
+        <img
+          [src]="apiUrl + '/Images/Products/' + product.imageName + '.jpg'"
+          alt=""
+        />
+      </div>
+      <div class="thumbnails-img">
+        <img
+          [src]="
+            apiUrl + '/Images/Products/' + selectedColor.imageName + '.jpg'
+          "
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="main-image">
+      <img
+        [src]="apiUrl + '/Images/Products/' + selectedColor.imageName + '.jpg'"
+        alt=""
+      />
+    </div>
+  </div>
+  <div class="info-section">
+    <h1>13360AHS Ahşap Telefon Standı</h1>
+    <p class="price">20.00 ₺</p>
+    <p class="note">Not: Fiyatlarımıza baskı ve KDV dahil değildir.</p>
+    <ul class="details">
+      <li><strong>Stok kodu:</strong> 13360AHS</li>
+      <li><strong>Ebat:</strong> 6x8x2 cm</li>
+      <li><strong>Kategoriler:</strong> Teknoloji Ürünleri</li>
+    </ul>
+    <div class="share">
+      <p>Paylaş:</p>
+      <div class="icons">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div id="container">
+  <div class="product" *ngIf="product">
+    <div class="img-container">
+      <div class="other-img">
+        <img
+          [src]="apiUrl + '/Images/Products/' + product.imageName + '.jpg'"
+          alt=""
+        />
+        <img
+          [src]="
+            apiUrl + '/Images/Products/' + selectedColor.imageName + '.jpg'
+          "
+          alt=""
+        />
+      </div>
+      <div class="base-img">
+        <img
+          [src]="
+            apiUrl + '/Images/Products/' + selectedColor.imageName + '.jpg'
+          "
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="information-container">
+      <div class="header">
+        <span>{{ selectedColor.header }}</span>
+      </div>
+      <div class="price">
+        <span>{{ product.price | currency : "TRY" : "symbol-narrow"}}</span>
+      </div>
+      <div class="vat">
+        <span>Not: Fiyatlarımıza baskı ve KDV <b>dahil değildir.</b></span>
+      </div>
+      <div class="code">
+        <span>{{ selectedColor.code }}</span>
+      </div>
+      <div class="color">renk</div>
+    </div>
+  </div>
+</div> -->
