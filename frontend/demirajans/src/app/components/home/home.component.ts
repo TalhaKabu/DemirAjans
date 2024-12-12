@@ -23,11 +23,10 @@ export class HomeComponent {
 
   //#region Utils
   getProductListByAppearInFront() {
- 
     this.productService.getListByAppearInFront(true).subscribe({
       next: (n) => (this.productList = n),
       error: (e) => console.log(e),
-      // complete: () => 
+      // complete: () =>
     });
   }
 
@@ -60,7 +59,14 @@ export class HomeComponent {
   }
 
   productOnClick(productId: number) {
-    this.router.navigate(['product', productId]);
+    this.router.navigate(['product', productId], {
+      queryParams: {
+        categoryDto: this.categoryList.find(
+          (x) =>
+            x.id == this.productList.find((x) => x.id === productId)!.categoryId
+        )!.name,
+      },
+    });
   }
   //#endregion
 }

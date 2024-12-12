@@ -8,6 +8,7 @@
   justify-self: center;
 }
 
+//#region image
 .image-section {
   display: grid;
   grid-template-columns: auto 450px;
@@ -33,37 +34,78 @@
   height: auto;
   border: 1px solid $line-clr;
 }
+//#endregion
 
-/* Info Section */
+//#region Info
 .info-section {
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto auto auto auto auto 1fr;
   gap: 10px;
+  letter-spacing: 1px;
 }
 
 .info-section h1 {
-  font-size: 24px;
-  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 600;
+  color: $text-clr;
+  line-height: 2em;
+  justify-self: flex-start;
+  align-self: flex-start;
 }
 
 .info-section .price {
-  font-size: 20px;
-  color: green;
-  margin: 10px 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: $hover-clr;
+  margin-bottom: 10px;
 }
 
 .info-section .note {
   font-size: 14px;
+  font-weight: 500;
+  color: $text-clr;
+}
+
+.note span {
   color: red;
 }
 
 .details li {
   list-style: none;
-  margin: 5px 0;
+  font-size: 14px;
+
+  color: $secondary-text-clr;
+  strong {
+    color: $text-clr;
+  }
+}
+
+.hr {
+  border-top: 1px solid $line-clr;
+  height: 1px;
+  margin: 10px 0;
+}
+
+.description {
+  color: $secondary-text-clr;
+  font-size: 14px;
+
+  ul {
+    list-style: none;
+    line-height: 1.2em;
+  }
 }
 
 .share {
-  margin-top: 20px;
+  margin-top: auto;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+
+  p {
+    margin-right: 20x;
+  }
 }
 
 .share .icons a {
@@ -71,13 +113,70 @@
   text-decoration: none;
   color: blue;
 }
+//#endregion
 
-@media (max-width: 768px) {
-  .image-section {
-    grid-template-columns: 1fr;
+//#region Mobile
+@media (max-width: 1200px) {
+  .product-container {
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
   }
 
-  .thumbnails {
-    display: none;
+  .image-section {
+    grid-template-columns: auto 350px;
+    justify-content: center;
+
+    .main-image img {
+      width: auto;
+      height: 350px;
+    }
+
+    .thumbnails img {
+      width: auto;
+      height: 80px;
+    }
   }
 }
+
+@media (max-width: 800px) {
+  .product-container {
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
+    letter-spacing: unset;
+    height: calc(100%);
+
+    h1 {
+      font-size: 18px;
+      line-height: 1.1em;
+    }
+
+    .price {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .note {
+      font-size: 12px;
+    }
+
+    .hr {
+      margin: 5px 0;
+    }
+  }
+
+  .image-section {
+    grid-template-columns: auto 250px;
+    justify-content: center;
+
+    .main-image img {
+      width: auto;
+      height: 250px;
+    }
+  }
+
+  .thumbnails img {
+    width: auto;
+    height: 60px;
+  }
+}
+//#endregion

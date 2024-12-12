@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ColorDto, ProductDto } from '../../services/products/models';
 import { environment } from '../../../environments/environment';
 import { ProductService } from '../../services/products/product.service';
+import { CategoryDto } from '../../services/categories/models';
 
 @Component({
   selector: 'app-product',
@@ -17,6 +18,7 @@ export class ProductComponent implements OnInit {
   product!: ProductDto;
   selectedColor!: ColorDto;
   apiUrl!: string;
+  categoryName!: string;
   //#endregion
 
   //#region Utils
@@ -25,7 +27,7 @@ export class ProductComponent implements OnInit {
       next: (n) => (
         (this.product = n),
         ((this.selectedColor = this.product.colors[0]),
-        console.log(this.selectedColor))
+        console.log(this.product))
       ),
       error: (e) => console.log(e),
     });
@@ -45,6 +47,10 @@ export class ProductComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.productId = parseInt(params['id']);
       this.get();
+    });
+
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      this.categoryName = params.get('categoryDto') + '';
     });
   }
   //#endregion
