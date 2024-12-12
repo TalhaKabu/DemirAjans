@@ -133,16 +133,17 @@ export class NavbarComponent implements OnInit {
     Array.from(
       this.sidebar.nativeElement.getElementsByClassName('active')
     ).forEach((li) => {
-      if (li.getElementsByTagName('span')[0].innerHTML === 'Kategoriler') {
-        if (id !== undefined)
-          Array.from(link.getElementsByTagName('li')).forEach((li) => {
-            if (li.firstElementChild!.id === id!.toString()) {
-              li.classList.add('active');
-            } else {
-              li.classList.remove('active');
-            }
-          });
-      } else li.classList.remove('active');
+      if (li.getElementsByTagName('span')[0] !== undefined)
+        if (li.getElementsByTagName('span')[0].innerHTML === 'Kategoriler') {
+          if (id !== undefined)
+            Array.from(link.getElementsByTagName('li')).forEach((li) => {
+              if (li.firstElementChild!.id === id!.toString()) {
+                li.classList.add('active');
+              } else {
+                li.classList.remove('active');
+              }
+            });
+        } else li.classList.remove('active');
     });
 
     Array.from(

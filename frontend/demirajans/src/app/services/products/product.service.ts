@@ -10,6 +10,18 @@ export class ProductService {
 
   constructor(private proxyService: ProxyService) {}
 
+  get(id: number): Observable<any> {
+    return this.proxyService
+      .get<any>(this.baseUrl + '/get', {
+        Id: id,
+      })
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
   getListByAppearInFront(appearInFront: boolean): Observable<any> {
     return this.proxyService
       .get<any>(this.baseUrl + '/list-by-appear-in-front', {

@@ -32,15 +32,11 @@
   color: $secondary-text-clr;
 }
 
-.header a:after {
-  content: "/";
+.slash {
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.header :last-child:after {
-  content: "";
-}
 //#endregion
 
 //#region Category
@@ -132,6 +128,12 @@
   border: none;
   font: inherit;
   cursor: pointer;
+}
+
+.dropdown-btn.rotate {
+  svg {
+    rotate: 180deg;
+  }
 }
 
 .category-list span,

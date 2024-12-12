@@ -103,9 +103,7 @@ export class CategoryComponent implements OnInit {
       if (categoryId === 0) header = 'Öne Çıkanlar';
       else if (categoryId > 0) {
         var category = this.categoryList.find((x) => x.id === categoryId);
-        var categoryName = category!.name;
-        if (Number.isNaN(subCategoryId)) header = categoryName;
-        else
+        if (!Number.isNaN(subCategoryId))
           header = category!.subCategoryList.find(
             (x) => x.id === subCategoryId
           )!.name;
@@ -129,15 +127,16 @@ export class CategoryComponent implements OnInit {
   handleDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
 
-    if (!this.category.nativeElement.contains(target)) {
-      this.category.nativeElement.classList.add('hidden');
-      this.category.nativeElement
-        .getElementsByTagName('button')[0]
-        .classList.add('rotate');
-      this.category.nativeElement
-        .getElementsByClassName('category-list')[0]
-        .classList.add('hidden');
-    }
+    if (this.category !== undefined)
+      if (!this.category.nativeElement.contains(target)) {
+        this.category.nativeElement.classList.add('hidden');
+        this.category.nativeElement
+          .getElementsByTagName('button')[0]
+          .classList.add('rotate');
+        this.category.nativeElement
+          .getElementsByClassName('category-list')[0]
+          .classList.add('hidden');
+      }
   }
   //#endregion
 }

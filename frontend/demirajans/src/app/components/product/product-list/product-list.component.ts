@@ -12,12 +12,15 @@ import { environment } from '../../../../environments/environment';
   styleUrl: './product-list.component.scss',
 })
 export class ProductListComponent implements OnInit {
+  //#region Fields
   selectedCategoryId: number = 0;
   selectedSubCategoryId: number = 0;
   apiUrl!: string;
 
   productList!: ProductDto[];
+  //#endregion
 
+  //#region Utils
   getProductListByAppearInFront() {
     this.productService.getListByAppearInFront(true).subscribe({
       next: (n) => (this.productList = n),
@@ -36,12 +39,16 @@ export class ProductListComponent implements OnInit {
         error: (e) => console.log(e),
       });
   }
+  //#endregion
 
+  //#region Ctor
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService
   ) {}
+  //#endregion
 
+  //#region Methods
   ngOnInit(): void {
     this.apiUrl = environment.apiUrl;
     this.activatedRoute.params.subscribe((params) => {
@@ -52,4 +59,5 @@ export class ProductListComponent implements OnInit {
       else this.getListByCategoryIdAndSubCategoryId();
     });
   }
+  //#endregion
 }
