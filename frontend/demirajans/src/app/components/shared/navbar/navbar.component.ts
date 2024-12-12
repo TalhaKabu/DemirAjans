@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild('searchContainer') searchContainer!: ElementRef<HTMLDivElement>;
 
   @ViewChild('footer') footer!: ElementRef<HTMLDivElement>;
+  @ViewChild('navbar') navbar!: ElementRef<HTMLDivElement>;
   //#endregion
 
   //#region Utils
@@ -63,6 +64,8 @@ export class NavbarComponent implements OnInit {
     if (this.sidebar.nativeElement.classList.contains('close')) {
       this.sidebar.nativeElement.classList.toggle('close');
       this.sidebarBtn.nativeElement.classList.toggle('rotate');
+      this.footer.nativeElement.classList.toggle('close');
+      this.navbar.nativeElement.classList.toggle('close');
     }
   }
 
@@ -70,6 +73,7 @@ export class NavbarComponent implements OnInit {
     this.sidebar.nativeElement.classList.toggle('close');
     this.sidebarBtn.nativeElement.classList.toggle('rotate');
     this.footer.nativeElement.classList.toggle('close');
+    this.navbar.nativeElement.classList.toggle('close');
 
     this.closeAllSubMenus();
   }
