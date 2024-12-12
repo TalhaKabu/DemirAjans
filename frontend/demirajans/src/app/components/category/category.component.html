@@ -11,7 +11,7 @@
       </a>
     </div>
     <div class="product-list">
-      <app-product-list></app-product-list>
+      <app-product-list [categoryList]="categoryList"></app-product-list>
     </div>
   </div>
   <div #category class="category-container" *ngIf="categoryList">
