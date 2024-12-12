@@ -14,6 +14,7 @@ import { CategoryComponent } from './category/category.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
+import { SpinningBarComponent } from './shared/spinning-bar/spinning-bar.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,10 @@ import { ProductComponent } from './product/product.component';
     CategoryComponent,
     FooterComponent,
     ProductListComponent,
-    ProductComponent
+    ProductComponent,
+    SpinningBarComponent
   ],
   imports: [ComponentRoutingModule, CommonModule, FormsModule],
-  exports: [NavbarComponent, FooterComponent],
+  exports: [NavbarComponent, FooterComponent, SpinningBarComponent],
 })
 export class ComponentModule {}

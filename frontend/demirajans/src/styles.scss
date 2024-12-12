@@ -20,6 +20,11 @@ $secondary-text-clr: #a09e9e;
   padding: 0;
 }
 
+body.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
 html {
   font-family: Poppins, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5rem;

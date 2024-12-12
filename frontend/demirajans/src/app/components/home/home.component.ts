@@ -18,14 +18,16 @@ export class HomeComponent {
   productList!: ProductDto[];
   categoryList!: CategoryDto[];
   apiUrl!: string;
+
   //#endregion
 
   //#region Utils
   getProductListByAppearInFront() {
+ 
     this.productService.getListByAppearInFront(true).subscribe({
       next: (n) => (this.productList = n),
       error: (e) => console.log(e),
-      // complete: () => ,
+      // complete: () => 
     });
   }
 

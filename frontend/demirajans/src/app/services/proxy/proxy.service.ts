@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { SpinningBarService } from '../../helpers/services/spinning-bar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +11,14 @@ export class ProxyService {
   private baseUrl = environment.apiUrl;
   private token = localStorage.getItem('token');
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private sp: SpinningBarService) {}
 
-  get<T>(endpoint: string, params: any = null, headers: any = null): Observable<T> {
+  get<T>(
+    endpoint: string,
+    params: any = null,
+    headers: any = null
+  ): Observable<T> {
+    this.sp.loading(true);
     return this.http
       .get<T>(`${this.baseUrl}/${endpoint}`, {
         headers: {
@@ -22,6 +28,7 @@ export class ProxyService {
         params: params,
       })
       .pipe(
+        tap((_) => setTimeout( () => { this.sp.loading(false) }, 3000 )),
         catchError((error) => {
           console.error('Error:', error);
           return throwError(() => error);
@@ -29,7 +36,12 @@ export class ProxyService {
       );
   }
 
-  post<T>(endpoint: string, body: any = null, params: any = null): Observable<T> {
+  post<T>(
+    endpoint: string,
+    body: any = null,
+    params: any = null
+  ): Observable<T> {
+    this.sp.loading(true);
     return this.http
       .post<T>(`${this.baseUrl}/${endpoint}`, body, {
         headers: {
@@ -39,6 +51,7 @@ export class ProxyService {
         params: params,
       })
       .pipe(
+        tap((_) => this.sp.loading(false)),
         catchError((error) => {
           console.error('Error:', error);
           return throwError(() => error);
