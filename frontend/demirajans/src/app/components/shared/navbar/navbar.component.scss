@@ -258,14 +258,14 @@
     top: unset;
     bottom: 0;
 
-    > ul {
+    ul {
       padding: 0;
       display: grid;
       grid-auto-columns: 20%;
-      height: auto;
       grid-auto-flow: column;
       align-items: center;
       overflow-x: auto;
+      height: unset;
     }
 
     ul li {
@@ -294,10 +294,11 @@
       box-sizing: border-box;
       height: 60px;
       width: 100%;
-      background-color: $hover-clr;
+      background-color: $base-clr;
       border-top: 1px solid $line-clr;
       display: flex;
       justify-content: center;
+      overflow-y: hidden;
 
       > div {
         overflow-x: auto;
@@ -310,6 +311,33 @@
         padding: 1em;
         width: auto;
         justify-content: center;
+      }
+    }
+
+    a:hover,
+    .dropdown-btn:hover {
+      background-color: $base-clr;
+    }
+
+    ul li.active a:hover,
+    ul li.active-dropdown button:hover {
+      color: $accent-clr;
+
+      svg {
+        fill: none;
+        stroke: $accent-clr;
+        stroke-width: 2;
+      }
+    }
+
+    ul li.active a,
+    ul li.active-dropdown button {
+      color: $text-clr;
+
+      svg {
+        fill: none;
+        stroke: $accent-clr;
+        stroke-width: 2;
       }
     }
   }
@@ -369,7 +397,7 @@
 //#endregion
 
 @media (max-width: 800px) {
-  #navbar { 
+  #navbar {
     width: 100%;
 
     .search-container.active #search-input {
@@ -377,9 +405,6 @@
     }
   }
 
-  #sidebar ul {
-    height: unset;
-  }
   #footer {
     display: none;
   }

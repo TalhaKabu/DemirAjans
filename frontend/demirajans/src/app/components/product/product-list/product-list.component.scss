@@ -48,8 +48,13 @@
 .box {
   display: flex;
   flex: 1; /* Make all boxes equal in height */
-  text-wrap: nowrap;
+  text-wrap: wrap;
+  margin: 0 5px;
   justify-content: center;
+
+  span {
+    text-align: center;
+  }
 }
 
 .name {
