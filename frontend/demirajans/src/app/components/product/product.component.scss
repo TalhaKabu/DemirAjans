@@ -2,7 +2,7 @@
 
 .product-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 600px;
 
   gap: 20px;
   padding: 20px;
@@ -211,7 +211,6 @@
     grid-template-columns: none;
     grid-template-rows: 250px auto;
     letter-spacing: unset;
-    height: calc(100%);
     padding: 5px;
 
     h1 {
@@ -239,6 +238,23 @@
     .main-image img {
       width: auto;
       height: 250px;
+    }
+
+    .main-image button {
+      display: flex;
+      width: 24px;
+      height: auto;
+      top: calc(50% - 12px);
+
+      svg {
+        fill: $secondary-text-clr;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .main-image button:hover {
+      transform: unset;
     }
   }
 
