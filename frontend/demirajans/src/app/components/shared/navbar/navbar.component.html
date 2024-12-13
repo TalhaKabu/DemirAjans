@@ -121,7 +121,7 @@
         <span>Hizmetler</span>
       </a>
     </li>
-    <li #liProduct (click)="liDropdownOnClick(liProduct)">
+    <li #liProduct (click)="liOnClick(liProduct)" class="dropdown">
       <button
         #dropdownBtn
         (click)="toggleSubMenu(dropdownBtn)"
@@ -160,12 +160,12 @@
       </button>
       <ul class="sub-menu">
         <div>
-          <li (click)="liOnClick(liProduct, 0)">
+          <li (click)="liDropdownOnClick(0)">
             <a id="0" [routerLink]="['/category', 0]">Tüm Kategoriler</a>
           </li>
           <li
             *ngFor="let category of categoryList"
-            (click)="liOnClick(liProduct, category.id)"
+            (click)="liDropdownOnClick(category.id)"
           >
             <a [id]="category.id" [routerLink]="['/category', category.id]">{{
               category.name

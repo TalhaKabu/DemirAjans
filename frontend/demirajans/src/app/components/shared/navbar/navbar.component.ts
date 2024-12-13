@@ -102,11 +102,17 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  liOnClick(link: HTMLLIElement, id?: number) {
+  liOnClick(link: HTMLLIElement) {
     Array.from(
       this.sidebar.nativeElement.getElementsByClassName('active')
     ).forEach((li) => {
-      li.classList.remove('active');
+      if (li.getElementsByTagName('a')[0].id === '')
+        li.classList.remove('active');
+      else {
+        if (link.getElementsByTagName('a')[0].id === '') {
+          li.classList.remove('active');
+        }
+      }
     });
 
     Array.from(
@@ -115,33 +121,29 @@ export class NavbarComponent implements OnInit {
       li.classList.remove('active-dropdown');
     });
 
-    if (link.getElementsByTagName('span')[0].innerHTML === 'Kategoriler') {
-      if (id !== undefined)
-        Array.from(link.getElementsByTagName('li')).forEach((li) => {
-          if (li.firstElementChild!.id === id!.toString()) {
-            li.classList.add('active');
-          } else {
-            li.classList.remove('active');
-          }
-        });
+    if (link.classList.contains('dropdown')) {
+      link.classList.add('active-dropdown');
     } else {
       link.classList.add('active');
+      Array.from(
+        this.sidebar.nativeElement.getElementsByClassName('sub-menu')
+      ).forEach((ul) => {
+        ul.classList.remove('show');
+        ul.previousElementSibling!.classList.remove('rotate');
+      });
     }
-
-    Array.from(this.sidebar.nativeElement.getElementsByClassName('sub-menu')).forEach((ul) => {
-      var a = Array.from(ul.getElementsByClassName('active'));
-      if (a.length === 0) ul.classList.remove('show');
-    });
   }
 
-  liDropdownOnClick(link: HTMLLIElement) {
+  liDropdownOnClick(id: number) {
     Array.from(
-      this.sidebar.nativeElement.getElementsByClassName('active-dropdown')
-    ).forEach((li) => {
-      li.classList.remove('active-dropdown');
+      this.sidebar.nativeElement.getElementsByClassName('sub-menu')
+    ).forEach((ul) => {
+      Array.from(ul.getElementsByTagName('li')).forEach((li) => {
+        if (parseInt(li.getElementsByTagName('a')[0].id) === id)
+          li.classList.add('active');
+        else li.classList.remove('active');
+      });
     });
-
-    link.classList.add('active-dropdown');
   }
 
   @HostListener('document:click', ['$event'])
