@@ -1,0 +1,91 @@
+@import "../../../styles.scss";
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(200px, 600px));
+  justify-content: center;
+  margin: 0 40px;
+}
+
+.profile {
+  display: grid;
+  grid-auto-rows: auto;
+  border: 1px solid $line-clr;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+  span {
+    margin-bottom: 10px;
+    font-size: 20px;
+    justify-self: center;
+  }
+}
+
+.input-container {
+  width: 100%;
+  padding: 10px 10px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-group .input {
+  width: 100%;
+  padding: 0.75rem 0.75rem;
+  border: 1px solid $secondary-text-clr;
+  border-radius: 0.5rem !important;
+  background: transparent;
+  outline: none;
+  color: $secondary-text-clr;
+}
+
+.input-group .input:focus {
+  border-color: $text-clr;
+  color: $text-clr;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+  transition: all 0.2s ease-in-out;
+  background: transparent; /* To ensure it doesn't overlap */
+  padding: 0 0.2rem;
+  pointer-events: none;
+  color: $secondary-text-clr;
+}
+
+.input-group .input:focus + label,
+.input-group .input:not(:placeholder-shown) + label {
+  top: -0.75rem;
+  left: 0.5rem;
+  font-size: 0.85rem;
+  color: $text-clr;
+}
+
+.password .input-group svg {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 10px);
+  fill: none;
+  stroke: $secondary-text-clr;
+  cursor: pointer;
+}
+
+.password .input-group svg:hover {
+  stroke: $text-clr;
+}
+
+.password .input-group svg.open {
+  display: none;
+}
+
+.show-password {
+  -webkit-text-security: none !important;
+}
