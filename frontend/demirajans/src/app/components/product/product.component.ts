@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ColorDto, ProductDto } from '../../services/products/models';
 import { environment } from '../../../environments/environment';
 import { ProductService } from '../../services/products/product.service';
-import { CategoryDto } from '../../services/categories/models';
 
 @Component({
   selector: 'app-product',
@@ -91,6 +90,10 @@ export class ProductComponent implements OnInit {
     imgs.push(this.selectedColor.imageName);
     this.images = imgs;
     this.selectedImage = this.selectedColor.imageName;
+  }
+
+  addToCart() {
+    this.selectedColor.addedToCart = true;
   }
   //#endregion
 }

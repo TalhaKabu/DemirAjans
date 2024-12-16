@@ -1,5 +1,9 @@
 <div class="grid">
-  <div class="product" *ngFor="let product of productList" (click)="productOnClick(product.id)">
+  <div
+    class="product"
+    *ngFor="let product of productList"
+    (click)="productOnClick(product.id)"
+  >
     <div class="left">
       <img
         [src]="
@@ -16,11 +20,10 @@
         {{ product.colors[0].name.toLocaleUpperCase("tr-TR") }}
       </div>
       <div class="box price">
-        <span>
-          {{ product.price | number:'1.2-2' }} ₺
-        </span>
+        <span> {{ product.price | number : "1.2-2" }} ₺ </span>
       </div>
       <div class="box">ÜRÜN KODU: {{ product.colors[0].code }}</div>
     </div>
+    
   </div>
 </div>

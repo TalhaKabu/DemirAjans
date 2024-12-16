@@ -53,11 +53,11 @@ app-root {
   width: 24px;
   top: calc(50% - 12px);
   fill: $secondary-text-clr;
-  stroke: $secondary-text-clr;  
+  stroke: $secondary-text-clr;
   cursor: pointer;
 }
 
-.input-group svg:last-child  {
+.input-group svg:last-child {
   right: 14px;
 }
 
@@ -95,35 +95,5 @@ input:focus {
   left: 0.5rem;
   font-size: 0.85rem;
   color: $text-clr;
-}
-//#endregion
-
-//#region Button
-button.primary {
-  width: 100%;
-  height: 50px;
-  border: 1px solid $line-clr;
-  border-radius: 10px;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-button.primary:hover {
-  border-color: $hover-clr;
-  background-color: $accent-clr;
-}
-
-button.secondary {
-  width: 100%;
-  height: 50px;
-  border: 1px solid $line-clr;
-  border-radius: 10px;
-  background-color: $accent-clr;
-  cursor: pointer;
-}
-
-button.secondary:hover {
-  border-color: $line-clr;
-  background-color: $accent-clr;
 }
 //#endregion

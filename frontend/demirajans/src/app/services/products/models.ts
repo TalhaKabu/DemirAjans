@@ -25,4 +25,5 @@ export interface ColorDto {
   productId: number;
   uid: number;
   imageName: string;
+  addedToCart: boolean;
 }

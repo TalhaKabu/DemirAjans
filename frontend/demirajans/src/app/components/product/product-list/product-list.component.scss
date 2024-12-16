@@ -11,6 +11,7 @@
 
 .product {
   display: grid;
+  position: relative;
   grid-template-rows: 1fr 0.1fr;
   gap: 1em;
   padding: 10px 0;
@@ -29,7 +30,7 @@
 
 .left {
   display: flex;
-  background-color: white; /* Example color */
+  background-color: white; 
   justify-content: center;
 
   img {
@@ -41,13 +42,13 @@
 
 .right {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  gap: 5px; /* Space between stacked items */
+  flex-direction: column; 
+  gap: 5px; 
 }
 
 .box {
   display: flex;
-  flex: 1; /* Make all boxes equal in height */
+  flex: 1; 
   text-wrap: wrap;
   margin: 0 5px;
   justify-content: center;
