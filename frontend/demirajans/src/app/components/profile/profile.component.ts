@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user/user.service';
+import { TokenHelperService } from '../../helpers/services/token-helper.service';
+import { Router } from '@angular/router';
+import { UserDto } from '../../services/user/models';
 
 @Component({
   selector: 'app-profile',
@@ -9,6 +13,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   passwordVisible: boolean = false;
+  userDto!: UserDto;
 
-  ngOnInit(): void {}
+  get(id: number) {
+    this.userService.get(id).subscribe({
+      next: (n) => ((this.userDto = n), console.log(this.userDto)),
+      error: (e) => console.log(e),
+    });
+  }
+
+  constructor(
+    private userService: UserService,
+    private tokenHelperService: TokenHelperService
+  ) {}
+
+  ngOnInit(): void {
+    var id = this.tokenHelperService.getToken();
+    console.log(id);
+
+    if (id > 0) {
+      this.get(id);
+    } else {
+    }
+  }
 }

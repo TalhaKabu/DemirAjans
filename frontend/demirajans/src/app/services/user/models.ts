@@ -6,3 +6,15 @@ export interface UserCreateDto {
   name: string;
   lastName: string;
 }
+
+export interface UserDto {
+  id: number;
+  username: string;
+  password: string;
+  email: string;
+  isAdmin: boolean;
+  name: string;
+  lastName: string;
+  creationDate: Date;
+  lastModificationDate: Date;
+}
