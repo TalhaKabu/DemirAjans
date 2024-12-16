@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-$base-clr: #FAFAFA;//#EDEDED; //tamam
-$line-clr: #ECECEC;
-$hover-clr: #FFC048;
-$text-clr: #2D2D2D;
-$accent-clr: #FFC048;
+$base-clr: #fafafa; //#EDEDED; //tamam
+$line-clr: #ececec;
+$hover-clr: #ffc048;
+$text-clr: #2d2d2d;
+$accent-clr: #ffc048;
 $secondary-text-clr: #a09e9e;
+$shadow-clr: #0000001a;
 
 * {
   box-sizing: border-box;
@@ -41,4 +42,88 @@ app-root {
   display: flex;
 }
 
+//#region Input
+.input-group {
+  position: relative;
+}
 
+.input-group svg {
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  top: calc(50% - 12px);
+  fill: $secondary-text-clr;
+  stroke: $secondary-text-clr;  
+  cursor: pointer;
+}
+
+.input-group svg:last-child  {
+  right: 14px;
+}
+
+input {
+  height: 50px;
+  width: 100%;
+  border: 1px solid $line-clr;
+  background-color: transparent;
+  box-shadow: 0px 4px 10px $shadow-clr;
+  border-radius: 0.5rem;
+  padding: 5px 38px 5px 14px;
+  outline: none;
+}
+
+input:focus {
+  border-color: $hover-clr;
+  color: $text-clr;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+  transition: all 0.2s ease-in-out;
+  background: transparent; /* To ensure it doesn't overlap */
+  padding: 0 0.2rem;
+  pointer-events: none;
+  color: $secondary-text-clr;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -0.75rem;
+  left: 0.5rem;
+  font-size: 0.85rem;
+  color: $text-clr;
+}
+//#endregion
+
+//#region Button
+button.primary {
+  width: 100%;
+  height: 50px;
+  border: 1px solid $line-clr;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button.primary:hover {
+  border-color: $hover-clr;
+  background-color: $accent-clr;
+}
+
+button.secondary {
+  width: 100%;
+  height: 50px;
+  border: 1px solid $line-clr;
+  border-radius: 10px;
+  background-color: $accent-clr;
+  cursor: pointer;
+}
+
+button.secondary:hover {
+  border-color: $line-clr;
+  background-color: $accent-clr;
+}
+//#endregion
