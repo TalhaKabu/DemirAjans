@@ -271,10 +271,11 @@
 
 @media (max-width: 800px) {
   .product-container {
-    grid-template-columns: unset;
+    grid-template-columns: calc(100vw - 20px);
     grid-template-rows: 250px auto;
     letter-spacing: unset;
-    padding: 5px;
+    padding: 10px;
+    width: 100vw;
 
     h1 {
       font-size: 18px;
@@ -307,6 +308,11 @@
   .image-section {
     grid-template-columns: auto 250px;
     justify-content: center;
+    width: 100%;
+
+    .main-image {
+      max-height: 250px;
+    }
 
     .main-image img {
       width: auto;
@@ -338,7 +344,7 @@
 
   .info-section {
     grid-template-rows: auto auto 20px 10px auto;
-
+    
     .details {
       li.last:last-child {
         position: relative;
