@@ -5,7 +5,7 @@ BEGIN
 	SELECT
 		 Id
 		,UserId
-		,ProductId
+		,ColorId
 		,Quantity
 		,CreationDate
 		,LastModificationDate

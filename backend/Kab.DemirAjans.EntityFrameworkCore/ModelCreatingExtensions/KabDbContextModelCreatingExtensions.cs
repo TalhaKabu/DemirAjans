@@ -48,7 +48,7 @@ public static class KabDbContextModelCreatingExtensions
         #region Cart
         builder.Entity<Cart>(typeBuilder =>
         {
-            typeBuilder.HasOne<Product>().WithOne();
+            typeBuilder.HasOne<Color>().WithOne();
             typeBuilder.HasOne<User>().WithOne();
         });
         #endregion

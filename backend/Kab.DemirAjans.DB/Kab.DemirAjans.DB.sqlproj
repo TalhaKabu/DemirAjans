@@ -89,12 +89,12 @@
     <Build Include="dbo\StoredProcedures\Categories\spCategories_GetByKid.sql" />
     <Build Include="dbo\StoredProcedures\SubCategories\spSubCategories_GetBySkid.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_GetAllByAppearInFront.sql" />
-    <Build Include="dbo\StoredProcedures\Colors\spColors_GetByProductId.sql" />
-    <Build Include="dbo\StoredProcedures\Colors\spProducts_Insert.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_GetByCode.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_GetAllByCategoryAndSubCategoryId.sql" />
     <Build Include="dbo\StoredProcedures\Carts\spCarts_GetByUserId.sql" />
     <Build Include="dbo\StoredProcedures\Carts\spCarts_Insert.sql" />
+    <Build Include="dbo\StoredProcedures\Colors\spColors_GetByProductId.sql" />
+    <Build Include="dbo\StoredProcedures\Colors\spColors_Insert.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />

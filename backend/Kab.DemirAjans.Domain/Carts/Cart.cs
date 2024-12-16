@@ -6,31 +6,31 @@ public class Cart : AuditedAggregateRoot
 {
     public int Id { get; protected set; }
     public int UserId { get; protected set; }
-    public int ProductId { get; protected set; }
+    public int ColorId { get; protected set; }
     public int Quantity { get; protected set; }
 
-    public Cart(int id, int userId, int productId, int quantity)
+    public Cart(int id, int userId, int colorId, int quantity)
     {
         SetDefaultExtraProperties(false);
         SetUserId(userId);
-        SetProductId(productId);
+        SetProductId(colorId);
         SetQuantity(quantity);
     }
 
-    public Cart(int userId, int productId, int quantity)
+    public Cart(int userId, int colorId, int quantity)
     {
         SetDefaultExtraProperties(true);
         SetUserId(userId);
-        SetProductId(productId);
+        SetProductId(colorId);
         SetQuantity(quantity);
     }
 
-    public void SetProductId(int productId)
+    public void SetProductId(int colorId)
     {
-        if (productId < 1)
-            throw new ArgumentException("Ürün referansı 0 veya daha küçük daha olamaz!");
+        if (colorId < 1)
+            throw new ArgumentException("Ürün renk referansı 0 veya daha küçük daha olamaz!");
 
-        ProductId = productId;
+        ColorId = colorId;
     }
 
     public void SetUserId(int userId)

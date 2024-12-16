@@ -13,7 +13,7 @@ public class CartManager(ICartDal cartDal) : ICartService
 
     public async Task InsertAsync(CartCreateDto create)
     {
-        var cart = new Cart(create.UserId, create.ProductId, create.Quantity);
+        var cart = new Cart(create.UserId, create.ColorId, create.Quantity);
 
         await _cartDal.InsertAsync(ObjectMapper.Mapper.Map<Cart, CartDto>(cart));
     }

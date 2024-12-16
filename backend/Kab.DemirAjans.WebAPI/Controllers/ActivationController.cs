@@ -1,8 +1,6 @@
 ﻿using Kab.DemirAjans.Business.Activations;
 using Kab.DemirAjans.Entities.Activations;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.Net;
 
 namespace Kab.DemirAjans.WebAPI.Controllers;
 
