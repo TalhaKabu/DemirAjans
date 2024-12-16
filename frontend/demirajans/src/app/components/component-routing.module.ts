@@ -15,7 +15,6 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: HomeComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'login',
@@ -46,11 +45,13 @@ const routes: Routes = [
     path: 'profile',
     pathMatch: 'full',
     component: ProfileComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'shopping-cart',
     pathMatch: 'full',
     component: ShoppingCartComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'service',

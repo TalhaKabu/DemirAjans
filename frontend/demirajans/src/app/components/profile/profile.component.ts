@@ -13,6 +13,7 @@ import { UserDto } from '../../services/user/models';
 })
 export class ProfileComponent implements OnInit {
   passwordVisible: boolean = false;
+  userId!: number;
   userDto!: UserDto;
 
   get(id: number) {
@@ -28,12 +29,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    var id = this.tokenHelperService.getToken();
-    console.log(id);
-
-    if (id > 0) {
-      this.get(id);
-    } else {
-    }
+    this.userId = this.tokenHelperService.getUserIdFromToken();
+    this.get(this.userId);
   }
 }
