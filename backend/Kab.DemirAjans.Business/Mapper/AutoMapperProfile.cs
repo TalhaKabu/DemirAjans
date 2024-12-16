@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Kab.DemirAjans.Domain.Activations;
+using Kab.DemirAjans.Domain.Carts;
 using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Domain.Colors;
 using Kab.DemirAjans.Domain.Products;
 using Kab.DemirAjans.Domain.SubCategories;
 using Kab.DemirAjans.Domain.Users;
 using Kab.DemirAjans.Entities.Activations;
+using Kab.DemirAjans.Entities.Carts;
 using Kab.DemirAjans.Entities.Categories;
 using Kab.DemirAjans.Entities.Colors;
 using Kab.DemirAjans.Entities.Products;
@@ -30,5 +32,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Activation, ActivationDto>();
 
         CreateMap<Color, ColorDto>();
+
+        CreateMap<Cart, CartDto>(); 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Kab.DemirAjans.Business.Activations;
 using Kab.DemirAjans.Business.Auth;
+using Kab.DemirAjans.Business.Carts;
 using Kab.DemirAjans.Business.Categories;
 using Kab.DemirAjans.Business.Colors;
 using Kab.DemirAjans.Business.Products;
@@ -8,6 +9,7 @@ using Kab.DemirAjans.Business.Token;
 using Kab.DemirAjans.Business.Users;
 using Kab.DemirAjans.DataAccess.Activations;
 using Kab.DemirAjans.DataAccess.Auth;
+using Kab.DemirAjans.DataAccess.Carts;
 using Kab.DemirAjans.DataAccess.Categories;
 using Kab.DemirAjans.DataAccess.Colors;
 using Kab.DemirAjans.DataAccess.DbAccess;
@@ -32,6 +34,9 @@ public static class DependencyInjection
         });
 
         services
+            .AddSingleton<ICartService, CartManager>()
+            .AddSingleton<ICartDal, CartDal>()
+
             .AddSingleton<IColorService, ColorManager>()
             .AddSingleton<IColorDal, ColorDal>()
 
