@@ -64,6 +64,7 @@
     <Folder Include="dbo\StoredProcedures\Colors" />
     <Folder Include="dbo\StoredProcedures\Users" />
     <Folder Include="dbo\StoredProcedures\Activations" />
+    <Folder Include="dbo\StoredProcedures\Carts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\StoredProcedures\Categories\spCategories_GetAll.sql" />
@@ -92,6 +93,8 @@
     <Build Include="dbo\StoredProcedures\Colors\spProducts_Insert.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_GetByCode.sql" />
     <Build Include="dbo\StoredProcedures\Products\spProducts_GetAllByCategoryAndSubCategoryId.sql" />
+    <Build Include="dbo\StoredProcedures\Carts\spCarts_GetByUserId.sql" />
+    <Build Include="dbo\StoredProcedures\Carts\spCarts_Insert.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kab.DemirAjans.DB.publish.xml" />
