@@ -1,4 +1,5 @@
 ﻿using Kab.DemirAjans.Domain.Activations;
+using Kab.DemirAjans.Domain.Carts;
 using Kab.DemirAjans.Domain.Categories;
 using Kab.DemirAjans.Domain.Colors;
 using Kab.DemirAjans.Domain.Products;
@@ -18,6 +19,7 @@ public class KabDbContext(DbContextOptions<KabDbContext> options) : DbContext(op
     public DbSet<Color> Colors { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Activation> Activations { get; set; }
+    public DbSet<Cart> Carts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
