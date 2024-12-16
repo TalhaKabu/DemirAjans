@@ -15,6 +15,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
 import { SpinningBarComponent } from './shared/spinning-bar/spinning-bar.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SpinningBarComponent } from './shared/spinning-bar/spinning-bar.compone
     FooterComponent,
     ProductListComponent,
     ProductComponent,
-    SpinningBarComponent
+    SpinningBarComponent,
+    AdminPanelComponent
   ],
   imports: [ComponentRoutingModule, CommonModule, FormsModule],
   exports: [NavbarComponent, FooterComponent, SpinningBarComponent],

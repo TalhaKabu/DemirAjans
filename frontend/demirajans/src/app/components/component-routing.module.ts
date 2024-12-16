@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ServiceComponent } from './service/service.component';
 import { ProductComponent } from './product/product.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,12 @@ const routes: Routes = [
     path: 'service',
     pathMatch: 'full',
     component: ServiceComponent,
+  },
+  {
+    path: 'admin-panel',
+    pathMatch: 'full',
+    component: AdminPanelComponent,
+    canActivate: [authGuard],
   },
   {
     path: '**',

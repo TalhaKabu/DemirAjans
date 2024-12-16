@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
 import { TokenHelperService } from '../../helpers/services/token-helper.service';
-import { Router } from '@angular/router';
 import { UserDto } from '../../services/user/models';
 
 @Component({
