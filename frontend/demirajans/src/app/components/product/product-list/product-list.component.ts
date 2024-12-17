@@ -74,10 +74,12 @@ export class ProductListComponent implements OnInit {
   productOnClick(productId: number) {
     this.router.navigate(['product', productId], {
       queryParams: {
-        categoryDto: this.categoryList.find(
+        categoryName: this.categoryList.find(
           (x) =>
             x.id == this.productList.find((x) => x.id === productId)!.categoryId
         )!.name,
+        colorId: this.productList.find((x) => x.id === productId)!.selectedColor
+          .id,
       },
     });
   }
@@ -95,8 +97,8 @@ export class ProductListComponent implements OnInit {
   }
 
   onColorImgMouseenter(productId: number, colorId: number) {
-    var pr = this.productList.find(x => x.id === productId)!; 
-    pr.selectedColor = pr.colors.find(c => c.id === colorId)!;
+    var pr = this.productList.find((x) => x.id === productId)!;
+    pr.selectedColor = pr.colors.find((c) => c.id === colorId)!;
   }
   //#endregion
 }

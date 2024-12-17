@@ -19,6 +19,7 @@ export class ProductComponent implements OnInit {
   productId!: number;
   product!: ProductDto;
   selectedColor!: ColorDto;
+  colorId!: number;
   images: string[] = [];
   selectedImage!: string;
   apiUrl!: string;
@@ -32,7 +33,9 @@ export class ProductComponent implements OnInit {
     this.productService.get(this.productId).subscribe({
       next: (n) => (
         (this.product = n),
-        ((this.selectedColor = this.product.colors[0]),
+        ((this.selectedColor = this.product.colors.find(
+          (x) => x.id === this.colorId
+        )!),
         this.images.push(this.product.imageName, this.selectedColor.imageName),
         (this.selectedImage = this.selectedColor.imageName))
       ),
@@ -60,7 +63,8 @@ export class ProductComponent implements OnInit {
     });
 
     this.activatedRoute.queryParamMap.subscribe((params) => {
-      this.categoryName = params.get('categoryDto') + '';
+      this.categoryName = params.get('categoryName')!;
+      this.colorId = parseInt(params.get('colorId')!);
     });
   }
 
