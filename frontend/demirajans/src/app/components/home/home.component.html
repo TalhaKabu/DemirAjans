@@ -3,38 +3,8 @@
     <h3>
       <span>{{ category.name }}</span>
     </h3>
-    <div class="product-container">
-      <div
-        class="product"
-        (click)="productOnClick(product.id)"
-        *ngFor="let product of getProductsByCategoryId(category.id)"
-      >
-        <div class="left">
-          <img
-            [src]="
-              apiUrl +
-              '/Images/Products/' +
-              product.colors[0].imageName +
-              '.jpg'
-            "
-            alt=""
-          />
-        </div>
-        <div class="right">
-          <div class="box name">
-            <span>{{ product.name.toLocaleUpperCase("tr-TR") }}</span>
-          </div>
-          <div class="box">
-            {{ product.colors[0].name.toLocaleUpperCase("tr-TR") }}
-          </div>
-          <div class="box price">
-            <span>
-              {{ product.price | number:'1.2-2' }} ₺
-            </span>
-          </div>
-          <div class="box">ÜRÜN KODU: {{ product.colors[0].code }}</div>
-        </div>
-      </div>
+    <div class="product-list">
+     <app-product-list [categoryList]="[category]"></app-product-list>
     </div>
   </div>
 </div>

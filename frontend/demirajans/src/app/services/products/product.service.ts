@@ -34,6 +34,22 @@ export class ProductService {
       );
   }
 
+  getListByCategoryIdAndAppearInFront(
+    categoryId: number,
+    appearInFront: boolean
+  ): Observable<any> {
+    return this.proxyService
+      .get<any>(this.baseUrl + '/list-by-category-id-appear-in-front', {
+        categoryId: categoryId,
+        appearInFront: appearInFront,
+      })
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
   getListByCategoryIdAndSubCategoryId(
     categoryId: number,
     subCategoryId: number

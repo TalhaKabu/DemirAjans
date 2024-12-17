@@ -9,6 +9,7 @@ public class ProductDal(ISqlDataAccess db) : IProductDal
 
     public async Task<IEnumerable<ProductDto>> GetListAsync() => await _db.LoadDataAsync<ProductDto, dynamic>(storedProcedure: "dbo.spProducts_GetAll", new { });
     public async Task<IEnumerable<ProductDto>> GetListByAppearInFrontAsync(bool appearInFront) => await _db.LoadDataAsync<ProductDto, dynamic>(storedProcedure: "dbo.spProducts_GetAllByAppearInFront", new { AppearInFront = appearInFront });
+    public async Task<IEnumerable<ProductDto>> GetListByCategoryIdAndAppearInFrontAsync(int categoryId, bool appearInFront) => await _db.LoadDataAsync<ProductDto, dynamic>(storedProcedure: "dbo.spProducts_GetAllByCategoryIdAndAppearInFront", new { CategoryId = categoryId, AppearInFront = appearInFront });
     public async Task<IEnumerable<ProductDto>> GetListByCategoryIdAndSubCategoryIdAsync(int categoryId, int? subCategoryId) => await _db.LoadDataAsync<ProductDto, dynamic>(storedProcedure: "dbo.spProducts_GetAllByCategoryAndSubCategoryId", new { CategoryId = categoryId, SubCategoryId = subCategoryId });
     public async Task<ProductDto?> GetAsync(int id) => (await _db.LoadDataAsync<ProductDto, dynamic>(storedProcedure: "dbo.spProducts_Get", new { Id = id })).FirstOrDefault();
     public async Task<ProductDto?> GetByCodeAsync(string code) => (await _db.LoadDataAsync<ProductDto, dynamic>(storedProcedure: "dbo.spProducts_GetByCode", new { Code = code })).FirstOrDefault();

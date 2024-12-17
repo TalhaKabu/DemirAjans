@@ -35,6 +35,18 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  getProductListByCategoryIdAndAppearInFront() {
+    this.productService
+      .getListByCategoryIdAndAppearInFront(this.selectedCategoryId, true)
+      .subscribe({
+        next: (n) => (
+          (this.productList = n),
+          this.productList.forEach((x) => (x.selectedColor = x.colors[0]))
+        ),
+        error: (e) => console.log(e),
+      });
+  }
+
   getListByCategoryIdAndSubCategoryId() {
     this.productService
       .getListByCategoryIdAndSubCategoryId(
@@ -63,11 +75,18 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.apiUrl = environment.apiUrl;
     this.activatedRoute.params.subscribe((params) => {
-      this.selectedCategoryId = parseInt(params['id']);
+      this.selectedCategoryId = Number.isNaN(parseInt(params['id']))
+        ? this.categoryList[0].id
+        : parseInt(params['id']);
       this.selectedSubCategoryId =
         params['sid'] !== undefined ? parseInt(params['sid']) : 0;
-      if (this.selectedCategoryId === 0) this.getProductListByAppearInFront();
-      else this.getListByCategoryIdAndSubCategoryId();
+
+      if (this.router.url === '/') {
+        this.getProductListByCategoryIdAndAppearInFront();
+      } else {
+        if (this.selectedCategoryId === 0) this.getProductListByAppearInFront();
+        else this.getListByCategoryIdAndSubCategoryId();
+      }
     });
   }
 
