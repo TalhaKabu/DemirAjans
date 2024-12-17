@@ -148,5 +148,15 @@ export class CategoryComponent implements OnInit {
           .classList.add('hidden');
       }
   }
+
+  @HostListener('document:scroll') scrolling() {
+    this.category.nativeElement.classList.add('hidden');
+    this.category.nativeElement
+      .getElementsByTagName('button')[0]
+      .classList.add('rotate');
+    this.category.nativeElement
+      .getElementsByClassName('category-list')[0]
+      .classList.add('hidden');
+  }
   //#endregion
 }

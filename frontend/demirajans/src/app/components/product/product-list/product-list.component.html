@@ -9,6 +9,7 @@
           '.jpg'
         "
         alt=""
+        (click)="productOnClick(product.id)"
       />
       <div class="color-svg" (mouseenter)="onColorsMouseenterleave(product.id)">
         <svg
@@ -67,9 +68,9 @@
         <div class="color-option">
           <span>Renk Seçenekleri</span>
           <span [hidden]="product.colors.length - 4 < 1">
-            <a (click)="productOnClick(product.id)"
-              >+{{ product.colors.length - 4 }} Renk Daha</a
-            >
+            <a (click)="productOnClick(product.id)">
+              +{{ product.colors.length - 4 }} Renk Daha
+            </a>
           </span>
         </div>
         <div class="color-images">
@@ -78,6 +79,7 @@
             [src]="apiUrl + '/Images/Products/' + color.imageName + '.jpg'"
             alt=""
             (mouseenter)="onColorImgMouseenter(product.id, color.id)"
+            (click)="productOnClick(product.id)"
           />
         </div>
       </div>

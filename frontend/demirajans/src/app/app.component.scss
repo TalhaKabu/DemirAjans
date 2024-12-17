@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: 0 auto auto;
   padding-top: 40px;
-  margin-top: 60px;
+  margin: 60px 0 80px 0;
   width: 100%;
   height: auto;
   min-height: calc(100vh - 60px);
@@ -16,6 +16,7 @@ app-footer {
 @media (max-width: 800px) {
   .router {
     padding-top: 10px;
+    margin: 60px 0 0 0;
   }
   app-footer {
     display: flex;

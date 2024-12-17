@@ -35,6 +35,7 @@
     max-height: 100%;
     max-width: 100%;
     object-fit: fill;
+    cursor: pointer;
   }
 
   div.color-svg {
@@ -164,13 +165,18 @@
 
   .img-container {
     img {
-      max-width: 100px;
-      min-width: 100px;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: fill;
     }
   }
 
-  .box {
+  .bottom {
     align-items: center;
+
+    .header {
+      min-height: 50px;
+    }
   }
 
   .price {
