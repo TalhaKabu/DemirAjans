@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ColorDto, ProductDto } from '../../services/products/models';
 import { environment } from '../../../environments/environment';
@@ -26,6 +32,9 @@ export class ProductComponent implements OnInit {
   categoryName!: string;
 
   @ViewChild('thumbnails') thumbnails!: ElementRef<HTMLImageElement>;
+  @ViewChild('cartBtn') cartBtn!: ElementRef<HTMLButtonElement>;
+  scrollY: number = 0;
+  previousScrollY: number = 0;
   //#endregion
 
   //#region Utils
@@ -94,7 +103,7 @@ export class ProductComponent implements OnInit {
     this.selectedImage = img;
   }
 
-  colorOnClick(colorId: number) {
+  colorImgOnClick(colorId: number) {
     this.selectedColor = this.product.colors.find((x) => x.id === colorId)!;
     var imgs = this.images.filter((x) => x === this.product.imageName);
     imgs.push(this.selectedColor.imageName);
@@ -113,6 +122,19 @@ export class ProductComponent implements OnInit {
     //     next: (n) => (console.log(n), (this.selectedColor.addedToCart = true)),
     //     error: (e) => console.log(e),
     //   });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.scrollY = window.scrollY || document.documentElement.scrollTop;
+
+    if (this.scrollY > this.previousScrollY) {
+      this.cartBtn.nativeElement.classList.add('hidden');
+    } else if (this.scrollY < this.previousScrollY) {
+      this.cartBtn.nativeElement.classList.remove('hidden');
+    }
+
+    this.previousScrollY = this.scrollY;
   }
   //#endregion
 }

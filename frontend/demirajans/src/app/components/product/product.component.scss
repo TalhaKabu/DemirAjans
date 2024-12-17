@@ -14,7 +14,6 @@
   gap: 10px;
   align-items: flex-end;
   justify-content: center;
-  max-height: 450px;
 }
 
 .thumbnails {
@@ -90,15 +89,15 @@
 .info-section {
   display: grid;
   position: relative;
-  grid-template-rows: 60px 50px 30px 20px auto;
+  grid-auto-rows: auto;
   gap: 10px;
   letter-spacing: 1px;
-  max-height: 450px;
+  font-size: 14px;
 }
 
 .info-section h1 {
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   color: $text-clr;
   line-height: 2em;
   justify-self: flex-start;
@@ -171,115 +170,88 @@
   color: red;
 }
 
-.details {
-  display: grid;
-
-  li {
-    list-style: none;
-    font-size: 14px;
-
-    color: $secondary-text-clr;
-    strong {
-      color: $text-clr;
-    }
-
-    .color {
-      cursor: pointer;
-    }
-
-    .color:hover {
-      color: $text-clr;
-    }
-
-    .color::after {
-      content: "-";
-      margin: 0 2px;
-    }
-
-    .color:last-child::after {
-      content: "";
-    }
-
-    .description {
-      color: $secondary-text-clr;
-      font-size: 14px;
-
-      ul {
-        list-style: none;
-        line-height: 1.2em;
-      }
-    }
-
-    .icons {
-      display: grid;
-      grid-template-rows: repeat(auto-fit, minmax(40px, 40px));
-      text-wrap: nowrap;
-      align-items: center;
-
-      a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 150ms ease;
-        min-width: 40px;
-        min-height: 40px;
-      }
-
-      a:hover {
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  li.last:last-child {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-}
-
 .hr {
   border-top: 1px solid $line-clr;
   height: 1px;
   margin: 10px 0;
   width: 100%;
 }
+
+.color-container {
+  display: grid;
+  grid-template-rows: 20px 50px;
+  gap: 10px;
+  font-size: 14px;
+  min-height: 80px;
+
+  .img-container {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-start;
+    overflow-x: auto;
+
+    img {
+      padding: 2px;
+      border: 1px solid $line-clr;
+      border-radius: 0.5em;
+      flex: 1;
+      max-height: 100%;
+      max-width: 50px;
+      object-fit: fill;
+      cursor: pointer;
+    }
+
+    img.selected {
+      border: 1px solid $hover-clr;
+    }
+
+    img:hover {
+      border: 1px solid $hover-clr;
+    }
+  }
+}
+
+.description {
+  ul {
+    list-style: none;
+  }
+}
+
 //#endregion
 
 //#region Mobile
 @media (max-width: 1200px) {
-  .product-container {
-    grid-template-columns: none;
-    grid-template-rows: auto auto;
-  }
+  // .product-container {
+  //   grid-template-columns: none;
+  //   grid-template-rows: auto auto;
+  // }
 
-  .image-section {
-    grid-template-columns: auto 350px;
-    justify-content: center;
+  // .image-section {
+  //   grid-template-columns: auto 350px;
+  //   justify-content: center;
 
-    .main-image img {
-      width: auto;
-      height: 350px;
-    }
+  //   .main-image img {
+  //     width: auto;
+  //     height: 350px;
+  //   }
 
-    .thumbnails img {
-      width: auto;
-      height: 80px;
-    }
-  }
+  //   .thumbnails img {
+  //     width: auto;
+  //     height: 80px;
+  //   }
+  // }
 }
 
 @media (max-width: 800px) {
   .product-container {
     grid-template-columns: calc(100vw - 20px);
-    grid-template-rows: 250px auto;
+    grid-template-rows: auto auto;
     letter-spacing: unset;
-    padding: 10px;
+    padding: 5px;
     width: 100vw;
 
     h1 {
       font-size: 18px;
-      line-height: 1.1em;
     }
 
     .price-container {
@@ -292,10 +264,6 @@
       }
     }
 
-    .price {
-      font-size: 22px;
-    }
-
     .note {
       font-size: 12px;
     }
@@ -306,17 +274,23 @@
   }
 
   .image-section {
-    grid-template-columns: auto 250px;
-    justify-content: center;
+    grid-template-columns: unset;
+    grid-template-rows: auto;
     width: 100%;
 
     .main-image {
-      max-height: 250px;
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .thumbnails {
+      display: none;
     }
 
     .main-image img {
-      width: auto;
-      height: 250px;
+      max-width: 100%;
+      height: auto;
     }
 
     .main-image button {
@@ -343,27 +317,16 @@
   }
 
   .info-section {
-    grid-template-rows: auto auto 20px 10px auto;
-    
-    .details {
-      li.last:last-child {
-        position: relative;
-        right: unset;
-        bottom: unset;
-      }
-
-      .icons {
-        justify-content: flex-end;
-        grid-template-columns: repeat(auto-fit, minmax(40px, 40px));
-        grid-template-rows: unset;
-      }
-    }
-
     button {
+      position: fixed;
+      bottom: 60px;
+      left: 0;
       width: 100%;
-      justify-content: space-between;
       border-color: $accent-clr;
       background-color: $accent-clr;
+      border-radius: unset;
+      height: 50px;
+      transition: height 150ms ease-in-out;
 
       span {
         color: $text-clr;
@@ -371,6 +334,21 @@
 
       svg {
         stroke: $text-clr;
+      }
+    }
+
+    button.hidden {
+      height: 0;
+      padding: 0;
+      margin: 0;
+      border: none;
+
+      svg {
+        display: none;
+      }
+
+      span {
+        display: none;
       }
     }
   }
