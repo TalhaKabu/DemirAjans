@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../services/products/product.service';
 import { ProductDto } from '../../../services/products/models';
@@ -20,6 +20,8 @@ export class ProductListComponent implements OnInit {
 
   productList!: ProductDto[];
   @Input() categoryList!: CategoryDto[];
+
+  @ViewChild('grid') grid!: ElementRef<HTMLDivElement>;
   //#endregion
 
   //#region Utils
@@ -72,6 +74,18 @@ export class ProductListComponent implements OnInit {
         )!.name,
       },
     });
+  }
+
+  onColorsMouseenterleave(productId: number) {
+    Array.from(this.grid.nativeElement.getElementsByTagName('div')).forEach(
+      (pr) => {
+        if (parseInt(pr.id) === productId) {
+          pr.getElementsByClassName('color-container')[0].classList.toggle(
+            'hidden'
+          );
+        }
+      }
+    );
   }
   //#endregion
 }

@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ColorDto, ProductDto } from '../../services/products/models';
 import { environment } from '../../../environments/environment';
 import { ProductService } from '../../services/products/product.service';
+import { CartService } from '../../services/carts/cart.service';
+import { CartCreateDto, CartDto } from '../../services/carts/models';
+import { TokenHelperService } from '../../helpers/services/token-helper.service';
 
 @Component({
   selector: 'app-product',
@@ -31,17 +34,20 @@ export class ProductComponent implements OnInit {
         (this.product = n),
         ((this.selectedColor = this.product.colors[0]),
         this.images.push(this.product.imageName, this.selectedColor.imageName),
-        (this.selectedImage = this.images[1]))
+        (this.selectedImage = this.selectedColor.imageName))
       ),
       error: (e) => console.log(e),
     });
   }
+
   //#endregion
 
   //#region Ctor
   constructor(
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService,
+    private tokenHelperService: TokenHelperService
   ) {}
   //#endregion
 
@@ -93,7 +99,16 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart() {
-    this.selectedColor.addedToCart = true;
+    // this.cartService
+    //   .insert(<CartCreateDto>{
+    //     userId: this.tokenHelperService.getUserIdFromToken(),
+    //     colorId: this.selectedColor.id,
+    //     quantity: this.selectedColor.quantity,
+    //   })
+    //   .subscribe({
+    //     next: (n) => (console.log(n), (this.selectedColor.addedToCart = true)),
+    //     error: (e) => console.log(e),
+    //   });
   }
   //#endregion
 }
