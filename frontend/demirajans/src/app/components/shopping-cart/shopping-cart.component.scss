@@ -1,0 +1,228 @@
+@import "../../../styles.scss";
+
+.grid {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 20px;
+  justify-content: center;
+}
+
+.cart {
+  display: grid;
+  grid-template-columns: auto minmax(200px, 600px);
+  gap: 20px;
+  justify-content: center;
+
+  border: 1px solid $line-clr;
+  border-radius: 1em;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 10px;
+
+  strong,
+  h1 {
+    color: $text-clr;
+  }
+}
+
+.image-container {
+  width: 250px;
+  height: auto;
+  max-height: 250px;
+  cursor: pointer;
+
+  img {
+    width: auto;
+    height: 250px;
+    border: 1px solid $line-clr;
+  }
+}
+
+.information-container {
+  display: grid;
+  position: relative;
+  grid-template-rows: auto auto auto auto auto;
+  color: $secondary-text-clr;
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+.btn-grp {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+
+  .quantity-grp {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    button {
+      display: flex;
+      width: 32px;
+      height: 50px;
+      background: transparent;
+      border: 1px solid $line-clr;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      outline: none;
+
+      svg {
+        width: 24px;
+        height: 24px;
+        stroke: $secondary-text-clr;
+      }
+    }
+
+    button.minus {
+      border-right: none !important;
+      border-top-left-radius: 1em;
+      border-bottom-left-radius: 1em;
+    }
+
+    button.plus {
+      border-left: none !important;
+      border-top-right-radius: 1em;
+      border-bottom-right-radius: 1em;
+    }
+
+    input {
+      background: transparent;
+      border: 1px solid $line-clr;
+      border-radius: unset;
+      box-shadow: unset;
+      max-width: 100px;
+      padding: 5px 10px;
+      font-size: 16px;
+      caret-color: $secondary-text-clr;
+      text-align: center;
+    }
+
+    input:focus {
+      text-align: start;
+    }
+  }
+
+  button.delete {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    width: 32px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    transition: transform 150ms ease;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: $secondary-text-clr;
+    }
+  }
+}
+
+@media (hover: hover) {
+  button.delete:hover {
+    transform: scale(1.2);
+
+    svg {
+      stroke: $text-clr;
+    }
+  }
+
+  .quantity-grp button.minus:hover, .quantity-grp button.plus:hover {
+    border-color: $text-clr;
+
+    svg {
+      stroke: $text-clr;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .grid {
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .image-container {
+    width: 150px;
+    height: auto;
+    max-height: 150px;
+
+    img {
+      width: auto;
+      height: 150px;
+      border: 1px solid $line-clr;
+    }
+  }
+
+  .information-container {
+    grid-template-rows: auto auto auto auto auto auto;
+    font-size: 12px;
+
+    h1 {
+      font-size: 16px;
+    }
+  }
+
+  .btn-grp {
+    position: relative;
+    flex-direction: row;
+    margin-top: 4px;
+    justify-content: space-between;
+
+    .quantity-grp {
+      position: relative;
+
+      button {
+        position: relative;
+        box-sizing: border-box;
+        justify-self: flex-start;
+        width: 30px;
+        height: 40px;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      button.minus {
+        right: unset;
+        bottom: unset;
+      }
+
+      button.plus {
+        right: unset;
+        bottom: unset;
+      }
+
+      input {
+        position: relative;
+        max-width: 50px;
+        height: 40px;
+        padding: 4px;
+        right: unset;
+        bottom: unset;
+      }
+    }
+
+    button.delete {
+      position: relative;
+      right: unset;
+      top: unset;
+    }
+  }
+}

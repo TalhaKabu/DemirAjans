@@ -31,6 +31,11 @@ body {
   color: $text-clr;
 }
 
+app-root {
+  display: flex;
+}
+
+//#region Input
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -38,11 +43,19 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-app-root {
-  display: flex;
+input[type="number"] {
+  -moz-appearance: textfield; /* For Firefox */
+  -webkit-appearance: none; /* For Chrome, Safari, Edge, and Opera */
+  appearance: none; /* Standard property */
 }
 
-//#region Input
+/* Optional: Remove additional styling in Webkit-based browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .input-group {
   position: relative;
 }
