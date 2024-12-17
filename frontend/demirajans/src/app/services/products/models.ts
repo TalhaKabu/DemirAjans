@@ -12,7 +12,8 @@ export interface ProductDto {
   imageName: string;
   description: string | null;
   dimension: string | null;
-  colors: ColorDto[] ;
+  colors: ColorDto[];
+  selectedColor: ColorDto;
 }
 
 export interface ColorDto {

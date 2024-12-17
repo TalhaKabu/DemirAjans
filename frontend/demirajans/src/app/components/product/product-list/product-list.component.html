@@ -3,7 +3,10 @@
     <div class="img-container">
       <img
         [src]="
-          apiUrl + '/Images/Products/' + product.colors[0].imageName + '.jpg'
+          apiUrl +
+          '/Images/Products/' +
+          product.selectedColor.imageName +
+          '.jpg'
         "
         alt=""
       />
@@ -74,6 +77,7 @@
             *ngFor="let color of product.colors.slice(0, 4)"
             [src]="apiUrl + '/Images/Products/' + color.imageName + '.jpg'"
             alt=""
+            (mouseenter)="onColorImgMouseenter(product.id, color.id)"
           />
         </div>
       </div>
@@ -84,13 +88,16 @@
           <strong>
             {{ product.name }}
           </strong>
-          ({{ product.colors[0].code }})
+          ({{ product.selectedColor.code }})
         </span>
       </div>
-      <div class="box price">
-        <span> {{ product.price | number : "1.2-2" }} ₺ </span>
+      <div class="info">
+        <span class="color"> {{ product.selectedColor.name }}</span>
+        <span class="price"> {{ product.price | number : "1.2-2" }} ₺ </span>
       </div>
-      <div class="box">ÜRÜN KODU: {{ product.colors[0].code }}</div>
+      <div class="cart">
+        <button><span>Sepete Ekle</span></button>
+      </div>
     </div>
   </div>
 </div>

@@ -27,7 +27,10 @@ export class ProductListComponent implements OnInit {
   //#region Utils
   getProductListByAppearInFront() {
     this.productService.getListByAppearInFront(true).subscribe({
-      next: (n) => (this.productList = n),
+      next: (n) => (
+        (this.productList = n),
+        this.productList.forEach((x) => (x.selectedColor = x.colors[0]))
+      ),
       error: (e) => console.log(e),
     });
   }
@@ -39,7 +42,10 @@ export class ProductListComponent implements OnInit {
         this.selectedSubCategoryId
       )
       .subscribe({
-        next: (n) => (this.productList = n),
+        next: (n) => (
+          (this.productList = n),
+          this.productList.forEach((x) => (x.selectedColor = x.colors[0]))
+        ),
         error: (e) => console.log(e),
       });
   }
@@ -86,6 +92,11 @@ export class ProductListComponent implements OnInit {
         }
       }
     );
+  }
+
+  onColorImgMouseenter(productId: number, colorId: number) {
+    var pr = this.productList.find(x => x.id === productId)!; 
+    pr.selectedColor = pr.colors.find(c => c.id === colorId)!;
   }
   //#endregion
 }
