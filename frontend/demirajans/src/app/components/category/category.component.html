@@ -14,8 +14,8 @@
       <app-product-list [categoryList]="categoryList"></app-product-list>
     </div>
   </div>
-  <div #category class="category-container" *ngIf="categoryList">
-    <button #toggleBtn (click)="categoryBtnOnClick()" id="toggle-btn">
+  <div #category class="category-container hidden" *ngIf="categoryList">
+    <button #toggleBtn (click)="categoryBtnOnClick()" id="toggle-btn" class="rotate">
       <svg
         width="24px"
         height="24px"
@@ -39,7 +39,7 @@
         ></path>
       </svg>
     </button>
-    <div class="category-list">
+    <div class="category-list hidden">
       <ul>
         <li
           [id]="category.id"
