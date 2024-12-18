@@ -78,8 +78,8 @@
             *ngFor="let color of product.colors.slice(0, 4)"
             [src]="apiUrl + '/Images/Products/' + color.imageName + '.jpg'"
             alt=""
-            (mouseenter)="onColorImgMouseenter(product.id, color.id)"
             (click)="productOnClick(product.id)"
+            (mouseenter)="onColorImgMouseenter(product.id, color.id)"
           />
         </div>
       </div>

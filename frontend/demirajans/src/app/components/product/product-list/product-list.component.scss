@@ -112,9 +112,10 @@
   padding: 10px 10px 0 10px;
   gap: 8px;
 
-  justify-content: center;
+  justify-content: flex-start;
 
   .header {
+    width: 100%;
     flex: 1;
   }
 
@@ -177,6 +178,26 @@
       max-height: 100%;
       max-width: 100%;
       object-fit: fill;
+    }
+
+    div.color-svg {
+      display: none;
+    }
+
+    div.color-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+
+      div.color-option {
+        display: none;
+      }
+
+      div.color-images {
+        display: none;
+      }
     }
   }
 

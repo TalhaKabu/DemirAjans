@@ -8,7 +8,6 @@ import { CategoryDto } from '../../../services/categories/models';
 @Component({
   selector: 'app-product-list',
   standalone: false,
-
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })
@@ -90,34 +89,49 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  productOnClick(productId: number) {
+  productOnClick(productId: number, colorId: number = 0) {
     this.router.navigate(['product', productId], {
       queryParams: {
         categoryName: this.categoryList.find(
           (x) =>
             x.id == this.productList.find((x) => x.id === productId)!.categoryId
         )!.name,
-        colorId: this.productList.find((x) => x.id === productId)!.selectedColor
-          .id,
+        colorId:
+          colorId > 0
+            ? colorId
+            : this.productList.find((x) => x.id === productId)!.selectedColor
+                .id,
       },
     });
   }
 
   onColorsMouseenterleave(productId: number) {
-    Array.from(this.grid.nativeElement.getElementsByTagName('div')).forEach(
-      (pr) => {
-        if (parseInt(pr.id) === productId) {
-          pr.getElementsByClassName('color-container')[0].classList.toggle(
-            'hidden'
-          );
-        }
+    Array.from(
+      this.grid.nativeElement.getElementsByClassName('product')
+    ).forEach((pr) => {
+      if (parseInt(pr.id) === productId) {
+        pr.getElementsByClassName('color-container')[0].classList.toggle(
+          'hidden'
+        );
+      } else {
+        pr.getElementsByClassName('color-container')[0].classList.add('hidden');
       }
-    );
+    });
   }
 
   onColorImgMouseenter(productId: number, colorId: number) {
     var pr = this.productList.find((x) => x.id === productId)!;
     pr.selectedColor = pr.colors.find((c) => c.id === colorId)!;
+  }
+
+  closeColorOptions(productId: number) {
+    Array.from(
+      this.grid.nativeElement.getElementsByClassName('product')
+    ).forEach((pr) => {
+      if (parseInt(pr.id) === productId) {
+        pr.getElementsByClassName('color-container')[0].classList.add('hidden');
+      }
+    });
   }
   //#endregion
 }
