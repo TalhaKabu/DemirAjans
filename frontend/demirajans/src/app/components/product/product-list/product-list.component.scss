@@ -38,7 +38,7 @@
     cursor: pointer;
   }
 
-  div.color-svg {
+  button.color-svg {
     position: absolute;
     right: 10px;
     bottom: 10px;
@@ -96,6 +96,35 @@
 
       img:hover {
         border: 1px solid $hover-clr;
+      }
+    }
+
+    div.color-option-mobile {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+
+      a {
+        color: $secondary-text-clr;
+        cursor: pointer;
+      }
+    }
+
+    div.color-images-mobile {
+      display: none;
+      gap: 4px;
+      justify-content: flex-start;
+      overflow-x: auto  ;
+
+      img {
+        padding: 2px;
+        border: 1px solid $line-clr;
+        border-radius: 1em;
+        flex: 1;
+        max-height: 25%;
+        max-width: calc(25% - 4px);
+        object-fit: fill;
+        cursor: pointer;
       }
     }
   }
@@ -180,23 +209,23 @@
       object-fit: fill;
     }
 
-    div.color-svg {
-      display: none;
-    }
-
     div.color-container {
       position: fixed;
-      bottom: 0;
+      bottom: 60px;
       left: 0;
       width: 100%;
-      z-index: 999;
+      z-index: 2;
 
-      div.color-option {
+      div.color-option, div.color-images {
         display: none;
       }
 
-      div.color-images {
-        display: none;
+      div.color-option-mobile {
+        display: flex;
+      }
+  
+      div.color-images-mobile {
+        display: flex;
       }
     }
   }

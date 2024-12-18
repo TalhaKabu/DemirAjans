@@ -89,7 +89,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  productOnClick(productId: number, colorId: number = 0) {
+  productOnClick(productId: any, colorId: number = 0) {
     this.router.navigate(['product', productId], {
       queryParams: {
         categoryName: this.categoryList.find(
@@ -105,18 +105,24 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  onColorsMouseenterleave(productId: number) {
-    Array.from(
-      this.grid.nativeElement.getElementsByClassName('product')
-    ).forEach((pr) => {
-      if (parseInt(pr.id) === productId) {
-        pr.getElementsByClassName('color-container')[0].classList.toggle(
-          'hidden'
-        );
-      } else {
-        pr.getElementsByClassName('color-container')[0].classList.add('hidden');
+  onColorsMouseenterleave(event: any) {
+    if (window.screen.width > 800) {
+      if (event.type === 'mouseenter') {
+        event.currentTarget.nextElementSibling.classList.remove('hidden');
+      } else if (event.type === 'mouseleave') {
+        event.currentTarget.classList.add('hidden');
       }
-    });
+    } else {
+      if (event.type === 'click') {
+        Array.from(
+          this.grid.nativeElement.getElementsByClassName('color-container')
+        ).forEach((cc) => {
+          if (cc === event.currentTarget.parentNode.lastChild)
+            event.currentTarget.parentNode.lastChild.classList.toggle('hidden');
+          else cc.classList.add('hidden');
+        });
+      }
+    }
   }
 
   onColorImgMouseenter(productId: number, colorId: number) {
@@ -124,14 +130,8 @@ export class ProductListComponent implements OnInit {
     pr.selectedColor = pr.colors.find((c) => c.id === colorId)!;
   }
 
-  closeColorOptions(productId: number) {
-    Array.from(
-      this.grid.nativeElement.getElementsByClassName('product')
-    ).forEach((pr) => {
-      if (parseInt(pr.id) === productId) {
-        pr.getElementsByClassName('color-container')[0].classList.add('hidden');
-      }
-    });
+  closeColorOption(event: any) {
+    event.target.parentNode.parentNode.classList.add('hidden');
   }
   //#endregion
 }
