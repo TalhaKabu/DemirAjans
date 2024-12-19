@@ -13,15 +13,15 @@ export const authGuard: CanActivateFn = (route, state) => {
       decodedToken && decodedToken.exp
         ? decodedToken.exp < Date.now() / 1000
         : false;
-    console.log(isExpired);
     if (isExpired) {
       localStorage.removeItem('token');
-      router.navigate(['/login']);
+
+      router.navigate(['login']);
       return false;
     }
     return true;
   } catch (error) {
-    router.navigate(['/login']);
+    router.navigate(['login']);
     return false;
   }
 };

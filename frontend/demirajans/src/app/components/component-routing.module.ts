@@ -46,7 +46,6 @@ const routes: Routes = [
     path: 'profile',
     pathMatch: 'full',
     component: ProfileComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'shopping-cart',

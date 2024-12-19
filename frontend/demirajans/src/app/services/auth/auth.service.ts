@@ -13,7 +13,9 @@ export class AuthService {
 
   login(loginDto: LoginDto): Observable<AccessToken> {
     return this.proxyService
-      .post<AccessToken>(this.baseUrl + '/login', loginDto)
+      .post<AccessToken>(this.baseUrl + '/login', loginDto, {
+        withCredentials: true,
+      })
       .pipe(
         catchError((error) => {
           return throwError(() => error);

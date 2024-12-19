@@ -13,18 +13,13 @@ export class ProxyService {
 
   constructor(private http: HttpClient, private sp: SpinningBarService) {}
 
-  get<T>(
-    endpoint: string,
-    params: any = null,
-    headers: any = null
-  ): Observable<T> {
+  get<T>(endpoint: string, params: any = null): Observable<T> {
     this.sp.loading(true);
     return this.http
       .get<T>(`${this.baseUrl}/${endpoint}`, {
-        headers: {
-          Authorization: `Bearer ${this.token}`,
+        headers: new HttpHeaders({
           'Content-Type': 'application/json',
-        },
+        }),
         params: params,
       })
       .pipe(
@@ -44,10 +39,9 @@ export class ProxyService {
     this.sp.loading(true);
     return this.http
       .post<T>(`${this.baseUrl}/${endpoint}`, body, {
-        headers: {
-          Authorization: `Bearer ${this.token}`,
+        headers: new HttpHeaders({
           'Content-Type': 'application/json',
-        },
+        }),
         params: params,
       })
       .pipe(

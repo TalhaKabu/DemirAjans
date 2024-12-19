@@ -12,9 +12,7 @@ export class UserService {
 
   get(id: number): Observable<any> {
     return this.proxyService
-      .get<any>(this.baseUrl + '/get', { 
-        Id: id,
-      })
+      .get<any>(this.baseUrl + '/get', { withCredentials: true })
       .pipe(
         catchError((error) => {
           return throwError(() => error);
