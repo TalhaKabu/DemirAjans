@@ -16,7 +16,24 @@ public class AuthController(IAuthService authService) : ControllerBase
         try
         {
             var accessToken = await AuthService.Login(userLoginDto);
-            return Ok(accessToken);
+
+            if (accessToken != null)
+            {
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,     // Prevents JavaScript from accessing the cookie
+                    Secure = true,       // Ensure the cookie is sent only over HTTPS
+                    SameSite = SameSiteMode.None,  // Prevents cross-site request forgery (CSRF)
+                    Expires = DateTime.UtcNow.AddHours(1),  // Set an expiry for the cookie
+                };
+
+                //Response.Cookies.Append("token", accessToken.Token, cookieOptions);
+                HttpContext.Response.Cookies.Append("token", accessToken.Token, cookieOptions);
+
+                return Ok();
+            }
+
+            return Unauthorized();
         }
         catch (UnauthorizedAccessException)
         {

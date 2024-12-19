@@ -45,4 +45,35 @@ public class TokenManager(IConfiguration configuration) : ITokenService
         claims.AddRoles(userDto.IsAdmin ? new List<string> { "Admin", "User" } : new List<string> { "User" });
         return claims;
     }
+
+    public ClaimsPrincipal ValidateToken(string token)
+    {
+        try
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityKey = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]); // Convert the secret key to bytes
+
+            // Validate the token using the secret key
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidIssuer = _configuration["Jwt:Issuer"], // Replace with your actual issuer
+                ValidAudience = _configuration["Jwt:Audience"], // Replace with your actual audience
+                IssuerSigningKey = new SymmetricSecurityKey(securityKey),
+                ClockSkew = TimeSpan.Zero // Optional: define clock skew for JWT expiration time tolerance
+            };
+
+            SecurityToken validatedToken;
+            ClaimsPrincipal principal = tokenHandler.ValidateToken(token, validationParameters, out validatedToken);
+
+            // If token is valid, return the claims principal (user data)
+            return principal;
+        }
+        catch (Exception ex)
+        {
+            // If validation fails, return null or throw an error
+            return null;
+        }
+    }
 }
